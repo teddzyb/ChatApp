@@ -27,7 +27,7 @@
             </StackLayout>
             
             <StackLayout VerticalOptions="End" IsVisible="True">
-                <Grid BackgroundColor="DeepPink">
+                <Grid BackgroundColor="#e91e63">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
@@ -38,7 +38,7 @@
 
                     <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
                         <Image Source="chat.png" HeightRequest="32" />
-                        <Label FontSize="Body" TextColor="#f8f9fa">Chat</Label>
+                        <Label TextColor="#f8f9fa">Chat</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
@@ -46,7 +46,7 @@
 
                     <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
                         <Image Source="user.png" HeightRequest="32" />
-                        <Label FontSize="Body" TextColor="#f8f9fa">Profile</Label>
+                        <Label TextColor="#f8f9fa">Profile</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
