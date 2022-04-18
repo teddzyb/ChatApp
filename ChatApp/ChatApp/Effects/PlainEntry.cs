@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Xamarin.Forms;
 
-using Xamarin.Forms;
-
-namespace Calculator.Effects
+namespace PlainEntryAndroidSample.Effects
 {
     public class PlainEntry : RoutingEffect
     {

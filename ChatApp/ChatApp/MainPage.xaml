@@ -1,37 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp.MainPage"
-             xmlns:AuthView="clr-namespace:ChatApp.Views.Auth"
-             xmlns:TabbedView="clr-namespace:ChatApp.Views.Tabbed" >
+<ContentPage
+    x:Class="ChatApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:AuthView="clr-namespace:ChatApp.Views.Auth"
+    xmlns:TabbedView="clr-namespace:ChatApp.Views.Tabbed"
+    xmlns:effects="clr-namespace:ChatApp.Effects">
 
     <ContentPage.Content>
         <StackLayout>
 
-            <AuthView:Login x:Name="Login"
-                            IsVisible="True" />
+            <AuthView:Login x:Name="Login" IsVisible="True" />
 
-            <AuthView:Signup x:Name="Signup"
-                             IsVisible="False" />
+            <AuthView:Signup x:Name="Signup" IsVisible="False" />
 
-            <AuthView:ResetPass x:Name="ResetPass"
-                                IsVisible="False" />
+            <AuthView:ResetPass x:Name="ResetPass" IsVisible="False" />
 
-            <TabbedView:Chat x:Name="Chat"
-                             IsVisible="False" />
+            <TabbedView:Chat x:Name="Chat" IsVisible="False" />
 
-            <TabbedView:Profile x:Name="Profile"
-                                IsVisible="False" />
+            <TabbedView:Profile x:Name="Profile" IsVisible="False" />
 
         </StackLayout>
     </ContentPage.Content>
 
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" Margin="0, 0, 20, 0" IsVisible="True">
-            
+        <StackLayout
+            Margin="0,0,20,0"
+            IsVisible="True"
+            Orientation="Horizontal">
+
             <Button Text="Chat" />
             <Button Text="Profile" />
-            
+
         </StackLayout>
     </NavigationPage.TitleView>
 
