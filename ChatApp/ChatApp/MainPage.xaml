@@ -10,24 +10,19 @@
         <StackLayout>
 
             <StackLayout VerticalOptions="StartAndExpand">
-                <AuthView:Login x:Name="Login"
-                            IsVisible="False" />
+                <AuthView:Login x:Name="Login" IsVisible="False" />
 
-                <AuthView:Signup x:Name="Signup"
-                             IsVisible="False" />
+                <AuthView:Signup x:Name="Signup" IsVisible="False" />
 
-                <AuthView:ResetPass x:Name="ResetPass"
-                                IsVisible="False" />
+                <AuthView:ResetPass x:Name="ResetPass" IsVisible="True" />
 
-                <TabbedView:Chat x:Name="Chat"
-                             IsVisible="False" />
+                <TabbedView:Chat x:Name="Chat" IsVisible="False" />
 
-                <TabbedView:Profile x:Name="Profile"
-                                IsVisible="False" />
+                <TabbedView:Profile x:Name="Profile" IsVisible="False" />
 
             </StackLayout>
 
-            <StackLayout VerticalOptions="End" IsVisible="True">
+            <StackLayout IsVisible="False" VerticalOptions="End">
                 <Grid BackgroundColor="#f8f9fa">
                     <Grid.RowDefinitions>
                         <RowDefinition Height=".5" />
@@ -39,17 +34,25 @@
                     </Grid.ColumnDefinitions>
 
                     <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightGray" HeightRequest=".5" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>-->
-                    
-                    <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
-                        <Image Source="chat.png" HeightRequest="32" />
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,5,0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image HeightRequest="32" Source="chat.png" />
                         <Label TextColor="#424242">Chat</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
 
-                    <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
-                        <Image Source="user.png" HeightRequest="32" />
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5,0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image HeightRequest="32" Source="user.png" />
                         <Label TextColor="#424242">Profile</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" />
