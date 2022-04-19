@@ -16,5 +16,19 @@ namespace ChatApp.Views.Auth
         {
             InitializeComponent();
         }
+
+        private void Btn_SignUp(object sender, EventArgs e)
+        {
+            this.FindByName<View>("Signup").IsVisible = true;
+            this.FindByName<View>("ResetPass").IsVisible = false;
+            this.FindByName<View>("LoginGrid").IsVisible = false;
+        }
+
+        private void Btn_ResetPass(object sender, EventArgs e)
+        {
+            this.FindByName<View>("Signup").IsVisible = false;
+            this.FindByName<View>("ResetPass").IsVisible = true;
+            this.FindByName<View>("LoginGrid").IsVisible = false;
+        }
     }
 }

@@ -3,10 +3,19 @@
     x:Class="ChatApp.Views.Auth.Login"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:AuthView="clr-namespace:ChatApp.Views.Auth"
     xmlns:effects="clr-namespace:PlainEntryAndroidSample.Effects">
     
     <ContentView.Content>
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+        <StackLayout>
+            <AuthView:Signup x:Name="Signup"
+                            IsVisible="False" />
+
+            <AuthView:ResetPass x:Name="ResetPass"
+                            IsVisible="False" />
+
+            <Grid x:Name="LoginGrid" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -96,13 +105,14 @@
                         </StackLayout>
                     </Frame>
 
-                    <Label
+                        <Button
                         Grid.Row="3"
                         FontAttributes="None"
                         HorizontalOptions="EndAndExpand"
                         Text="Forgot Password?"
-                        TextColor="#424242" />
-                    <Button
+                        TextColor="#424242"
+                        Clicked="Btn_ResetPass" />
+                        <Button
                         Grid.Row="4"
                         BackgroundColor="#e91e63"
                         CornerRadius="20"
@@ -113,7 +123,8 @@
                         BackgroundColor="#9c27b0"
                         CornerRadius="20"
                         Text="Create an Account"
-                        TextColor="White" />
+                        TextColor="White"
+                        Clicked="Btn_SignUp" />
 
                     <StackLayout Grid.Row="6">
                         <Grid>
@@ -187,8 +198,9 @@
 
                     </StackLayout>
 
-                </Grid>
-            </Frame>
-        </Grid>
+                    </Grid>
+                </Frame>
+            </Grid>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

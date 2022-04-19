@@ -10,16 +10,10 @@
         <StackLayout>
 
             <AuthView:Login x:Name="Login"
-                            IsVisible="False" />
-
-            <AuthView:Signup x:Name="Signup"
-                            IsVisible="False" />
-
-            <AuthView:ResetPass x:Name="ResetPass"
-                            IsVisible="False" />
+                            IsVisible="True" />
 
             <TabbedView:MainTabbed x:Name="Tabbed"
-                            IsVisible="True" 
+                            IsVisible="False" 
                             VerticalOptions="FillAndExpand" />
 
         </StackLayout>
