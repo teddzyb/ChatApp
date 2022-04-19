@@ -28,9 +28,9 @@
             </StackLayout>
 
             <StackLayout VerticalOptions="End" IsVisible="True">
-                <Grid BackgroundColor="#f8f9fa">
+                <Grid BackgroundColor="White" ColumnSpacing="0" RowSpacing="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height=".5" />
+                        <RowDefinition Height=".2" />
                         <RowDefinition Height="65" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightGray" HeightRequest=".5" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>-->
+                    <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightGray" HeightRequest=".2" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>
                     
                     <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
                         <Image Source="chat.png" HeightRequest="32" />

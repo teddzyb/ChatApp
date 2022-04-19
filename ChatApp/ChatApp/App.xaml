@@ -2,7 +2,18 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatApp.App">
-    <Application.Resources>
 
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="primary-light-color">#f8f9fa</Color>
+            <Color x:Key="primary-dark-color">#424242</Color>
+
+            <Style ApplyToDerivedTypes="true" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource Key=primary-light-color}"/>
+            </Style>
+
+        </ResourceDictionary>
     </Application.Resources>
+    
 </Application>
