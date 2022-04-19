@@ -5,32 +5,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:AuthView="clr-namespace:ChatApp.Views.Auth"
     xmlns:TabbedView="clr-namespace:ChatApp.Views.Tabbed"
-    xmlns:effects="clr-namespace:ChatApp.Effects">
+    xmlns:effects="clr-namespace:ChatApp.Effects" >
 
     <ContentPage.Content>
         <StackLayout>
 
-            <AuthView:Login x:Name="Login"
+            <StackLayout VerticalOptions="StartAndExpand">
+                <AuthView:Login x:Name="Login"
                             IsVisible="True" />
 
-            <AuthView:Signup x:Name="Signup"
+                <AuthView:Signup x:Name="Signup"
                              IsVisible="False" />
 
-            <AuthView:ResetPass x:Name="ResetPass"
+                <AuthView:ResetPass x:Name="ResetPass"
                                 IsVisible="False" />
 
-            <TabbedView:Chat x:Name="Chat"
+                <TabbedView:Chat x:Name="Chat"
                              IsVisible="False" />
 
-            <TabbedView:Profile x:Name="Profile"
+                <TabbedView:Profile x:Name="Profile"
                                 IsVisible="False" />
 
             </StackLayout>
-            
-            <StackLayout VerticalOptions="End" IsVisible="True">
+
+            <StackLayout VerticalOptions="End" IsVisible="False">
                 <Grid BackgroundColor="#e91e63">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="65" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -45,12 +46,17 @@
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
 
-    <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" Margin="0, 0, 20, 0" IsVisible="True">
-            
-            <Button Text="Chat" />
-            <Button Text="Profile" />
-            
+                    <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
+                        <Image Source="user.png" HeightRequest="32" />
+                        <Label TextColor="#f8f9fa">Profile</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 
