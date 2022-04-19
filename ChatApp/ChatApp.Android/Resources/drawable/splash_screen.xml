@@ -3,7 +3,7 @@
 	<item>
 		<color android:color="@color/splash_background"/>
 	</item>
-	<item>
+	<item android:bottom="80dp">
 		<bitmap
 			android:src="@drawable/splash_logo"
 			android:tileMode="disabled"
