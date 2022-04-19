@@ -1,10 +1,200 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp.Views.Auth.Signup">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="signup" />
-      </StackLayout>
-  </ContentView.Content>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ChatApp.Views.Auth.Signup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:effects="clr-namespace:PlainEntryAndroidSample.Effects">
+    <ContentView.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Frame
+                Grid.Row="0"
+                Margin="0,0,0,0"
+                BackgroundColor="#f8f9fa"
+                BorderColor="#f8f9fa"
+                CornerRadius="0">
+                <Image
+                    Margin="0,20,0,0"
+                    Aspect="AspectFit"
+                    HeightRequest="180"
+                    Source="logo.png"
+                    WidthRequest="80" />
+            </Frame>
+
+            <Frame
+                Grid.Row="1"
+                Margin="0,-20,0,0"
+                BackgroundColor="#f8f9fa"
+                BorderColor="#f8f9fa"
+                CornerRadius="0"
+                HeightRequest="700">
+                <Grid
+                    Padding="20,0,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Create an Account"
+                        TextColor="#424242" />
+
+                    <Frame
+                        Grid.Row="1"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#bdbdbd"
+                        CornerRadius="30"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                            <Entry
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Username"
+                                VerticalOptions="FillAndExpand">
+                                <Entry.Effects>
+                                    <effects:PlainEntry />
+                                </Entry.Effects>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Grid.Row="2"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#bdbdbd"
+                        CornerRadius="30"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                            <Entry
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                Placeholder="Email"
+                                VerticalOptions="FillAndExpand">
+                                <Entry.Effects>
+                                    <effects:PlainEntry />
+                                </Entry.Effects>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+                    <Frame
+                        Grid.Row="3"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#bdbdbd"
+                        CornerRadius="30"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                            <Entry
+                                Grid.Row="2"
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                IsPassword="True"
+                                Placeholder="Password"
+                                VerticalOptions="FillAndExpand">
+                                <Entry.Effects>
+                                    <effects:PlainEntry />
+                                </Entry.Effects>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        Grid.Row="4"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#bdbdbd"
+                        CornerRadius="30"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                            <Entry
+                                Grid.Row="2"
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                IsPassword="True"
+                                Placeholder="Confirm Password"
+                                VerticalOptions="FillAndExpand">
+                                <Entry.Effects>
+                                    <effects:PlainEntry />
+                                </Entry.Effects>
+                            </Entry>
+                        </StackLayout>
+                    </Frame>
+
+                    <Button
+                        Grid.Row="5"
+                        BackgroundColor="#e91e63"
+                        CornerRadius="20"
+                        Text="Sign up"
+                        TextColor="White" />
+                    <Button
+                        Grid.Row="6"
+                        BackgroundColor="#9c27b0"
+                        CornerRadius="20"
+                        Text="Sign in to your Account"
+                        TextColor="White" />
+
+                    <StackLayout
+                        Grid.Row="7"
+                        HeightRequest="80"
+                        Orientation="Horizontal">
+                        <StackLayout
+                            Margin="0,4,0,50"
+                            HorizontalOptions="StartAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="End">
+                            <Image
+                                HeightRequest="25"
+                                HorizontalOptions="StartAndExpand"
+                                Source="google.png"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                HorizontalOptions="EndAndExpand"
+                                Text="Sign in with Google"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+
+
+                        <StackLayout
+                            Margin="0,4,0,50"
+                            HorizontalOptions="EndAndExpand"
+                            Orientation="Horizontal"
+                            VerticalOptions="End">
+                            <Image
+                                HeightRequest="25"
+                                HorizontalOptions="StartAndExpand"
+                                Source="fb.png"
+                                VerticalOptions="CenterAndExpand" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="12"
+                                HorizontalOptions="EndAndExpand"
+                                Text="Sign in with Facebook"
+                                VerticalOptions="CenterAndExpand" />
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentView.Content>
 </ContentView>
