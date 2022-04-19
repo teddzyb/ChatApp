@@ -10,11 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp.Views.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Signup : ContentView
+    public partial class Signup : ContentPage
     {
         public Signup()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

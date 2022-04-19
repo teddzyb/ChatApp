@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
+<ContentPage
     x:Class="ChatApp.Views.Auth.Signup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:PlainEntryAndroidSample.Effects">
-    <ContentView.Content>
+    
+    <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -196,7 +197,7 @@
                             FontAttributes="Bold"
                             FontSize="10"
                             ImageSource="google.png"
-                            Text="Sign in with Google"
+                            Text="Sign up with Google"
                             TextColor="#424242" />
 
                         <Button
@@ -207,12 +208,12 @@
                             FontAttributes="Bold"
                             FontSize="10"
                             ImageSource="fb.png"
-                            Text="Sign in with Facebook"
+                            Text="Sign up with Facebook"
                             TextColor="#424242" />
                     </StackLayout>
 
                 </Grid>
             </Frame>
         </Grid>
-    </ContentView.Content>
-</ContentView>
+    </ContentPage.Content>
+</ContentPage>

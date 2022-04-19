@@ -10,11 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp.Views.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ResetPass : ContentView
+    public partial class ResetPass : ContentPage
     {
         public ResetPass()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

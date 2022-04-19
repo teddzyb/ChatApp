@@ -10,11 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp.Views.Tabbed
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MainTabbed : ContentView
+    public partial class MainTabbed : ContentPage
     {
         public MainTabbed()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         private void Nav_Chat(object sender, EventArgs e)
