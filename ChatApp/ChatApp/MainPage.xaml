@@ -4,15 +4,14 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:AuthView="clr-namespace:ChatApp.Views.Auth"
-    xmlns:TabbedView="clr-namespace:ChatApp.Views.Tabbed"
-    xmlns:effects="clr-namespace:ChatApp.Effects" >
+    xmlns:TabbedView="clr-namespace:ChatApp.Views.Tabbed">
 
     <ContentPage.Content>
         <StackLayout>
 
             <StackLayout VerticalOptions="StartAndExpand">
                 <AuthView:Login x:Name="Login"
-                            IsVisible="True" />
+                            IsVisible="False" />
 
                 <AuthView:Signup x:Name="Signup"
                              IsVisible="False" />
@@ -28,9 +27,10 @@
 
             </StackLayout>
 
-            <StackLayout VerticalOptions="End" IsVisible="False">
-                <Grid BackgroundColor="#e91e63">
+            <StackLayout VerticalOptions="End" IsVisible="True">
+                <Grid BackgroundColor="#f8f9fa">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height=".5" />
                         <RowDefinition Height="65" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -38,17 +38,19 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
+                    <!--<BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" BackgroundColor="LightGray" HeightRequest=".5" VerticalOptions="End" HorizontalOptions="FillAndExpand"/>-->
+                    
+                    <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
                         <Image Source="chat.png" HeightRequest="32" />
-                        <Label TextColor="#f8f9fa">Chat</Label>
+                        <Label TextColor="#424242">Chat</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>
                     </StackLayout>
 
-                    <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
+                    <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 5">
                         <Image Source="user.png" HeightRequest="32" />
-                        <Label TextColor="#f8f9fa">Profile</Label>
+                        <Label TextColor="#424242">Profile</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer NumberOfTapsRequired="1" />
                         </StackLayout.GestureRecognizers>

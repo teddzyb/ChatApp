@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Util;
 using AndroidX.AppCompat.App;
@@ -17,6 +18,11 @@ namespace com.xamarin.sample.splashscreen
         {
             base.OnCreate(savedInstanceState, persistentState);
             Log.Debug(TAG, "SplashActivity.OnCreate");
+
+            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+            {
+                Window.SetNavigationBarColor(Color.ParseColor("#f8f9fa"));
+            }
         }
 
         // Launches the startup task

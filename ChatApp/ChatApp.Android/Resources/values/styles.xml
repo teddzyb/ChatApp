@@ -21,7 +21,7 @@
 		<item name="android:windowLightStatusBar">true</item>
 
 		<!-- android:windowLightNavigationBar for the navigation bar mode (light/dark) -->
-		<item name="android:windowLightNavigationBar">false</item>
+		<item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="MyTheme.Base" parent="Theme.AppCompat.Light">
