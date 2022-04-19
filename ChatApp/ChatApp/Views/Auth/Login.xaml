@@ -13,11 +13,12 @@
             </Grid.RowDefinitions>
             <Frame
                 Grid.Row="0"
-                Margin="0,20,0,0"
-                BackgroundColor="white"
-                BorderColor="Transparent"
+                Margin="0,0,0,0"
+                BackgroundColor="#f8f9fa"
+                BorderColor="#f8f9fa"
                 CornerRadius="0">
                 <Image
+                    Margin="0,20,0,0"
                     Aspect="AspectFit"
                     HeightRequest="180"
                     Source="logo.png"
@@ -26,11 +27,13 @@
 
             <Frame
                 Grid.Row="1"
-                BackgroundColor="white"
+                Margin="0,-20,0,0"
+                BackgroundColor="#f8f9fa"
+                BorderColor="#f8f9fa"
                 CornerRadius="0"
                 HeightRequest="700">
                 <Grid
-                    Padding="20,-20,20,0"
+                    Padding="20,0,20,0"
                     HorizontalOptions="FillAndExpand"
                     RowSpacing="20"
                     VerticalOptions="FillAndExpand">
@@ -50,7 +53,7 @@
                         FontAttributes="Bold"
                         FontSize="24"
                         HorizontalOptions="CenterAndExpand"
-                        Text="Sign In"
+                        Text="Sign in to your Account"
                         TextColor="#424242" />
                     <Frame
                         Grid.Row="1"
@@ -61,7 +64,7 @@
                         HorizontalOptions="FillAndExpand">
                         <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                             <Entry
-                                FontSize="16"
+                                FontSize="13"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Email"
                                 VerticalOptions="FillAndExpand">
@@ -81,7 +84,7 @@
                         <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                             <Entry
                                 Grid.Row="2"
-                                FontSize="16"
+                                FontSize="13"
                                 HorizontalOptions="FillAndExpand"
                                 IsPassword="True"
                                 Placeholder="Password"
@@ -92,7 +95,6 @@
                             </Entry>
                         </StackLayout>
                     </Frame>
-
 
                     <Label
                         Grid.Row="3"
@@ -142,14 +144,16 @@
                         </Grid>
                     </StackLayout>
 
-                    <StackLayout Grid.Row="7" Orientation="Horizontal">
+                    <StackLayout
+                        Grid.Row="7"
+                        HeightRequest="80"
+                        Orientation="Horizontal">
                         <StackLayout
-                            HeightRequest="60"
+                            Margin="0,4,0,50"
                             HorizontalOptions="StartAndExpand"
                             Orientation="Horizontal"
                             VerticalOptions="End">
                             <Image
-                                Margin="0,4,0,0"
                                 HeightRequest="25"
                                 HorizontalOptions="StartAndExpand"
                                 Source="google.png"
@@ -164,12 +168,11 @@
 
 
                         <StackLayout
-                            HeightRequest="60"
+                            Margin="0,4,0,50"
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal"
                             VerticalOptions="End">
                             <Image
-                                Margin="2,4,0,0"
                                 HeightRequest="25"
                                 HorizontalOptions="StartAndExpand"
                                 Source="fb.png"
