@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace PlainEntryAndroidSample.Effects
+namespace PlainEntryAndroidSample.CustomRenderers
 {
     public class PlainEntry : RoutingEffect
     {

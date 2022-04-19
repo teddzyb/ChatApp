@@ -17,5 +17,10 @@ namespace ChatApp.Views.Auth
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
+
+        private async void Btn_Back(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
+        }
     }
 }

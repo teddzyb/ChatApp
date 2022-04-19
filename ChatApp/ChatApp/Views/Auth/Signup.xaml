@@ -3,33 +3,59 @@
     x:Class="ChatApp.Views.Auth.Signup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="clr-namespace:PlainEntryAndroidSample.Effects">
-    
+    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers">
+
     <ContentPage.Content>
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Grid
+            BackgroundColor="#f8f9fa"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Frame
+
+            <StackLayout
                 Grid.Row="0"
-                BackgroundColor="#f8f9fa"
-                BorderColor="#f8f9fa"
-                CornerRadius="0">
+                Margin="10,20,10,0"
+                HeightRequest="30"
+                Orientation="Horizontal">
+                <StackLayout
+                    HorizontalOptions="StartAndExpand"
+                    Orientation="Horizontal"
+                    VerticalOptions="Center">
+
+                    <Image
+                        BackgroundColor="transparent"
+                        HeightRequest="40"
+                        HorizontalOptions="StartAndExpand"
+                        Source="back.png"
+                        VerticalOptions="CenterAndExpand" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Back"
+                        TextColor="#424242"
+                        VerticalOptions="CenterAndExpand" />
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Btn_Back" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout Grid.Row="1">
                 <Image
                     Aspect="AspectFit"
-                    HeightRequest="150"
+                    HeightRequest="100"
                     Source="logo.png"
-                    WidthRequest="80" />
-            </Frame>
+                    WidthRequest="20" />
+            </StackLayout>
 
-            <Frame
-                Grid.Row="1"
-                Margin="0,-20,0,0"
-                BackgroundColor="#f8f9fa"
-                BorderColor="#f8f9fa"
-                CornerRadius="0"
-                HeightRequest="700">
+            <StackLayout Grid.Row="2">
                 <Grid
                     Padding="20,0,20,0"
                     HorizontalOptions="FillAndExpand"
@@ -145,16 +171,15 @@
                     <Button
                         Grid.Row="6"
                         BackgroundColor="#9c27b0"
+                        Clicked="Btn_Back"
                         CornerRadius="20"
                         Text="Sign in to your Account"
                         TextColor="White" />
 
-
-
-
                     <StackLayout
                         Grid.Row="7"
                         HeightRequest="30"
+                        HorizontalOptions="CenterAndExpand"
                         Orientation="Horizontal">
                         <Grid>
                             <BoxView
@@ -162,7 +187,7 @@
                                 HeightRequest="1"
                                 HorizontalOptions="Center"
                                 VerticalOptions="Center"
-                                WidthRequest="300" />
+                                WidthRequest="340" />
                             <Frame
                                 Margin="0"
                                 Padding="0"
@@ -188,6 +213,7 @@
                     <StackLayout
                         Grid.Row="8"
                         HeightRequest="34"
+                        HorizontalOptions="CenterAndExpand"
                         Orientation="Horizontal">
                         <Button
                             BackgroundColor="white"
@@ -213,7 +239,7 @@
                     </StackLayout>
 
                 </Grid>
-            </Frame>
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
