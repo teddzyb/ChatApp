@@ -4,7 +4,7 @@
              x:Class="ChatApp.Views.Tabbed.Profile">
   <ContentView.Content>
       <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
+          <Label Text="Profile Page" />
       </StackLayout>
   </ContentView.Content>
 </ContentView>
