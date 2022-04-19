@@ -183,47 +183,32 @@
                         </Grid>
                     </StackLayout>
 
-
+                    <!--  Margin="0,0,10,0"  -->
                     <StackLayout
                         Grid.Row="8"
-                        Margin="0,0,10,0"
-                        HeightRequest="20"
+                        HeightRequest="34"
                         Orientation="Horizontal">
-                        <StackLayout
-                            HorizontalOptions="StartAndExpand"
-                            Orientation="Horizontal"
-                            VerticalOptions="End">
-                            <Image
-                                HeightRequest="25"
-                                HorizontalOptions="StartAndExpand"
-                                Source="google.png"
-                                VerticalOptions="CenterAndExpand" />
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="12"
-                                HorizontalOptions="EndAndExpand"
-                                Text="Sign in with Google"
-                                VerticalOptions="CenterAndExpand" />
-                        </StackLayout>
+                        <Button
+                            BackgroundColor="white"
+                            BorderColor="#bdbdbd"
+                            BorderWidth="1.4"
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            FontSize="10"
+                            ImageSource="google.png"
+                            Text="Sign in with Google"
+                            TextColor="#424242" />
 
-
-                        <StackLayout
-                            HorizontalOptions="EndAndExpand"
-                            Orientation="Horizontal"
-                            VerticalOptions="End">
-                            <Image
-                                HeightRequest="25"
-                                HorizontalOptions="StartAndExpand"
-                                Source="fb.png"
-                                VerticalOptions="CenterAndExpand" />
-                            <Label
-                                FontAttributes="Bold"
-                                FontSize="12"
-                                HorizontalOptions="EndAndExpand"
-                                Text="Sign in with Facebook"
-                                VerticalOptions="CenterAndExpand" />
-                        </StackLayout>
-
+                        <Button
+                            BackgroundColor="white"
+                            BorderColor="#bdbdbd"
+                            BorderWidth="1.4"
+                            CornerRadius="20"
+                            FontAttributes="Bold"
+                            FontSize="10"
+                            ImageSource="fb.png"
+                            Text="Sign in with Facebook"
+                            TextColor="#424242" />
                     </StackLayout>
 
                 </Grid>
