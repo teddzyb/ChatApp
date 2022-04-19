@@ -168,7 +168,7 @@
                                 FontAttributes="Bold"
                                 FontSize="12"
                                 HorizontalOptions="EndAndExpand"
-                                Text="Sign in with Google"
+                                Text="Sign up with Google"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
 
@@ -187,7 +187,7 @@
                                 FontAttributes="Bold"
                                 FontSize="12"
                                 HorizontalOptions="EndAndExpand"
-                                Text="Sign in with Facebook"
+                                Text="Sign up with Facebook"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
 
