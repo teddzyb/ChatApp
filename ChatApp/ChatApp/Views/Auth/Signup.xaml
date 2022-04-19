@@ -12,14 +12,12 @@
             </Grid.RowDefinitions>
             <Frame
                 Grid.Row="0"
-                Margin="0,0,0,0"
                 BackgroundColor="#f8f9fa"
                 BorderColor="#f8f9fa"
                 CornerRadius="0">
                 <Image
-                    Margin="0,20,0,0"
                     Aspect="AspectFit"
-                    HeightRequest="180"
+                    HeightRequest="150"
                     Source="logo.png"
                     WidthRequest="80" />
             </Frame>
@@ -150,12 +148,48 @@
                         Text="Sign in to your Account"
                         TextColor="White" />
 
+
+
+
                     <StackLayout
                         Grid.Row="7"
-                        HeightRequest="80"
+                        HeightRequest="30"
+                        Orientation="Horizontal">
+                        <Grid>
+                            <BoxView
+                                BackgroundColor="#bdbdbd"
+                                HeightRequest="1"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="300" />
+                            <Frame
+                                Margin="0"
+                                Padding="0"
+                                BackgroundColor="White"
+                                BorderColor="#bdbdbd"
+                                CornerRadius="15"
+                                HasShadow="False"
+                                HeightRequest="30"
+                                HorizontalOptions="Center"
+                                WidthRequest="30">
+                                <Label
+                                    BackgroundColor="#bdbdbd"
+                                    FontSize="14"
+                                    HorizontalTextAlignment="Center"
+                                    Text="OR"
+                                    TextColor="White"
+                                    VerticalTextAlignment="Center" />
+                            </Frame>
+                        </Grid>
+                    </StackLayout>
+
+
+                    <StackLayout
+                        Grid.Row="8"
+                        Margin="0,0,10,0"
+                        HeightRequest="20"
                         Orientation="Horizontal">
                         <StackLayout
-                            Margin="0,4,0,50"
                             HorizontalOptions="StartAndExpand"
                             Orientation="Horizontal"
                             VerticalOptions="End">
@@ -168,13 +202,12 @@
                                 FontAttributes="Bold"
                                 FontSize="12"
                                 HorizontalOptions="EndAndExpand"
-                                Text="Sign up with Google"
+                                Text="Sign in with Google"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
 
 
                         <StackLayout
-                            Margin="0,4,0,50"
                             HorizontalOptions="EndAndExpand"
                             Orientation="Horizontal"
                             VerticalOptions="End">
@@ -187,7 +220,7 @@
                                 FontAttributes="Bold"
                                 FontSize="12"
                                 HorizontalOptions="EndAndExpand"
-                                Text="Sign up with Facebook"
+                                Text="Sign in with Facebook"
                                 VerticalOptions="CenterAndExpand" />
                         </StackLayout>
 

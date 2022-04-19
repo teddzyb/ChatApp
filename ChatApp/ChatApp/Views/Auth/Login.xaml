@@ -24,14 +24,12 @@
                 </Grid.RowDefinitions>
                 <Frame
                     Grid.Row="0"
-                    Margin="0,0,0,0"
                     BackgroundColor="#f8f9fa"
                     BorderColor="#f8f9fa"
                     CornerRadius="0">
                     <Image
-                        Margin="0,20,0,0"
                         Aspect="AspectFit"
-                        HeightRequest="180"
+                        HeightRequest="150"
                         Source="logo.png"
                         WidthRequest="80" />
                 </Frame>
@@ -107,15 +105,18 @@
                             </StackLayout>
                         </Frame>
 
-                        <Button
+                        <Label
                             Grid.Row="3"
+                            Padding="0"
                             BackgroundColor="Transparent"
-                            Clicked="Btn_ResetPass"
-                            FontAttributes="Bold"
                             FontSize="13"
                             HorizontalOptions="EndAndExpand"
                             Text="Forgot Password?"
-                            TextColor="#424242" />
+                            TextColor="#424242">
+                            <!--<Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="SignUp_Tapped" />
+                            </Label.GestureRecognizers>-->
+                        </Label>
                         <Button
                             Grid.Row="4"
                             BackgroundColor="#e91e63"
@@ -130,7 +131,10 @@
                             Text="Create an Account"
                             TextColor="White" />
 
-                        <StackLayout Grid.Row="6">
+                        <StackLayout
+                            Grid.Row="6"
+                            HeightRequest="30"
+                            Orientation="Horizontal">
                             <Grid>
                                 <BoxView
                                     BackgroundColor="#bdbdbd"
@@ -143,14 +147,14 @@
                                     Padding="0"
                                     BackgroundColor="White"
                                     BorderColor="#bdbdbd"
-                                    CornerRadius="30"
+                                    CornerRadius="15"
                                     HasShadow="False"
                                     HeightRequest="30"
                                     HorizontalOptions="Center"
                                     WidthRequest="30">
                                     <Label
                                         BackgroundColor="#bdbdbd"
-                                        FontSize="13"
+                                        FontSize="14"
                                         HorizontalTextAlignment="Center"
                                         Text="OR"
                                         TextColor="White"
@@ -161,10 +165,10 @@
 
                         <StackLayout
                             Grid.Row="7"
-                            HeightRequest="80"
+                            Margin="0,0,10,0"
+                            HeightRequest="20"
                             Orientation="Horizontal">
                             <StackLayout
-                                Margin="0,4,0,50"
                                 HorizontalOptions="StartAndExpand"
                                 Orientation="Horizontal"
                                 VerticalOptions="End">
@@ -183,7 +187,6 @@
 
 
                             <StackLayout
-                                Margin="0,4,0,50"
                                 HorizontalOptions="EndAndExpand"
                                 Orientation="Horizontal"
                                 VerticalOptions="End">
