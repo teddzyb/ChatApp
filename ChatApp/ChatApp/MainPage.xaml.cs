@@ -18,9 +18,34 @@ namespace ChatApp
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
-        private void Btn_SignIn(object sender, EventArgs e)
+ 
+        private async void Btn_SignIn(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new MainTabbed();
+            emailFrame.BorderColor = Color.FromRgb(189, 189, 189);
+            passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
+
+            if (string.IsNullOrEmpty(emailEntry.Text) || string.IsNullOrEmpty(passwordEntry.Text))
+            {
+                if (string.IsNullOrEmpty(emailEntry.Text))
+                {
+                    emailFrame.BorderColor = Color.FromRgb(244, 67, 54);
+                    emailEntry.Focus();
+                }
+                
+                if (string.IsNullOrEmpty(passwordEntry.Text))
+                {
+                    passwordFrame.BorderColor = Color.FromRgb(244, 67, 54);
+                    if (!string.IsNullOrEmpty(emailEntry.Text))
+                    {
+                        passwordEntry.Focus();
+                    }
+
+                }
+                await DisplayAlert("Error", "Missing Fields", "", "Okay");
+                return;
+            }
+
+            //Application.Current.MainPage = new MainTabbed();
         }
 
         private async void Btn_SignUp(object sender, EventArgs e)

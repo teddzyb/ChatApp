@@ -53,27 +53,30 @@
                         Text="Sign in to your Account"
                         TextColor="#424242" />
 
+
                     <Frame
+                        x:Name="emailFrame"
                         Grid.Row="1"
                         Padding="0"
                         BackgroundColor="Transparent"
                         BorderColor="#bdbdbd"
                         CornerRadius="30"
                         HorizontalOptions="FillAndExpand">
-                        <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                            <Entry
+                        <StackLayout
+                            Grid.Row="1"
+                            Padding="20,5,20,5"
+                            Orientation="Horizontal">
+                            <local:CustomEntry
+                                x:Name="emailEntry"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Email"
-                                VerticalOptions="FillAndExpand">
-                                <Entry.Effects>
-                                    <effects:PlainEntry />
-                                </Entry.Effects>
-                            </Entry>
+                                VerticalOptions="FillAndExpand" />
                         </StackLayout>
                     </Frame>
 
                     <Frame
+                        x:Name="passwordFrame"
                         Grid.Row="2"
                         Padding="0"
                         BackgroundColor="Transparent"
@@ -81,18 +84,13 @@
                         CornerRadius="30"
                         HorizontalOptions="FillAndExpand">
                         <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                            <Entry
+                            <local:CustomEntry
+                                x:Name="passwordEntry"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
                                 IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
                                 Placeholder="Password"
-                                VerticalOptions="FillAndExpand">
-
-                                <Entry.Effects>
-                                    <effects:PlainEntry />
-                                </Entry.Effects>
-
-                            </Entry>
+                                VerticalOptions="FillAndExpand" />
 
                             <ImageButton
                                 Margin="0,0,10,0"

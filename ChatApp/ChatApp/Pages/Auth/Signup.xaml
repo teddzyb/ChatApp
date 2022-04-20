@@ -3,7 +3,6 @@
     x:Class="ChatApp.Pages.Auth.Signup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers"
     xmlns:local="clr-namespace:ChatApp">
 
     <StackLayout BackgroundColor="#f8f9fa">
@@ -84,6 +83,7 @@
                             TextColor="#424242" />
 
                         <Frame
+                            x:Name="usernameFrame"
                             Grid.Row="1"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -91,18 +91,17 @@
                             CornerRadius="30"
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                                <Entry
+                                <local:CustomEntry
+                                    x:Name="usernameEntry"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Username"
-                                    VerticalOptions="FillAndExpand">
-                                    <Entry.Effects>
-                                        <effects:PlainEntry />
-                                    </Entry.Effects>
-                                </Entry>
+                                    VerticalOptions="FillAndExpand" />
                             </StackLayout>
                         </Frame>
+
                         <Frame
+                            x:Name="emailFrame"
                             Grid.Row="2"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -110,18 +109,17 @@
                             CornerRadius="30"
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                                <Entry
+                                <local:CustomEntry
+                                    x:Name="emailEntry"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Email"
-                                    VerticalOptions="FillAndExpand">
-                                    <Entry.Effects>
-                                        <effects:PlainEntry />
-                                    </Entry.Effects>
-                                </Entry>
+                                    VerticalOptions="FillAndExpand" />
                             </StackLayout>
                         </Frame>
+
                         <Frame
+                            x:Name="passwordFrame"
                             Grid.Row="3"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -129,17 +127,14 @@
                             CornerRadius="30"
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                                <Entry
+                                <local:CustomEntry
+                                    x:Name="passwordEntry"
                                     Grid.Row="2"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger1}, Path=HidePassword}"
                                     Placeholder="Password"
-                                    VerticalOptions="FillAndExpand">
-                                    <Entry.Effects>
-                                        <effects:PlainEntry />
-                                    </Entry.Effects>
-                                </Entry>
+                                    VerticalOptions="FillAndExpand" />
 
                                 <ImageButton
                                     Margin="0,0,10,0"
@@ -161,6 +156,7 @@
                         </Frame>
 
                         <Frame
+                            x:Name="confirmPasswordFrame"
                             Grid.Row="4"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -168,17 +164,14 @@
                             CornerRadius="30"
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                                <Entry
+                                <local:CustomEntry
+                                    x:Name="confirmPasswordEntry"
                                     Grid.Row="2"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger2}, Path=HidePassword}"
                                     Placeholder="Confirm Password"
-                                    VerticalOptions="FillAndExpand">
-                                    <Entry.Effects>
-                                        <effects:PlainEntry />
-                                    </Entry.Effects>
-                                </Entry>
+                                    VerticalOptions="FillAndExpand" />
 
                                 <ImageButton
                                     Margin="0,0,10,0"
@@ -203,6 +196,7 @@
                         <local:CustomButton
                             Grid.Row="5"
                             BackgroundColor="#e91e63"
+                            Clicked="Btn_SignUp"
                             CornerRadius="20"
                             Text="Sign up"
                             TextColor="White" />
@@ -214,7 +208,6 @@
                             CornerRadius="20"
                             Text="Sign in to your Account"
                             TextColor="White" />
-
 
                         <Grid Grid.Row="7">
                             <BoxView

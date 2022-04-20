@@ -1,0 +1,7 @@
+﻿[*.cs]
+
+# IDE0008: Use explicit type
+dotnet_diagnostic.IDE0008.severity = silent
+
+# IDE0001: Simplify Names
+dotnet_diagnostic.IDE0001.severity = error

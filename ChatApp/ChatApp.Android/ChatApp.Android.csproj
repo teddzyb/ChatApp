@@ -65,6 +65,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppEntryTest\Android\Graphics.cs" />
+    <Compile Include="CustomRenderers\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderers\AndroidPlainEntryEffect.cs" />
     <Compile Include="CustomRenderers\CustomButtonRenderer.cs" />
     <Compile Include="MainActivity.cs" />
@@ -73,6 +75,9 @@
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
