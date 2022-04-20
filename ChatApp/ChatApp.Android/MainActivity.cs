@@ -33,10 +33,10 @@ namespace ChatApp.Droid
             Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 
-            //if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
-            //{
-            //    Window.SetNavigationBarColor(Color.ParseColor("#ffffff"));
-            //}
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            {
+                Window.SetNavigationBarColor(Android.Graphics.Color.Rgb(248, 249, 250));
+            }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
