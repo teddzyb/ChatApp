@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -35,7 +30,7 @@ namespace ChatApp.Pages.Auth
                 return;
             }
 
-            // Execute the "Reset Password" function
+            // Successful authentication with database (Insert Future Code Here..)
             if (true) 
             {
                 await DisplayAlert("Error", "A recovery link has been to your email address.", "OKAY");
@@ -44,6 +39,10 @@ namespace ChatApp.Pages.Auth
             
         }
 
+        private void TextChanged_Email(object sender, EventArgs e)
+        {
+            emailFrame.BorderColor = Color.FromRgb(189, 189, 189);
+        }
         
     }
 }

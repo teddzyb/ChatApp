@@ -3,7 +3,6 @@
     x:Class="ChatApp.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers"
     xmlns:local="clr-namespace:ChatApp">
 
     <StackLayout
@@ -45,6 +44,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+
                     <Label
                         Grid.Row="0"
                         FontAttributes="Bold"
@@ -52,7 +52,6 @@
                         HorizontalOptions="CenterAndExpand"
                         Text="Sign in to your Account"
                         TextColor="#424242" />
-
 
                     <Frame
                         x:Name="emailFrame"
@@ -71,6 +70,7 @@
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Email"
+                                TextChanged="TextChanged_Email"
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
                     </Frame>
@@ -90,6 +90,7 @@
                                 HorizontalOptions="FillAndExpand"
                                 IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
                                 Placeholder="Password"
+                                TextChanged="TextChanged_Password"
                                 VerticalOptions="FillAndExpand" />
 
                             <ImageButton
@@ -209,12 +210,12 @@
                             HorizontalOptions="CenterAndExpand"
                             Orientation="Horizontal"
                             Spacing="4">
+
                             <Frame
                                 Padding="4"
                                 CornerRadius="20"
                                 OutlineColor="#bdbdbd">
                                 <StackLayout Orientation="Horizontal">
-
                                     <Image
                                         BackgroundColor="transparent"
                                         HeightRequest="25"
@@ -225,9 +226,10 @@
                                         Text="Sign in with Google    "
                                         TextColor="#424242"
                                         VerticalOptions="Center" />
-
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Btn_SignInWithGoogle" />
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
-
                             </Frame>
 
                             <Frame
@@ -245,15 +247,14 @@
                                         Text="Sign in with Facebook"
                                         TextColor="#424242"
                                         VerticalOptions="Center" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Btn_SignInWithFB" />
+                                    </StackLayout.GestureRecognizers>
                                 </StackLayout>
-
                             </Frame>
                         </StackLayout>
                     </StackLayout>
-
-
                 </Grid>
-
             </StackLayout>
         </Grid>
 

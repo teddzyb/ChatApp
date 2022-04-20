@@ -96,6 +96,7 @@
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Username"
+                                    TextChanged="TextChanged_Username"
                                     VerticalOptions="FillAndExpand" />
                             </StackLayout>
                         </Frame>
@@ -114,6 +115,7 @@
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Email"
+                                    TextChanged="TextChanged_Email"
                                     VerticalOptions="FillAndExpand" />
                             </StackLayout>
                         </Frame>
@@ -134,6 +136,7 @@
                                     HorizontalOptions="FillAndExpand"
                                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger1}, Path=HidePassword}"
                                     Placeholder="Password"
+                                    TextChanged="TextChanged_Password"
                                     VerticalOptions="FillAndExpand" />
 
                                 <ImageButton
@@ -171,6 +174,7 @@
                                     HorizontalOptions="FillAndExpand"
                                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger2}, Path=HidePassword}"
                                     Placeholder="Confirm Password"
+                                    TextChanged="TextChanged_ConfirmPassword"
                                     VerticalOptions="FillAndExpand" />
 
                                 <ImageButton
@@ -235,7 +239,6 @@
                             </Frame>
                         </Grid>
 
-
                         <StackLayout
                             Grid.Row="8"
                             Margin="5"
@@ -250,7 +253,6 @@
                                     CornerRadius="20"
                                     OutlineColor="#bdbdbd">
                                     <StackLayout Orientation="Horizontal">
-
                                         <Image
                                             BackgroundColor="transparent"
                                             HeightRequest="25"
@@ -261,7 +263,9 @@
                                             Text="Sign in with Google    "
                                             TextColor="#424242"
                                             VerticalOptions="Center" />
-
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Btn_SignUpWithGoogle" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
 
                                 </Frame>
@@ -281,12 +285,13 @@
                                             Text="Sign in with Facebook"
                                             TextColor="#424242"
                                             VerticalOptions="Center" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Btn_SignUpWithFB" />
+                                        </StackLayout.GestureRecognizers>
                                     </StackLayout>
-
                                 </Frame>
                             </StackLayout>
                         </StackLayout>
-
 
                     </Grid>
                 </StackLayout>

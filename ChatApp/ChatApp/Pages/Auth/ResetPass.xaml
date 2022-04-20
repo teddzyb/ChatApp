@@ -84,6 +84,7 @@
                             FontSize="13"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Email"
+                            TextChanged="TextChanged_Email"
                             VerticalOptions="FillAndExpand" />
                     </StackLayout>
                 </Frame>
