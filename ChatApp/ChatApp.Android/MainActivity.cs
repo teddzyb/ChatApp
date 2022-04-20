@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Android.Graphics;
+using Xamarin.Forms;
 
 namespace ChatApp.Droid
 {
@@ -13,16 +14,32 @@ namespace ChatApp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            TabLayoutResource = Resource.Layout.Tabbar;
+            ToolbarResource = Resource.Layout.Toolbar;
+
+            var density = Resources.DisplayMetrics.Density;
+            App.screenWidth = (int)(Resources.DisplayMetrics.WidthPixels / density);
+            App.screenHeight = (int)(Resources.DisplayMetrics.HeightPixels / density);
+
+            if (Device.Idiom == TargetIdiom.Phone)
+            {
+                App.screenHeight = (16 * App.screenWidth) / 9;
+            }
+            if (Device.Idiom == TargetIdiom.Tablet)
+            {
+                App.screenWidth = (9 * App.screenHeight) / 16;
+            }
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 
-            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
-            {
-                Window.SetNavigationBarColor(Color.ParseColor("#ffffff"));
-            }
+            //if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+            //{
+            //    Window.SetNavigationBarColor(Color.ParseColor("#ffffff"));
+            //}
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {

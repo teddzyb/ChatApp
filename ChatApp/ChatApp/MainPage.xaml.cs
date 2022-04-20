@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-using ChatApp.Views.Auth;
-using ChatApp.Views.Tabbed;
+using ChatApp.Pages.Auth;
+using ChatApp.Pages.Tabbed;
 
 namespace ChatApp
 {

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ChatApp.Pages.Tabbed.MainTabbed"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:TabbedView="clr-namespace:ChatApp.Pages.Tabbed">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout VerticalOptions="StartAndExpand">
+
+                <TabbedView:Chat x:Name="Chat" IsVisible="True" />
+
+                <TabbedView:Profile x:Name="Profile" IsVisible="False" />
+
+            </StackLayout>
+
+            <StackLayout IsVisible="True" VerticalOptions="End">
+                <Grid
+                    BackgroundColor="White"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".2" />
+                        <RowDefinition Height="65" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <BoxView
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="LightGray"
+                        HeightRequest=".2"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End" />
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Margin="0,5,0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image HeightRequest="32" Source="chat.png" />
+                        <Label TextColor="#424242">Chat</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Nav_Chat" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="0,5,0,5"
+                        HorizontalOptions="CenterAndExpand">
+                        <Image HeightRequest="32" Source="user.png" />
+                        <Label TextColor="#424242">Profile</Label>
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Nav_Profile" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

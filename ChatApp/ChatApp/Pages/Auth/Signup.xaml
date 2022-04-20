@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
-    x:Class="ChatApp.Views.Auth.Signup"
+    x:Class="ChatApp.Pages.Auth.Signup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers">
@@ -180,7 +180,7 @@
                     <Grid Grid.Row="7">
                         <BoxView
                             BackgroundColor="#bdbdbd"
-                            HeightRequest="1.4"
+                            HeightRequest="1"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
                             WidthRequest="100" />
@@ -218,7 +218,7 @@
                             Grid.Column="0"
                             BackgroundColor="white"
                             BorderColor="#bdbdbd"
-                            BorderWidth="1.4"
+                            BorderWidth="1"
                             CornerRadius="20"
                             FontAttributes="Bold"
                             FontSize="11"
@@ -230,7 +230,7 @@
                             Grid.Column="1"
                             BackgroundColor="white"
                             BorderColor="#bdbdbd"
-                            BorderWidth="1.4"
+                            BorderWidth="1"
                             CornerRadius="20"
                             FontAttributes="Bold"
                             FontSize="11"
