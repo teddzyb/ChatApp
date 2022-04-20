@@ -22,7 +22,7 @@ namespace PlainEntryAndroidSample.Droid
             {
                 if (Control != null)
                 {
-                    Android.Graphics.Color entryLineColor = Android.Graphics.Color.White;
+                    Android.Graphics.Color entryLineColor = Android.Graphics.Color.Rgb(248, 249, 250);
                     Control.BackgroundTintList = ColorStateList.ValueOf(entryLineColor);
                 }
 

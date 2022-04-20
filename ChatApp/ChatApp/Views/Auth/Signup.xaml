@@ -47,7 +47,7 @@
 
             </StackLayout>
 
-            <StackLayout Grid.Row="1">
+            <StackLayout Grid.Row="1" Margin="0,20,0,0">
                 <Image
                     Aspect="AspectFit"
                     HeightRequest="100"
@@ -176,67 +176,69 @@
                         Text="Sign in to your Account"
                         TextColor="White" />
 
-                    <StackLayout
-                        Grid.Row="7"
-                        HeightRequest="30"
-                        HorizontalOptions="CenterAndExpand"
-                        Orientation="Horizontal">
-                        <Grid>
-                            <BoxView
-                                BackgroundColor="#bdbdbd"
-                                HeightRequest="1"
-                                HorizontalOptions="Center"
-                                VerticalOptions="Center"
-                                WidthRequest="340" />
-                            <Frame
-                                Margin="0"
-                                Padding="0"
-                                BackgroundColor="White"
-                                BorderColor="#bdbdbd"
-                                CornerRadius="15"
-                                HasShadow="False"
-                                HeightRequest="30"
-                                HorizontalOptions="Center"
-                                WidthRequest="30">
-                                <Label
-                                    BackgroundColor="#bdbdbd"
-                                    FontSize="14"
-                                    HorizontalTextAlignment="Center"
-                                    Text="OR"
-                                    TextColor="White"
-                                    VerticalTextAlignment="Center" />
-                            </Frame>
-                        </Grid>
-                    </StackLayout>
 
-                    <!--  Margin="0,0,10,0"  -->
-                    <StackLayout
+                    <Grid Grid.Row="7">
+                        <BoxView
+                            BackgroundColor="#bdbdbd"
+                            HeightRequest="1.4"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            WidthRequest="100" />
+                        <Frame
+                            Margin="0"
+                            Padding="0"
+                            BorderColor="#bdbdbd"
+                            CornerRadius="15"
+                            HasShadow="False"
+                            HeightRequest="30"
+                            HorizontalOptions="Center"
+                            WidthRequest="30">
+                            <Label
+                                BackgroundColor="#bdbdbd"
+                                FontSize="14"
+                                HorizontalTextAlignment="Center"
+                                Text="OR"
+                                TextColor="White"
+                                VerticalTextAlignment="Center" />
+                        </Frame>
+                    </Grid>
+
+                    <Grid
                         Grid.Row="8"
-                        HeightRequest="34"
+                        HeightRequest="35"
                         HorizontalOptions="CenterAndExpand"
-                        Orientation="Horizontal">
+                        VerticalOptions="CenterAndExpand">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
                         <Button
+                            Grid.Column="0"
                             BackgroundColor="white"
                             BorderColor="#bdbdbd"
                             BorderWidth="1.4"
                             CornerRadius="20"
                             FontAttributes="Bold"
-                            FontSize="10"
+                            FontSize="11"
                             ImageSource="google.png"
                             Text="Sign up with Google"
                             TextColor="#424242" />
 
                         <Button
+                            Grid.Column="1"
                             BackgroundColor="white"
                             BorderColor="#bdbdbd"
                             BorderWidth="1.4"
                             CornerRadius="20"
                             FontAttributes="Bold"
-                            FontSize="10"
+                            FontSize="11"
                             ImageSource="fb.png"
                             Text="Sign up with Facebook"
                             TextColor="#424242" />
-                    </StackLayout>
+                    </Grid>
+
 
                 </Grid>
             </StackLayout>
