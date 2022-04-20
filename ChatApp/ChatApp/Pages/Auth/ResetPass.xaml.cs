@@ -24,7 +24,7 @@ namespace ChatApp.Pages.Auth
 
             if (string.IsNullOrEmpty(emailEntry.Text))
             {
-                
+                await DisplayAlert("Error", "Missing Field", "OKAY");
                 emailEntry.Focus();
                 emailFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 return;
