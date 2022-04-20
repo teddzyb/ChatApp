@@ -74,11 +74,15 @@ namespace ChatApp.Pages.Auth
                     }
                 }
                 
-                await DisplayAlert("Error", "Missing Fields", "", "Okay");
+                await DisplayAlert("Error", "Missing Fields", "", "OKAY");
                 return;
             }
 
-            // Code here...
+            if (true) // Successful
+            {
+                await DisplayAlert("Error", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
+                return;
+            }
         }
     }
 }

@@ -3,7 +3,6 @@
     x:Class="ChatApp.Pages.Auth.ResetPass"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers"
     xmlns:local="clr-namespace:ChatApp">
 
     <StackLayout BackgroundColor="#f8f9fa">
@@ -71,8 +70,8 @@
                     Text="Enter your email address."
                     TextColor="#424242" />
 
-
                 <Frame
+                    x:Name="emailFrame"
                     Grid.Row="2"
                     Padding="0"
                     BackgroundColor="Transparent"
@@ -80,21 +79,19 @@
                     CornerRadius="30"
                     HorizontalOptions="FillAndExpand">
                     <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                        <Entry
+                        <local:CustomEntry
+                            x:Name="emailEntry"
                             FontSize="13"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Email"
-                            VerticalOptions="FillAndExpand">
-                            <Entry.Effects>
-                                <effects:PlainEntry />
-                            </Entry.Effects>
-                        </Entry>
+                            VerticalOptions="FillAndExpand" />
                     </StackLayout>
                 </Frame>
 
                 <local:CustomButton
                     Grid.Row="3"
                     BackgroundColor="#e91e63"
+                    Clicked="Btn_Reset"
                     CornerRadius="20"
                     Text="Send Reset Link"
                     TextColor="White" />

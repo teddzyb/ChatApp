@@ -39,12 +39,18 @@ namespace ChatApp
                     {
                         passwordEntry.Focus();
                     }
-
+                    
                 }
-                await DisplayAlert("Error", "Missing Fields", "", "Okay");
+                await DisplayAlert("Error", "Missing Fields", "", "OKAY");
                 return;
             }
 
+            if (true) // Email is not verified
+            {
+                await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
+                return;
+            }
+            
             //Application.Current.MainPage = new MainTabbed();
         }
 
