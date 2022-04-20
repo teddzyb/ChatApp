@@ -36,6 +36,9 @@
 	    <item name="android:windowFullscreen">true</item>
 	    <item name="android:windowContentOverlay">@null</item>
 	    <item name="android:windowActionBar">true</item>
-    </style>
+		<item name="android:windowIsTranslucent">false</item>
+		<item name="android:windowIsFloating">false</item>
+		<item name="android:backgroundDimEnabled">true</item>
+	</style>
 
 </resources>

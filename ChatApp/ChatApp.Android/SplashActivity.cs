@@ -1,48 +1,49 @@
-﻿using System.Threading.Tasks;
-using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
-using Android.Util;
+﻿using Android.App;
 using AndroidX.AppCompat.App;
 using ChatApp.Droid;
 
 namespace com.xamarin.sample.splashscreen
 {
-    [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
+    [Activity(Label = "Convo", Icon = "@mipmap/ic_launcher", Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
-        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
-
-        public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
-        {
-            base.OnCreate(savedInstanceState, persistentState);
-            Log.Debug(TAG, "SplashActivity.OnCreate");
-
-            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
-            {
-                Window.SetNavigationBarColor(Color.ParseColor("#f8f9fa"));
-            }
-        }
-
-        // Launches the startup task
         protected override void OnResume()
         {
             base.OnResume();
-            Task startupWork = new Task(() => { SimulateStartup(); });
-            startupWork.Start();
+            StartActivity(typeof(MainActivity));
         }
+        
+        //static readonly string TAG = "X:" + typeof(SplashActivity).Name;
 
-        // Prevent the back button from canceling the startup process
-        public override void OnBackPressed() { }
+        //public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+        //{
+        //    base.OnCreate(savedInstanceState, persistentState);
+        //    Log.Debug(TAG, "SplashActivity.OnCreate");
 
-        // Simulates background work that happens behind the splash screen
-        async void SimulateStartup()
-        {
-            Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
-            await Task.Delay(8000); // Simulate a bit of startup work.
-            Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
-            StartActivity(new Intent(Application.Context, typeof(MainActivity)));
-        }
+        //    if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Lollipop)
+        //    {
+        //        Window.SetNavigationBarColor(Color.ParseColor("#f8f9fa"));
+        //    }
+        //}
+
+        //// Launches the startup task
+        //protected override void OnResume()
+        //{
+        //    base.OnResume();
+        //    Task startupWork = new Task(() => { SimulateStartup(); });
+        //    startupWork.Start();
+        //}
+
+        //// Prevent the back button from canceling the startup process
+        //public override void OnBackPressed() { }
+
+        //// Simulates background work that happens behind the splash screen
+        //async void SimulateStartup()
+        //{
+        //    Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
+        //    await Task.Delay(1000); // Simulate a bit of startup work.
+        //    Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
+        //    StartActivity(new Intent(Application.Context, typeof(MainActivity)));
+        //}
     }
 }
