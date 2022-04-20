@@ -200,13 +200,14 @@
                             </StackLayout>
                         </Frame>
 
-                        <Button
+                        <local:CustomButton
                             Grid.Row="5"
                             BackgroundColor="#e91e63"
                             CornerRadius="20"
                             Text="Sign up"
                             TextColor="White" />
-                        <Button
+
+                        <local:CustomButton
                             Grid.Row="6"
                             BackgroundColor="#9c27b0"
                             Clicked="Btn_Back"

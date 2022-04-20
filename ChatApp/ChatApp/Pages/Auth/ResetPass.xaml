@@ -3,8 +3,8 @@
     x:Class="ChatApp.Pages.Auth.ResetPass"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers">
-
+    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers"
+    xmlns:local="clr-namespace:ChatApp">
 
     <StackLayout BackgroundColor="#f8f9fa">
 
@@ -92,7 +92,7 @@
                     </StackLayout>
                 </Frame>
 
-                <Button
+                <local:CustomButton
                     Grid.Row="3"
                     BackgroundColor="#e91e63"
                     CornerRadius="20"
