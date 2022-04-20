@@ -3,10 +3,11 @@
     x:Class="ChatApp.Pages.Auth.Signup"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers">
+    xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers"
+    xmlns:local="clr-namespace:ChatApp">
 
     <StackLayout BackgroundColor="#f8f9fa">
-        
+
         <StackLayout
             Grid.Row="0"
             Margin="10,20,10,0"
@@ -91,7 +92,7 @@
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <Entry
-                                    FontSize="13"
+                                    FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Username"
                                     VerticalOptions="FillAndExpand">
@@ -110,7 +111,7 @@
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <Entry
-                                    FontSize="13"
+                                    FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Email"
                                     VerticalOptions="FillAndExpand">
@@ -130,15 +131,32 @@
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <Entry
                                     Grid.Row="2"
-                                    FontSize="13"
+                                    FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
-                                    IsPassword="True"
+                                    IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger1}, Path=HidePassword}"
                                     Placeholder="Password"
                                     VerticalOptions="FillAndExpand">
                                     <Entry.Effects>
                                         <effects:PlainEntry />
                                     </Entry.Effects>
                                 </Entry>
+
+                                <ImageButton
+                                    Margin="0,0,10,0"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    HorizontalOptions="End"
+                                    Source="hide"
+                                    VerticalOptions="Center">
+                                    <ImageButton.Triggers>
+                                        <EventTrigger Event="Clicked">
+                                            <local:ShowPasswordTriggerAction
+                                                x:Name="ShowPasswordActualTrigger1"
+                                                HideIcon="hide"
+                                                ShowIcon="show" />
+                                        </EventTrigger>
+                                    </ImageButton.Triggers>
+                                </ImageButton>
                             </StackLayout>
                         </Frame>
 
@@ -152,15 +170,33 @@
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <Entry
                                     Grid.Row="2"
-                                    FontSize="13"
+                                    FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
-                                    IsPassword="True"
+                                    IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger2}, Path=HidePassword}"
                                     Placeholder="Confirm Password"
                                     VerticalOptions="FillAndExpand">
                                     <Entry.Effects>
                                         <effects:PlainEntry />
                                     </Entry.Effects>
                                 </Entry>
+
+                                <ImageButton
+                                    Margin="0,0,10,0"
+                                    BackgroundColor="Transparent"
+                                    HeightRequest="20"
+                                    HorizontalOptions="End"
+                                    Source="hide"
+                                    VerticalOptions="Center">
+                                    <ImageButton.Triggers>
+                                        <EventTrigger Event="Clicked">
+                                            <local:ShowPasswordTriggerAction
+                                                x:Name="ShowPasswordActualTrigger2"
+                                                HideIcon="hide"
+                                                ShowIcon="show" />
+                                        </EventTrigger>
+                                    </ImageButton.Triggers>
+                                </ImageButton>
+
                             </StackLayout>
                         </Frame>
 
@@ -205,41 +241,57 @@
                             </Frame>
                         </Grid>
 
-                        <Grid
+
+                        <StackLayout
                             Grid.Row="8"
-                            HeightRequest="35"
-                            HorizontalOptions="CenterAndExpand"
-                            VerticalOptions="CenterAndExpand">
+                            Margin="5"
+                            Orientation="Vertical">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                HorizontalOptions="CenterAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="4">
+                                <Frame
+                                    Padding="4"
+                                    CornerRadius="20"
+                                    OutlineColor="#bdbdbd">
+                                    <StackLayout Orientation="Horizontal">
 
-                            <Button
-                                Grid.Column="0"
-                                BackgroundColor="white"
-                                BorderColor="#bdbdbd"
-                                BorderWidth="1"
-                                CornerRadius="20"
-                                FontAttributes="Bold"
-                                FontSize="11"
-                                ImageSource="google.png"
-                                Text="Sign up with Google"
-                                TextColor="#424242" />
+                                        <Image
+                                            BackgroundColor="transparent"
+                                            HeightRequest="25"
+                                            Source="google.png" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="13"
+                                            Text="Sign in with Google    "
+                                            TextColor="#424242"
+                                            VerticalOptions="Center" />
 
-                            <Button
-                                Grid.Column="1"
-                                BackgroundColor="white"
-                                BorderColor="#bdbdbd"
-                                BorderWidth="1"
-                                CornerRadius="20"
-                                FontAttributes="Bold"
-                                FontSize="11"
-                                ImageSource="fb.png"
-                                Text="Sign up with Facebook"
-                                TextColor="#424242" />
-                        </Grid>
+                                    </StackLayout>
+
+                                </Frame>
+
+                                <Frame
+                                    Padding="4"
+                                    CornerRadius="20"
+                                    OutlineColor="#bdbdbd">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image
+                                            BackgroundColor="transparent"
+                                            HeightRequest="25"
+                                            Source="fb.png" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="13"
+                                            Text="Sign in with Facebook"
+                                            TextColor="#424242"
+                                            VerticalOptions="Center" />
+                                    </StackLayout>
+
+                                </Frame>
+                            </StackLayout>
+                        </StackLayout>
 
 
                     </Grid>
