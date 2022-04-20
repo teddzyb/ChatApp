@@ -5,26 +5,30 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers">
 
-    <ContentPage.Content>
+    <StackLayout
+        Grid.Row="0"
+        Grid.Column="0"
+        BackgroundColor="#f8f9fa"
+        HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand">
+
         <Grid
             x:Name="LoginGrid"
-            BackgroundColor="#f8f9fa"
             HorizontalOptions="FillAndExpand"
-            IsVisible="True"
             VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="0" Padding="20,20,20,20">
+            <StackLayout Grid.Row="0">
                 <Image
                     Aspect="AspectFit"
-                    HeightRequest="200"
+                    HeightRequest="100"
                     Source="logo.png" />
             </StackLayout>
 
-            <StackLayout Grid.Row="1" Margin="0,0,0,0">
+            <StackLayout Grid.Row="1">
                 <Grid
                     Padding="20,20,20,20"
                     HorizontalOptions="FillAndExpand"
@@ -186,6 +190,6 @@
             </StackLayout>
         </Grid>
 
-    </ContentPage.Content>
+    </StackLayout>
 
 </ContentPage>

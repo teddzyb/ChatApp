@@ -5,108 +5,102 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:effects="clr-namespace:PlainEntryAndroidSample.CustomRenderers">
 
-    <ContentPage.Content>
-        <Grid
-            BackgroundColor="#f8f9fa"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
 
+    <StackLayout BackgroundColor="#f8f9fa">
+
+        <StackLayout
+            Grid.Row="0"
+            Margin="10,20,10,0"
+            Orientation="Horizontal">
             <StackLayout
-                Grid.Row="0"
-                Margin="10,20,10,0"
-                HeightRequest="30"
-                Orientation="Horizontal">
-                <StackLayout
+                HorizontalOptions="StartAndExpand"
+                Orientation="Horizontal"
+                VerticalOptions="Center">
+
+                <Image
+                    BackgroundColor="transparent"
+                    HeightRequest="30"
                     HorizontalOptions="StartAndExpand"
-                    Orientation="Horizontal"
-                    VerticalOptions="Center">
+                    Source="back.png"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    HorizontalOptions="EndAndExpand"
+                    Text="Back"
+                    TextColor="#424242"
+                    VerticalOptions="CenterAndExpand" />
 
-                    <Image
-                        BackgroundColor="transparent"
-                        HeightRequest="40"
-                        HorizontalOptions="StartAndExpand"
-                        Source="back.png"
-                        VerticalOptions="CenterAndExpand" />
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="Small"
-                        HorizontalOptions="EndAndExpand"
-                        Text="Back"
-                        TextColor="#424242"
-                        VerticalOptions="CenterAndExpand" />
-
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="Btn_Back" />
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Btn_Back" />
+                </StackLayout.GestureRecognizers>
             </StackLayout>
 
-            <StackLayout
-                Grid.Row="1"
-                Margin="0,200,0,0"
-                HeightRequest="700">
-                <Grid
-                    Padding="20,0,20,0"
-                    HorizontalOptions="FillAndExpand"
-                    RowSpacing="20"
-                    VerticalOptions="FillAndExpand">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Label
-                        Grid.Row="0"
-                        FontAttributes="Bold"
-                        FontSize="24"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="Reset Password"
-                        TextColor="#424242" />
+        </StackLayout>
 
-                    <Label
-                        Grid.Row="1"
-                        Margin="0,-20,0,0"
-                        FontSize="Small"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="Enter your email address."
-                        TextColor="#424242" />
-                    <Frame
-                        x:Name="emailBorder"
-                        Grid.Row="2"
-                        Padding="0"
-                        BackgroundColor="Transparent"
-                        BorderColor="#bdbdbd"
-                        CornerRadius="30"
-                        HorizontalOptions="FillAndExpand">
-                        <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                            <Entry
-                                FontSize="13"
-                                HorizontalOptions="FillAndExpand"
-                                Placeholder="Email"
-                                VerticalOptions="FillAndExpand">
-                                <Entry.Effects>
-                                    <effects:PlainEntry />
-                                </Entry.Effects>
-                            </Entry>
-                        </StackLayout>
-                    </Frame>
+        <StackLayout
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,-100,0,0"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <Grid
+                Padding="20,20,20,20"
+                HorizontalOptions="FillAndExpand"
+                RowSpacing="20"
+                VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    FontAttributes="Bold"
+                    FontSize="24"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Reset Password"
+                    TextColor="#424242" />
 
-                    <Button
-                        Grid.Row="3"
-                        BackgroundColor="#e91e63"
-                        CornerRadius="20"
-                        Text="Reset"
-                        TextColor="White" />
+                <Label
+                    Grid.Row="1"
+                    Margin="0,-15,0,0"
+                    FontSize="Small"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="Enter your email address."
+                    TextColor="#424242" />
 
-                </Grid>
-            </StackLayout>
 
-        </Grid>
-    </ContentPage.Content>
+                <Frame
+                    Grid.Row="2"
+                    Padding="0"
+                    BackgroundColor="Transparent"
+                    BorderColor="#bdbdbd"
+                    CornerRadius="30"
+                    HorizontalOptions="FillAndExpand">
+                    <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                        <Entry
+                            FontSize="13"
+                            HorizontalOptions="FillAndExpand"
+                            Placeholder="Email"
+                            VerticalOptions="FillAndExpand">
+                            <Entry.Effects>
+                                <effects:PlainEntry />
+                            </Entry.Effects>
+                        </Entry>
+                    </StackLayout>
+                </Frame>
+
+                <Button
+                    Grid.Row="3"
+                    BackgroundColor="#e91e63"
+                    CornerRadius="20"
+                    Text="Send Reset Link"
+                    TextColor="White" />
+            </Grid>
+
+        </StackLayout>
+
+    </StackLayout>
 </ContentPage>
