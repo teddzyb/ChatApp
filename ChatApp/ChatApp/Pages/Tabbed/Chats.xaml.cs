@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp.Pages.Tabbed
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Chat : ContentView
+    public partial class Chats : ContentView
     {
-        public Chat()
+        public Chats()
         {
             InitializeComponent();
         }

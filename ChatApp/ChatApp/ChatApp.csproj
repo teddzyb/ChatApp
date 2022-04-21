@@ -22,7 +22,7 @@
     <EmbeddedResource Update="Pages\Auth\Signup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Tabbed\Chat.xaml">
+    <EmbeddedResource Update="Pages\Tabbed\Chats.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Tabbed\MainTabbed.xaml">

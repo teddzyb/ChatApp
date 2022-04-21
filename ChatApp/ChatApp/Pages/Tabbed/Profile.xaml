@@ -28,8 +28,10 @@
 
                 <Label Grid.Row="1"
                        HorizontalOptions="CenterAndExpand"
+                       TextColor="#424242"
                        FontAttributes="Bold"
                        FontSize="Large"
+                       Margin="0,5"
                        Text="User Name">
                 </Label>
 

@@ -10,7 +10,7 @@
 
             <StackLayout VerticalOptions="StartAndExpand">
 
-                <TabbedView:Chat x:Name="Chat" IsVisible="True" />
+                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
 
                 <TabbedView:Profile x:Name="Profile" IsVisible="False" />
 
@@ -45,7 +45,7 @@
                         Margin="0,5,0,0"
                         HorizontalOptions="CenterAndExpand">
                         <Image x:Name="ChatImage" HeightRequest="30" Source="chat_enabled.png" />
-                        <Label x:Name="ChatLabel" TextColor="#e91e63">Chat</Label>
+                        <Label x:Name="ChatLabel" TextColor="#e91e63">Chats</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Nav_Chat" />
                         </StackLayout.GestureRecognizers>

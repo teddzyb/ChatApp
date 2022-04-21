@@ -20,7 +20,7 @@ namespace ChatApp.Pages.Tabbed
 
         private void Nav_Chat(object sender, EventArgs e)
         {
-            this.FindByName<View>("Chat").IsVisible = true;
+            this.FindByName<View>("Chats").IsVisible = true;
             this.FindByName<View>("Profile").IsVisible = false;
 
             this.FindByName<Image>("ChatImage").Source = "chat_enabled.png";
@@ -31,7 +31,7 @@ namespace ChatApp.Pages.Tabbed
 
         private void Nav_Profile(object sender, EventArgs e)
         {
-            this.FindByName<View>("Chat").IsVisible = false;
+            this.FindByName<View>("Chats").IsVisible = false;
             this.FindByName<View>("Profile").IsVisible = true;
 
             this.FindByName<Image>("ChatImage").Source = "chat_disabled.png";
