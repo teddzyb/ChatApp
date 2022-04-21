@@ -35,7 +35,7 @@ namespace ChatApp.Droid
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Window.SetNavigationBarColor(Android.Graphics.Color.Rgb(248, 249, 250));
+                Window.SetNavigationBarColor(Android.Graphics.Color.Transparent);
             }
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
