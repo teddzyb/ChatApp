@@ -22,6 +22,7 @@ namespace ChatApp.Pages.Tabbed
         {
             this.FindByName<View>("Chats").IsVisible = true;
             this.FindByName<View>("Profile").IsVisible = false;
+            SearchBar.IsVisible = true;
 
             this.FindByName<Image>("ChatImage").Source = "chat_enabled.png";
             this.FindByName<Label>("ChatLabel").TextColor = Color.FromHex("#e91e63");
@@ -33,6 +34,7 @@ namespace ChatApp.Pages.Tabbed
         {
             this.FindByName<View>("Chats").IsVisible = false;
             this.FindByName<View>("Profile").IsVisible = true;
+            SearchBar.IsVisible = false;
 
             this.FindByName<Image>("ChatImage").Source = "chat_disabled.png";
             this.FindByName<Label>("ChatLabel").TextColor = Color.FromHex("#bcbcbc");

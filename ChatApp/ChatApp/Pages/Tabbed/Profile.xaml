@@ -4,55 +4,55 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ChatApp">
-    
+
     <ContentView.Content>
 
-        <StackLayout BackgroundColor="#f8f9fa"
-                     HorizontalOptions="CenterAndExpand"
-                     VerticalOptions="StartAndExpand">
+        <StackLayout BackgroundColor="#f8f9fa">
 
-            <Grid HorizontalOptions="CenterAndExpand"
-                  VerticalOptions="StartAndExpand"
-                  Padding="20"
-                  RowSpacing="0">
+            <Grid
+                Padding="20"
+                HorizontalOptions="CenterAndExpand"
+                RowSpacing="0"
+                VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Image Grid.Row="0"
-                       HeightRequest="150"
-                       Source="logo.png"
-                       Margin="0,50,0,20" />
+                <Image
+                    Grid.Row="0"
+                    Margin="0,50,0,20"
+                    HeightRequest="150"
+                    Source="logo.png" />
 
-                <Label Grid.Row="1"
-                       HorizontalOptions="CenterAndExpand"
-                       TextColor="#424242"
-                       FontAttributes="Bold"
-                       FontSize="Large"
-                       Margin="0,5"
-                       Text="User Name">
-                </Label>
+                <Label
+                    Grid.Row="1"
+                    Margin="0,5"
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="User Name"
+                    TextColor="#424242" />
 
-                <Label Grid.Row="2"
-                       HorizontalOptions="CenterAndExpand"
-                       FontSize="Medium"
-                       Text="user@email.com">
-                </Label>
+                <Label
+                    Grid.Row="2"
+                    FontSize="Medium"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="user@email.com" />
                 <local:CustomButton
-                        Grid.Row="3"
-                        BackgroundColor="#e91e63"
-                        Clicked="Btn_SignOut"
-                        CornerRadius="40"
-                        Margin="0,50"
-                        Text="Sign out"
-                        TextColor="White" />
+                    Grid.Row="3"
+                    Margin="0,50"
+                    BackgroundColor="#e91e63"
+                    Clicked="Btn_SignOut"
+                    CornerRadius="40"
+                    Text="Sign out"
+                    TextColor="White" />
 
             </Grid>
 
         </StackLayout>
-        
+
     </ContentView.Content>
-    
+
 </ContentView>

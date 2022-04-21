@@ -1,53 +1,29 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp.Pages.Tabbed.Chats"
-             xmlns:local="clr-namespace:ChatApp">
-    
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="ChatApp.Pages.Tabbed.Chats"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
     <ContentView.Content>
 
-        <Grid HorizontalOptions="FillAndExpand"
-              VerticalOptions="StartAndExpand"
-              Padding="20"
-              RowSpacing="0">
+        <Grid
+            Padding="20"
+            BackgroundColor="#f8f9fa"
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="0"
+            VerticalOptions="CenterAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Frame
+            <Label
                 Grid.Row="0"
-                Padding="0"
-                BackgroundColor="Transparent"
-                BorderColor="#bdbdbd"
-                CornerRadius="30"
-                HorizontalOptions="Fill">
-                <StackLayout Padding="20,5" Orientation="Horizontal">
-                    <ImageButton
-                        Margin="5,0"
-                        BackgroundColor="Transparent"
-                        HeightRequest="20"
-                        HorizontalOptions="End"
-                        VerticalOptions="Center"
-                        Source="search">
-                    </ImageButton>
-                    <local:CustomEntry
-                        FontSize="Small"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalOptions="FillAndExpand"
-                        Placeholder="Search"/>
-                </StackLayout>
-            </Frame>
-
-            <Label Grid.Row="1"
-                   FontSize="Medium"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"
-                   Text="You have no contacts as of the moment...">
-            </Label>
-
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                Text="You have no contacts as of the moment."
+                VerticalOptions="CenterAndExpand" />
         </Grid>
 
     </ContentView.Content>
-    
+
 </ContentView>
