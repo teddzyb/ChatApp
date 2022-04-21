@@ -2,10 +2,55 @@
 <ContentView
     x:Class="ChatApp.Pages.Tabbed.Profile"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChatApp">
+    
     <ContentView.Content>
-        <StackLayout>
-            <Label Text="Profile Page" />
+
+        <StackLayout BackgroundColor="#f8f9fa"
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="StartAndExpand">
+
+            <Grid HorizontalOptions="CenterAndExpand"
+                  VerticalOptions="StartAndExpand"
+                  Padding="20"
+                  RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image Grid.Row="0"
+                       HeightRequest="150"
+                       Source="logo.png"
+                       Margin="0,50,0,20" />
+
+                <Label Grid.Row="1"
+                       HorizontalOptions="CenterAndExpand"
+                       FontAttributes="Bold"
+                       FontSize="Large"
+                       Text="User Name">
+                </Label>
+
+                <Label Grid.Row="2"
+                       HorizontalOptions="CenterAndExpand"
+                       FontSize="Medium"
+                       Text="user@email.com">
+                </Label>
+                <local:CustomButton
+                        Grid.Row="3"
+                        BackgroundColor="#e91e63"
+                        Clicked="Btn_SignOut"
+                        CornerRadius="40"
+                        Margin="0,50"
+                        Text="Sign out"
+                        TextColor="White" />
+
+            </Grid>
+
         </StackLayout>
+        
     </ContentView.Content>
+    
 </ContentView>

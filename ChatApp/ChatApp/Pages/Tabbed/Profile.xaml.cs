@@ -16,5 +16,11 @@ namespace ChatApp.Pages.Tabbed
         {
             InitializeComponent();
         }
+
+        private void Btn_SignOut(object sender, EventArgs e)
+        {
+            // (Insert code for sign out)
+            Application.Current.MainPage = new MainPage();
+        }
     }
 }
