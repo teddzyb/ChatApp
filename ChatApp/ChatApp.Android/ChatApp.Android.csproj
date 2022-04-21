@@ -197,5 +197,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\profile_disabled.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\search.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

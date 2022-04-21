@@ -1,10 +1,53 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp.Pages.Tabbed.Chats">
-  <ContentView.Content>
-      <StackLayout>
-          <Label Text="Chats Page" />
-      </StackLayout>
-  </ContentView.Content>
+             x:Class="ChatApp.Pages.Tabbed.Chats"
+             xmlns:local="clr-namespace:ChatApp">
+    
+    <ContentView.Content>
+
+        <Grid HorizontalOptions="FillAndExpand"
+              VerticalOptions="StartAndExpand"
+              Padding="20"
+              RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Frame
+                Grid.Row="0"
+                Padding="0"
+                BackgroundColor="Transparent"
+                BorderColor="#bdbdbd"
+                CornerRadius="30"
+                HorizontalOptions="Fill">
+                <StackLayout Padding="20,5" Orientation="Horizontal">
+                    <ImageButton
+                        Margin="5,0"
+                        BackgroundColor="Transparent"
+                        HeightRequest="20"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center"
+                        Source="search">
+                    </ImageButton>
+                    <local:CustomEntry
+                        FontSize="Small"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Placeholder="Search"/>
+                </StackLayout>
+            </Frame>
+
+            <Label Grid.Row="1"
+                   FontSize="Medium"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   Text="You have no contacts as of the moment...">
+            </Label>
+
+        </Grid>
+
+    </ContentView.Content>
+    
 </ContentView>
