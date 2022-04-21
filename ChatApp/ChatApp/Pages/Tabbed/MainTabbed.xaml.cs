@@ -22,12 +22,22 @@ namespace ChatApp.Pages.Tabbed
         {
             this.FindByName<View>("Chat").IsVisible = true;
             this.FindByName<View>("Profile").IsVisible = false;
+
+            this.FindByName<Image>("ChatImage").Source = "chat_enabled.png";
+            this.FindByName<Label>("ChatLabel").TextColor = Color.FromHex("#e91e63");
+            this.FindByName<Image>("ProfileImage").Source = "profile_disabled.png";
+            this.FindByName<Label>("ProfileLabel").TextColor = Color.FromHex("#bcbcbc");
         }
 
         private void Nav_Profile(object sender, EventArgs e)
         {
             this.FindByName<View>("Chat").IsVisible = false;
             this.FindByName<View>("Profile").IsVisible = true;
+
+            this.FindByName<Image>("ChatImage").Source = "chat_disabled.png";
+            this.FindByName<Label>("ChatLabel").TextColor = Color.FromHex("#bcbcbc");
+            this.FindByName<Image>("ProfileImage").Source = "profile_enabled.png";
+            this.FindByName<Label>("ProfileLabel").TextColor = Color.FromHex("#e91e63");
         }
     }
 }

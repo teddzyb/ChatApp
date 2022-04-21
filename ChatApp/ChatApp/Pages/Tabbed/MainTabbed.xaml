@@ -42,10 +42,10 @@
                     <StackLayout
                         Grid.Row="1"
                         Grid.Column="0"
-                        Margin="0,5,0,5"
+                        Margin="0,5,0,0"
                         HorizontalOptions="CenterAndExpand">
-                        <Image HeightRequest="32" Source="chat.png" />
-                        <Label TextColor="#424242">Chat</Label>
+                        <Image x:Name="ChatImage" HeightRequest="30" Source="chat_enabled.png" />
+                        <Label x:Name="ChatLabel" TextColor="#e91e63">Chat</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Nav_Chat" />
                         </StackLayout.GestureRecognizers>
@@ -54,10 +54,10 @@
                     <StackLayout
                         Grid.Row="1"
                         Grid.Column="1"
-                        Margin="0,5,0,5"
+                        Margin="0,5 ,0,0"
                         HorizontalOptions="CenterAndExpand">
-                        <Image HeightRequest="32" Source="user.png" />
-                        <Label TextColor="#424242">Profile</Label>
+                        <Image x:Name="ProfileImage" HeightRequest="30" Source="profile_disabled.png" />
+                        <Label x:Name="ProfileLabel" TextColor="#bcbcbc">Profile</Label>
                         <StackLayout.GestureRecognizers>
                             <TapGestureRecognizer Tapped="Nav_Profile" />
                         </StackLayout.GestureRecognizers>

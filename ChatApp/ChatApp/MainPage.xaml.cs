@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using ChatApp.Pages.Auth;
+using ChatApp.Pages.Tabbed;
 
 namespace ChatApp
 {
@@ -39,14 +40,14 @@ namespace ChatApp
             }
 
             // Email is not verified
-            if (true) 
+            if (false) 
             {
                 await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
                 return;
             }
 
             // Successful authentication with database (Insert Future Code Here..)
-            // Application.Current.MainPage = new MainTabbed();
+             Application.Current.MainPage = new MainTabbed();
         }
 
         private async void Btn_SignUp(object sender, EventArgs e)
