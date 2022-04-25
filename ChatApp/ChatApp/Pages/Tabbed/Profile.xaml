@@ -3,8 +3,8 @@
     x:Class="ChatApp.Pages.Tabbed.Profile"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:local="clr-namespace:ChatApp">
-
     <ContentView.Content>
 
         <StackLayout BackgroundColor="#f8f9fa">
@@ -20,11 +20,35 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Image
-                    Grid.Row="0"
-                    Margin="0,50,0,20"
-                    HeightRequest="150"
-                    Source="logo.png" />
+
+                <Grid>
+                    <Ellipse
+                        x:Name="outerRing"
+                        HeightRequest="170"
+                        HorizontalOptions="CenterAndExpand"
+                        Stroke="#e91e63"
+                        StrokeThickness="4"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="170" />
+
+                    <Ellipse
+                        x:Name="outerRing"
+                        HeightRequest="150"
+                        HorizontalOptions="CenterAndExpand"
+                        Opacity=".2"
+                        Scale="1.08"
+                        Stroke="#e91e63"
+                        StrokeThickness="4"
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="150" />
+
+                    <controls:CircleImage
+                        Grid.Row="0"
+                        HeightRequest="10"
+                        Scale=".8"
+                        Source="logo.png" />
+                </Grid>
+
 
                 <Label
                     Grid.Row="1"
