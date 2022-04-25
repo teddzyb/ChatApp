@@ -16,7 +16,54 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
+            <ListView x:Name="chatListView" BackgroundColor="Transparent" HorizontalOptions="Fill" VerticalOptions="Fill" 
+                      SeparatorVisibility="None" HasUnevenRows="true" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <ListView.Header>
+                    <Label Text="List starts here.." TextColor="Black" HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center"/>
+                </ListView.Header>
+                <ListView.Footer>
+                    <Label Text="List ends here.." TextColor="Black" HorizontalOptions="Fill" 
+                           HorizontalTextAlignment="Center"/>
+                </ListView.Footer>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid HorizontalOptions="FillAndExpand" ColumnSpacing="0" RowSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="8*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <ImageButton Source="DoneIcon" BackgroundColor="Green" Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                    Grid.Column="0">
+                                    <!--Trigger-->
+                                    <ImageButton.Triggers>
+                                        <DataTrigger TargetType="ImageButton" Value="true">
+                                            <Setter Property="BackgroundColor" Value="Gray" />
+                                        </DataTrigger>
+                                    </ImageButton.Triggers>
+                                </ImageButton>
+                                <Entry HorizontalOptions="FillAndExpand" IsEnabled="True" VerticalOptions="FillAndExpand" Margin="5" 
+                                       Grid.Column="1">
+                                    <!--Trigger-->
+                                    <Entry.Triggers>
+                                        <DataTrigger TargetType="Entry" Value="true">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Entry.Triggers>
+                                </Entry>
+                                <ImageButton Source="DeleteIcon" BackgroundColor="Red" Margin="5" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                    Grid.Column="2"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             <Label
+                x:Name="AlertLabel"
+                IsVisible="false"
                 Grid.Row="0"
                 FontSize="Medium"
                 HorizontalOptions="CenterAndExpand"

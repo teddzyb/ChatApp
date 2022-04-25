@@ -9,10 +9,19 @@
     <ContentPage.Content>
         <StackLayout>
 
+            <!--  Conversation View  -->
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="Center"
+                VerticalOptions="Start">
+                <TabbedView:Conversation x:Name="Conversation" IsVisible="True" />
+            </StackLayout>
+            
             <!--  Search Bar  -->
             <StackLayout
                 x:Name="SearchBar"
-                IsVisible="true"
+                IsVisible="False"
                 VerticalOptions="Start">
                 <Frame
                     Grid.Row="0"
@@ -54,11 +63,11 @@
                 Grid.Column="0"
                 HorizontalOptions="Center"
                 VerticalOptions="CenterAndExpand">
-                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
+                <TabbedView:Chats x:Name="Chats" IsVisible="False" />
             </StackLayout>
 
             <!--  NavBar  -->
-            <StackLayout IsVisible="True" VerticalOptions="End">
+            <StackLayout IsVisible="False" VerticalOptions="End">
                 <Grid
                     BackgroundColor="White"
                     ColumnSpacing="0"
