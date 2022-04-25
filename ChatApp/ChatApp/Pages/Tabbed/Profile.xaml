@@ -23,7 +23,6 @@
 
                 <Grid>
                     <Ellipse
-                        x:Name="outerRing"
                         HeightRequest="170"
                         HorizontalOptions="CenterAndExpand"
                         Stroke="#e91e63"
@@ -32,7 +31,6 @@
                         WidthRequest="170" />
 
                     <Ellipse
-                        x:Name="outerRing"
                         HeightRequest="150"
                         HorizontalOptions="CenterAndExpand"
                         Opacity=".2"
