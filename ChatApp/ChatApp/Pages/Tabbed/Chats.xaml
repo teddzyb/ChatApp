@@ -9,7 +9,6 @@
 
         <Grid
             Margin="20,10,20,-5"
-
             BackgroundColor="#ffffff"
             HorizontalOptions="FillAndExpand"
             RowSpacing="0"
@@ -39,7 +38,7 @@
                                             <Frame
                                                 Padding="0"
                                                 BackgroundColor="#CCCCCC"
-                                                CornerRadius="100"
+                                                CornerRadius="25"
                                                 HeightRequest="50"
                                                 HorizontalOptions="Center"
                                                 IsClippedToBounds="True"
@@ -58,7 +57,7 @@
                                             <Label
                                                 FontSize="Medium"
                                                 Text="{Binding username}"
-                                                TextColor="#212121"
+                                                TextColor="#424242"
                                                 VerticalOptions="Center" />
                                             <Label
                                                 FontSize="Small"
