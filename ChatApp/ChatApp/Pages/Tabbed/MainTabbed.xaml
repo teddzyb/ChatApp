@@ -10,18 +10,19 @@
         <StackLayout>
 
             <!--  Conversation View  -->
+            <!--
             <StackLayout
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalOptions="Center"
                 VerticalOptions="Start">
-                <TabbedView:Conversation x:Name="Conversation" IsVisible="True" />
-            </StackLayout>
-            
+                <TabbedView:Conversation x:Name="Conversation" IsVisible="False" />
+            </StackLayout>-->
+
             <!--  Search Bar  -->
             <StackLayout
                 x:Name="SearchBar"
-                IsVisible="False"
+                IsVisible="True"
                 VerticalOptions="Start">
                 <Frame
                     Grid.Row="0"
@@ -62,12 +63,12 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalOptions="Center"
-                VerticalOptions="CenterAndExpand">
-                <TabbedView:Chats x:Name="Chats" IsVisible="False" />
+                VerticalOptions="StartAndExpand">
+                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
             </StackLayout>
 
             <!--  NavBar  -->
-            <StackLayout IsVisible="False" VerticalOptions="End">
+            <StackLayout IsVisible="True" VerticalOptions="End">
                 <Grid
                     BackgroundColor="White"
                     ColumnSpacing="0"

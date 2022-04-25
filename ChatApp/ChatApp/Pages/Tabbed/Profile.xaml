@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:ChatApp">
     <ContentView.Content>
 
-        <StackLayout BackgroundColor="#f8f9fa">
+        <StackLayout BackgroundColor="White">
 
             <Grid
                 Padding="20"
@@ -19,7 +19,6 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-
 
                 <Grid>
                     <Ellipse
@@ -33,9 +32,8 @@
                     <Ellipse
                         HeightRequest="150"
                         HorizontalOptions="CenterAndExpand"
-                        Opacity=".2"
                         Scale="1.08"
-                        Stroke="#e91e63"
+                        Stroke="#f8bbd0"
                         StrokeThickness="4"
                         VerticalOptions="CenterAndExpand"
                         WidthRequest="150" />
@@ -50,7 +48,7 @@
 
                 <Label
                     Grid.Row="1"
-                    Margin="0,5"
+                    Margin="0,20,0,5"
                     FontAttributes="Bold"
                     FontSize="Large"
                     HorizontalOptions="CenterAndExpand"
@@ -64,7 +62,7 @@
                     Text="user@email.com" />
                 <local:CustomButton
                     Grid.Row="3"
-                    Margin="0,50"
+                    Margin="0,20"
                     BackgroundColor="#e91e63"
                     Clicked="Btn_SignOut"
                     CornerRadius="40"

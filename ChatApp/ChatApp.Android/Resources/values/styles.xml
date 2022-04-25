@@ -11,21 +11,28 @@
         <!--<item name="colorPrimary">#2196F3</item>-->
 		
         <!-- colorPrimaryDark is used for the status bar -->
-        <item name="colorPrimaryDark">#f8f9fa</item>
-		
-        <!-- colorAccent is used as the default value for colorControlActivated
+        <item name="colorPrimaryDark">#ffffff</item>
+		<!--#f8f9fa-->
+
+		<!-- colorAccent is used as the default value for colorControlActivated
                 which is used to tint widgets -->
-        <item name="colorAccent">#e91e63</item>
+        <item name="colorAccent">#ffffff</item>
+		<!--#e91e63-->
 
 		<!-- android:windowLightStatusBar for the status bar mode (light/dark) -->
 		<item name="android:windowLightStatusBar">true</item>
 
 		<!-- android:windowLightNavigationBar for the navigation bar mode (light/dark) -->
 		<item name="android:windowLightNavigationBar">true</item>
+		<item name="android:colorActivatedHighlight">@android:color/transparent</item>
+
     </style>
 
     <style name="MyTheme.Base" parent="Theme.AppCompat.Light">
     </style>
+
+
+
 
     <style name="MyTheme" parent="MyTheme.Base">
     </style>
@@ -38,7 +45,7 @@
 	    <item name="android:windowActionBar">true</item>
 		<item name="android:windowIsTranslucent">false</item>
 		<item name="android:windowIsFloating">false</item>
-		<item name="android:backgroundDimEnabled">true</item>
+		<!--<item name="android:backgroundDimEnabled">true</item>-->
 	</style>
 
 </resources>

@@ -23,7 +23,7 @@ namespace ChatApp.Droid
             {
                 var nativeEditText = (Android.Widget.EditText)Control;
                 var shape = new ShapeDrawable(new Android.Graphics.Drawables.Shapes.RectShape());
-                shape.Paint.Color = Xamarin.Forms.Color.FromRgb(248, 249, 250).ToAndroid();
+                shape.Paint.Color = Xamarin.Forms.Color.FromRgb(255, 255, 255).ToAndroid();
                 shape.Paint.SetStyle(Paint.Style.Stroke);
                 nativeEditText.Background = shape;
 

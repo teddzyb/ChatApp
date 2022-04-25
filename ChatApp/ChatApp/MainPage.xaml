@@ -8,7 +8,7 @@
     <StackLayout
         Grid.Row="0"
         Grid.Column="0"
-        BackgroundColor="#f8f9fa"
+        BackgroundColor="White"
         HorizontalOptions="CenterAndExpand"
         VerticalOptions="CenterAndExpand">
 
