@@ -41,5 +41,10 @@ namespace ChatApp.Pages.Tabbed
             this.FindByName<Image>("ProfileImage").Source = "profile_enabled.png";
             this.FindByName<Label>("ProfileLabel").TextColor = Color.FromHex("#e91e63");
         }
+
+        private async void Nav_Result(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SearchResults(), true);
+        }
     }
 }

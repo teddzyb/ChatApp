@@ -30,13 +30,19 @@
                             HorizontalOptions="End"
                             Source="search"
                             VerticalOptions="Center" />
-                        <local:CustomEntry
+                        <Label
                             FontSize="Small"
+                            TextColor="#bdbdbd"
+                            Padding="10"
                             HorizontalOptions="FillAndExpand"
-                            Placeholder="Search Email"
-                            VerticalOptions="FillAndExpand" />
+                            Text="Search Email"
+                            VerticalOptions="FillAndExpand">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Nav_Result" />
+                            </Label.GestureRecognizers>
+                        </Label>
                     </StackLayout>
-                </Frame>
+                </Frame>                
             </StackLayout>
 
             <!--  Profile View  -->

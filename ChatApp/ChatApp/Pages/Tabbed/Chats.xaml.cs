@@ -16,7 +16,6 @@ namespace ChatApp.Pages.Tabbed
         ObservableCollection<ChatModel> chatList = new ObservableCollection<ChatModel>();
         ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
 
-
         public Chats()
         {
             InitializeComponent();
@@ -33,15 +32,25 @@ namespace ChatApp.Pages.Tabbed
             userList.Add(new UserModel() { id = 6, username = "User Test-6", email = "utest6@gmail.com", password = "231" });
             userList.Add(new UserModel() { id = 7, username = "User Test-7", email = "utest7@gmail.com", password = "231" });
             userList.Add(new UserModel() { id = 8, username = "User Test-8", email = "utest8@gmail.com", password = "231" });
-            
 
+            //UserModel user = new UserModel();
+            //Console.WriteLine(user.userList[0].id);
 
             userListView.ItemsSource = userList;
         }
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Conversation(), true);
+
+            var user = new UserModel
+            {
+                email = (String)((TappedEventArgs)e).Parameter,
+            };
+
+            var secondPage = new Conversation();
+
+            secondPage.BindingContext = user;
+            await Navigation.PushAsync(secondPage, true);
         }
 
     }

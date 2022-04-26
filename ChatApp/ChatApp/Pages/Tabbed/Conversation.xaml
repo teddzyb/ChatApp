@@ -16,6 +16,8 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Frame
@@ -43,7 +45,7 @@
                         Margin="5,0,0,0"
                         FontAttributes="Bold"
                         FontSize="Medium"
-                        Text="User Name"
+                        Text="{Binding email}"
                         VerticalOptions="Center" />
 
                 <ImageButton
@@ -73,9 +75,9 @@
                     Grid.ColumnSpan="2"
                     Orientation="Horizontal">
                 <Grid
-                        BackgroundColor="White"
-                        ColumnSpacing="0"
-                        RowSpacing="0">
+                    BackgroundColor="White"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
