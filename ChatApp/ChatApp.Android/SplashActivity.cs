@@ -27,7 +27,7 @@ namespace com.xamarin.sample.splashscreen
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Window.SetNavigationBarColor(Color.White);
+                Window.SetNavigationBarColor(Color.Transparent);
             }
         }
 
@@ -39,7 +39,7 @@ namespace com.xamarin.sample.splashscreen
             startupWork.Start();
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Window.SetNavigationBarColor(Color.White);
+                Window.SetNavigationBarColor(Color.Transparent);
             }
         }
 
@@ -51,7 +51,7 @@ namespace com.xamarin.sample.splashscreen
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Window.SetNavigationBarColor(Color.White);
+                Window.SetNavigationBarColor(Color.Transparent);
             }
             //Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
             await Task.Delay(500); // Simulate a bit of startup work.
