@@ -47,7 +47,7 @@
                                                     BackgroundColor="white"
                                                     HorizontalOptions="Center"
                                                     Scale=".6"
-                                                    Source="user_dark"
+                                                    Source="user"
                                                     VerticalOptions="Center" />
                                             </Frame>
                                         </StackLayout>

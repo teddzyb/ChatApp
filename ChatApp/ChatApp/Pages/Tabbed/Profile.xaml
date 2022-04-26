@@ -25,16 +25,16 @@
                         HeightRequest="170"
                         HorizontalOptions="CenterAndExpand"
                         Stroke="#e91e63"
-                        StrokeThickness="4"
+                        StrokeThickness="3"
                         VerticalOptions="CenterAndExpand"
                         WidthRequest="170" />
 
                     <Ellipse
                         HeightRequest="150"
                         HorizontalOptions="CenterAndExpand"
-                        Scale="1.08"
+                        Scale="1.09"
                         Stroke="#f8bbd0"
-                        StrokeThickness="4"
+                        StrokeThickness="3"
                         VerticalOptions="CenterAndExpand"
                         WidthRequest="150" />
 
