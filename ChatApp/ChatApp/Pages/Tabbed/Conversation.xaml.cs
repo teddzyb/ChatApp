@@ -16,5 +16,10 @@ namespace ChatApp.Pages.Tabbed
         {
             InitializeComponent();
         }
+
+        private void GoBack(object sender, EventArgs e)
+        {
+
+        }
     }
 }

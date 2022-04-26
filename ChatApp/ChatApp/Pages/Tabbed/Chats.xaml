@@ -65,6 +65,9 @@
                                                 VerticalOptions="Center" />
                                         </StackLayout>
                                     </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="Frame_GoToConvo" />
+                                    </Frame.GestureRecognizers>
                                 </Frame>
                             </Grid>
                         </ViewCell>

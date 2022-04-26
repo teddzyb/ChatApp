@@ -8,11 +8,11 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
-                                   
+
             <!--  Search Bar  -->
             <StackLayout
                 x:Name="SearchBar"
-                IsVisible="false"
+                IsVisible="true"
                 VerticalOptions="Start">
                 <Frame
                     Grid.Row="0"
@@ -39,7 +39,11 @@
                 </Frame>
             </StackLayout>
 
-            <TabbedView:Conversation x:Name="Conversation" IsVisible="true" VerticalOptions="FillAndExpand" />
+            <!--  Conversation View  -->
+            <TabbedView:Conversation
+                x:Name="Conversation"
+                IsVisible="false"
+                VerticalOptions="FillAndExpand" />
 
             <!--  Profile View  -->
             <StackLayout
@@ -51,16 +55,16 @@
             </StackLayout>
 
             <!--  Chat View  -->
-            <!--<StackLayout
+            <StackLayout
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalOptions="Center"
                 VerticalOptions="StartAndExpand">
                 <TabbedView:Chats x:Name="Chats" IsVisible="True" />
-            </StackLayout>-->
+            </StackLayout>
 
             <!--  NavBar  -->
-            <StackLayout IsVisible="false" VerticalOptions="End">
+            <StackLayout IsVisible="true" VerticalOptions="End">
                 <Grid
                     BackgroundColor="#ffffff"
                     ColumnSpacing="0"

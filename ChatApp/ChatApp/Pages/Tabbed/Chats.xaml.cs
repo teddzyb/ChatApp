@@ -39,6 +39,10 @@ namespace ChatApp.Pages.Tabbed
             userListView.ItemsSource = userList;
         }
 
+        private void Frame_GoToConvo(object sender, EventArgs e)
+        {
+            
+        }
 
     }
 }
