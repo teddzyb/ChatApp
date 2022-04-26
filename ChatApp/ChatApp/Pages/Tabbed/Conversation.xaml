@@ -3,84 +3,117 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChatApp.Pages.Tabbed.Conversation"
              xmlns:local="clr-namespace:ChatApp">
-    
-  <ContentView.Content>
 
-        <Grid
-            Padding="20"
-            BackgroundColor="#f8f9fa"
-            HorizontalOptions="FillAndExpand"
-            RowSpacing="0"
-            VerticalOptions="CenterAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+    <ContentView.Content>
 
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                Text="User Name"
-                FontSize="Medium" />
+        <StackLayout 
+            Padding="20,20,20,0"
+            BackgroundColor="#ffffff">
 
-            <Label
-                Grid.Row="0"
-                Grid.Column="1"
-                Text="X"
-                FontSize="Medium"
-                HorizontalOptions="End" />
-
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                HorizontalTextAlignment="Center"
-                Text="You can now start a conversation with this person."
-                FontSize="Medium" />
-
-            <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
-
-                <Grid
-                    BackgroundColor="White"
-                    ColumnSpacing="0"
-                    RowSpacing="0">
+            <StackLayout VerticalOptions="Start">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                
-                <Frame                    
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Margin="0,20"
-                    Padding="20,5"
-                    BackgroundColor="Transparent"
-                    BorderColor="#bdbdbd"
-                    CornerRadius="30"
-                    HorizontalOptions="Fill">
-                    <local:CustomEntry
-                        FontSize="Small"
-                        Placeholder="Write your message here.."
-                        WidthRequest="1000"/>
-                </Frame>
-                <ImageButton
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Margin="5,0"
-                    BackgroundColor="Transparent"
-                    HeightRequest="25"
-                    Source="search"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center" />
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/> 
+                    </Grid.ColumnDefinitions>
+
+                    <Frame
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="0"
+                        BackgroundColor="white"
+                        BorderColor="#fafafa"
+                        CornerRadius="20"
+                        HeightRequest="35"
+                        HorizontalOptions="Center"
+                        IsClippedToBounds="True"
+                        WidthRequest="35">
+                        <Image
+                            BackgroundColor="white"
+                            HorizontalOptions="Center"
+                            Scale=".6"
+                            Source="user_dark"
+                            VerticalOptions="Center" />
+                    </Frame>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="User Name"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        Margin="5,0,0,0"/>
+
+                    <ImageButton
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Source="close_round"
+                        BackgroundColor="Transparent"
+                        HeightRequest="25"
+                        HorizontalOptions="End"
+                        VerticalOptions="Center" />
                 </Grid>
             </StackLayout>
 
-        </Grid>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Label
+                    VerticalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="You can now start a conversation with this person."
+                    FontSize="Medium" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <Grid
+                    BackgroundColor="White"
+                    ColumnSpacing="0"
+                    RowSpacing="0">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame                    
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Margin="0,20"
+                            Padding="20,0"
+                            BackgroundColor="#eeeeee"
+                            BorderColor="Transparent"
+                            CornerRadius="30"
+                            HorizontalOptions="Fill">   
+                            <local:CustomEntry
+                                HeightRequest="50"
+                                FontSize="Small"
+                                Placeholder="Write your message here..."
+                                WidthRequest="1000"
+                                BackgroundColor="#eeeeee"/>
+                            </Frame>
+                        <ImageButton
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Margin="10,0"
+                            BackgroundColor="Transparent"
+                            HeightRequest="30"
+                            Rotation="45"
+                            Source="send"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
 
     </ContentView.Content>
     

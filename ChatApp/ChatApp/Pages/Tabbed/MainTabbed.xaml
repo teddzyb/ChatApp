@@ -7,22 +7,12 @@
     xmlns:local="clr-namespace:ChatApp">
 
     <ContentPage.Content>
-        <StackLayout>
-
-            <!--  Conversation View  -->
-            <!--
-            <StackLayout
-                Grid.Row="0"
-                Grid.Column="0"
-                HorizontalOptions="Center"
-                VerticalOptions="Start">
-                <TabbedView:Conversation x:Name="Conversation" IsVisible="False" />
-            </StackLayout>-->
-
+        <StackLayout VerticalOptions="FillAndExpand">
+                                   
             <!--  Search Bar  -->
             <StackLayout
                 x:Name="SearchBar"
-                IsVisible="True"
+                IsVisible="false"
                 VerticalOptions="Start">
                 <Frame
                     Grid.Row="0"
@@ -49,6 +39,8 @@
                 </Frame>
             </StackLayout>
 
+            <TabbedView:Conversation x:Name="Conversation" IsVisible="true" VerticalOptions="FillAndExpand" />
+
             <!--  Profile View  -->
             <StackLayout
                 Grid.Row="0"
@@ -59,16 +51,16 @@
             </StackLayout>
 
             <!--  Chat View  -->
-            <StackLayout
+            <!--<StackLayout
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalOptions="Center"
                 VerticalOptions="StartAndExpand">
                 <TabbedView:Chats x:Name="Chats" IsVisible="True" />
-            </StackLayout>
+            </StackLayout>-->
 
             <!--  NavBar  -->
-            <StackLayout IsVisible="True" VerticalOptions="End">
+            <StackLayout IsVisible="false" VerticalOptions="End">
                 <Grid
                     BackgroundColor="#ffffff"
                     ColumnSpacing="0"
