@@ -70,7 +70,7 @@
             <!--  NavBar  -->
             <StackLayout IsVisible="True" VerticalOptions="End">
                 <Grid
-                    BackgroundColor="White"
+                    BackgroundColor="#ffffff"
                     ColumnSpacing="0"
                     RowSpacing="0">
                     <Grid.RowDefinitions>
@@ -86,8 +86,8 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
-                        BackgroundColor="LightGray"
-                        HeightRequest=".2"
+                        BackgroundColor="#bdbdbd"
+                        HeightRequest="0.01"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="End" />
 

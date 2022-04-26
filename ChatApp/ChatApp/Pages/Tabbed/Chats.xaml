@@ -2,8 +2,7 @@
 <ContentView
     x:Class="ChatApp.Pages.Tabbed.Chats"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <ContentView.Content>
 
@@ -31,33 +30,34 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Padding="10">
-                                <Frame CornerRadius="10">
+                            <Grid Padding="0" BackgroundColor="Transparent">
+                                <Frame BorderColor="Transparent" CornerRadius="0">
                                     <StackLayout Orientation="Horizontal">
-                                        <StackLayout Margin="0,0,10,0">
+                                        <StackLayout Margin="-10,0,20,0">
                                             <Frame
                                                 Padding="0"
-                                                BackgroundColor="#CCCCCC"
+                                                BackgroundColor="white"
+                                                BorderColor="white"
                                                 CornerRadius="25"
                                                 HeightRequest="50"
                                                 HorizontalOptions="Center"
                                                 IsClippedToBounds="True"
                                                 WidthRequest="50">
                                                 <Image
-                                                    BackgroundColor="#bdbdbd"
+                                                    BackgroundColor="white"
                                                     HorizontalOptions="Center"
                                                     Scale=".6"
-                                                    Source="user_light.jpg"
+                                                    Source="user_dark"
                                                     VerticalOptions="Center" />
                                             </Frame>
                                         </StackLayout>
 
-
                                         <StackLayout VerticalOptions="Center">
                                             <Label
-                                                FontSize="Medium"
+                                                FontAttributes="Bold"
+                                                FontSize="Small"
                                                 Text="{Binding username}"
-                                                TextColor="#424242"
+                                                TextColor="#424242 "
                                                 VerticalOptions="Center" />
                                             <Label
                                                 FontSize="Small"
