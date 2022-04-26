@@ -2,7 +2,7 @@
 
 namespace ChatApp
 {
-    public class CustomEntry : Entry
+    public class CustomEditor : Editor
     {
     }
 }
