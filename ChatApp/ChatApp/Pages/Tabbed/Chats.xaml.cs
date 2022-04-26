@@ -39,9 +39,9 @@ namespace ChatApp.Pages.Tabbed
             userListView.ItemsSource = userList;
         }
 
-        private void Frame_GoToConvo(object sender, EventArgs e)
+        private async void Frame_GoToConvo(object sender, EventArgs e)
         {
-            
+            await Navigation.PushAsync(new Conversation(), true);
         }
 
     }

@@ -47,7 +47,7 @@
                                                     BackgroundColor="white"
                                                     HorizontalOptions="Center"
                                                     Scale=".6"
-                                                    Source="user"
+                                                    Source="user_dark"
                                                     VerticalOptions="Center" />
                                             </Frame>
                                         </StackLayout>
@@ -57,11 +57,12 @@
                                                 FontAttributes="Bold"
                                                 FontSize="Small"
                                                 Text="{Binding username}"
-                                                TextColor="#424242 "
+                                                TextColor="#424242"
                                                 VerticalOptions="Center" />
                                             <Label
                                                 FontSize="Small"
                                                 Text="{Binding email}"
+                                                TextColor="#bdbdbd"
                                                 VerticalOptions="Center" />
                                         </StackLayout>
                                     </StackLayout>

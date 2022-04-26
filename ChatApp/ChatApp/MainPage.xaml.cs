@@ -47,7 +47,7 @@ namespace ChatApp
             }
 
             // Successful authentication with database (Insert Future Code Here..)
-             Application.Current.MainPage = new MainTabbed();
+             Application.Current.MainPage = new NavigationPage(new MainTabbed());
         }
 
         private async void Btn_SignUp(object sender, EventArgs e)

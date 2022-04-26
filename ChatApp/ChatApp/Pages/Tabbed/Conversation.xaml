@@ -1,26 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentView
+<ContentPage
     x:Class="ChatApp.Pages.Tabbed.Conversation"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ChatApp">
 
-    <ContentView.Content>
+    <StackLayout Padding="20,20,20,0" BackgroundColor="#ffffff">
 
-        <StackLayout Padding="20,20,20,0" BackgroundColor="#ffffff">
+        <StackLayout VerticalOptions="Start">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-            <StackLayout VerticalOptions="Start">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <Frame
+                <Frame
                         Grid.Row="0"
                         Grid.Column="0"
                         Padding="0"
@@ -31,15 +29,15 @@
                         HorizontalOptions="Center"
                         IsClippedToBounds="True"
                         WidthRequest="35">
-                        <Image
+                    <Image
                             BackgroundColor="white"
                             HorizontalOptions="Center"
                             Scale=".6"
                             Source="user_dark"
                             VerticalOptions="Center" />
-                    </Frame>
+                </Frame>
 
-                    <Label
+                <Label
                         Grid.Row="0"
                         Grid.Column="1"
                         Margin="5,0,0,0"
@@ -48,60 +46,62 @@
                         Text="User Name"
                         VerticalOptions="Center" />
 
-                    <ImageButton
+                <ImageButton
                         Grid.Row="0"
                         Grid.Column="2"
                         BackgroundColor="Transparent"
                         HeightRequest="25"
                         HorizontalOptions="End"
                         Source="close_round"
-                        VerticalOptions="Center" />
-                </Grid>
-            </StackLayout>
+                        VerticalOptions="Center"
+                        Clicked="GoBack" />
+            </Grid>
+        </StackLayout>
 
-            <StackLayout VerticalOptions="CenterAndExpand">
-                <Label
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label
                     FontSize="Medium"
                     HorizontalTextAlignment="Center"
                     Text="You can now start a conversation with this person."
                     VerticalOptions="FillAndExpand" />
-            </StackLayout>
+        </StackLayout>
 
-            <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                <StackLayout
+        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+            <StackLayout
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Orientation="Horizontal">
-                    <Grid
+                <Grid
                         BackgroundColor="White"
                         ColumnSpacing="0"
                         RowSpacing="0">
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                        <Frame
+                    <Frame
                             Grid.Row="0"
                             Grid.Column="0"
                             Padding="20,5,20,5"
                             BackgroundColor="#eeeeee"
                             BorderColor="Transparent"
                             CornerRadius="30"
-                            HorizontalOptions="Fill">
-                            <local:CustomEditor
+                            HorizontalOptions="Fill"
+                            Margin="0,0,0,10">
+                        <local:CustomEditor
                                 BackgroundColor="#eeeeee"
                                 FontSize="Small"
                                 Placeholder="Write your message here..."
-                                WidthRequest="1000" />
-                        </Frame>
-                        <ImageButton
+                                WidthRequest="1000"/>
+                    </Frame>
+                    <ImageButton
                             Grid.Row="0"
                             Grid.Column="1"
                             Margin="10,0"
@@ -111,11 +111,9 @@
                             Rotation="45"
                             Source="send"
                             VerticalOptions="Center" />
-                    </Grid>
-                </StackLayout>
+                </Grid>
             </StackLayout>
         </StackLayout>
+    </StackLayout>
 
-    </ContentView.Content>
-
-</ContentView>
+</ContentPage>

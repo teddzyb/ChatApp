@@ -39,12 +39,6 @@
                 </Frame>
             </StackLayout>
 
-            <!--  Conversation View  -->
-            <TabbedView:Conversation
-                x:Name="Conversation"
-                IsVisible="false"
-                VerticalOptions="FillAndExpand" />
-
             <!--  Profile View  -->
             <StackLayout
                 Grid.Row="0"
@@ -78,15 +72,16 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <BoxView
+                    <Frame
                         Grid.Row="0"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         BackgroundColor="#bdbdbd"
                         HeightRequest="0.01"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="End" />
-
+                        VerticalOptions="End"
+                        HasShadow="False"/>
+                    
                     <StackLayout
                         Grid.Row="1"
                         Grid.Column="0"

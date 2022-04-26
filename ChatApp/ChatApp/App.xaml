@@ -2,7 +2,8 @@
 <Application
     x:Class="ChatApp.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChatApp">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -12,6 +13,16 @@
 
             <Style ApplyToDerivedTypes="true" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource Key=primary-light-color}" />
+            </Style>
+            
+            <Style ApplyToDerivedTypes="true" TargetType="local:CustomEntry">
+                <Setter Property="PlaceholderColor" Value="#bdbdbd" />
+                <Setter Property="TextColor" Value="{StaticResource Key=primary-dark-color}" />
+            </Style>
+
+            <Style ApplyToDerivedTypes="true" TargetType="Editor">
+                <Setter Property="PlaceholderColor" Value="{StaticResource Key=primary-dark-color}" />
+                <Setter Property="TextColor" Value="{StaticResource Key=primary-dark-color}" />
             </Style>
 
         </ResourceDictionary>
