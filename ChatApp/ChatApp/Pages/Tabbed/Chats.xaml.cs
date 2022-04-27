@@ -14,15 +14,28 @@ namespace ChatApp.Pages.Tabbed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Chats : ContentView
     {
-        ObservableCollection<ConversationModel> chatList = new ObservableCollection<ConversationModel>();
-        ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
-
         public Chats()
         {
             InitializeComponent();
+            
+            string id = (string)Application.Current.Properties["id"];
 
-            UserData users = new UserData();
-            userListView.ItemsSource = users.userList;
+            ContactData contacts = new ContactData();
+            var contactList = contacts.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
+            
+            if (contactList == null)
+            {
+                // make label visible and listview invisible
+                return;
+            }
+
+            ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
+            for (int i = 1; i < contactList.contactID.Count(); i++)
+            {
+                userContacts.Add(new UserModel() { id = contactList.contactID[i], username = contactList.contactName[i], email = contactList.contactEmail[i] });
+            }
+
+            userListView.ItemsSource = userContacts;
         }
 
         private async void Frame_GoToConvo(object sender, EventArgs e)

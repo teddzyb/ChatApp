@@ -62,14 +62,15 @@ namespace ChatApp
             }
 
             // Successful authentication with database
-            string username = userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault().username;
-            
-            Application.Current.Properties["username"] = username;
+            var user = userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
+
+            Application.Current.Properties["id"] = user.id;
+            Application.Current.Properties["username"] = user.username;
             Application.Current.Properties["email"] = EmailEntry.Text;
             await Application.Current.SavePropertiesAsync();
 
             var MainTabbed = new MainTabbed();
-            MainTabbed.BindingContext = new UserModel { username = username, email = EmailEntry.Text };
+            MainTabbed.BindingContext = new UserModel { username = user.username, email = EmailEntry.Text };
 
             Application.Current.MainPage = new NavigationPage(MainTabbed);
         }

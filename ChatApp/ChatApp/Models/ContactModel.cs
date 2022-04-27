@@ -9,14 +9,14 @@ namespace ChatApp
 {
     class ContactModel : INotifyPropertyChanged
     {
-        int _id { get; set; }
+        string _id { get; set; }
         string[] _contactID { get; set; }
         string[] _contactName { get; set; }
         string[] _contactEmail { get; set; }
         DateTime _created_at { get; set; }
         
 
-        public int id { get { return _id; } set { _id = value; OnPropertyChanged(nameof(id)); } }
+        public string id { get { return _id; } set { _id = value; OnPropertyChanged(nameof(id)); } }
         public string[] contactID { get { return _contactID; } set { _contactID = value; OnPropertyChanged(nameof(contactID)); } }
         public string[] contactName { get { return _contactName; } set { _contactName = value; OnPropertyChanged(nameof(contactName)); } }
         public string[] contactEmail { get { return _contactEmail; } set { _contactEmail = value; OnPropertyChanged(nameof(contactEmail)); } }

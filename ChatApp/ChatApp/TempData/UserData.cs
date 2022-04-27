@@ -10,7 +10,7 @@ namespace ChatApp.TempData
         public ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
         public UserData ()
         {
-            userList.Add(new UserModel() { id = "1", username = "User Test-1", email = "utest1@gmail.com", password = "1234" });
+            userList.Add(new UserModel() { id = "1", username = "User Test-1", email = "utest1@gmail.com", password = "1234", contacts = new List<string>(new string[] { "2", "3", "4" }) });
             userList.Add(new UserModel() { id = "2", username = "User Test-2", email = "utest2gmail.com", password = "1234" });
             userList.Add(new UserModel() { id = "3", username = "User Test-3", email = "utest3@gmail.com", password = "1234" });
             userList.Add(new UserModel() { id = "4", username = "User Test-4", email = "utest4@gmail.com", password = "1234" });
