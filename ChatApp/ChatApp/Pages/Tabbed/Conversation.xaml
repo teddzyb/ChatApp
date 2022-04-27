@@ -24,18 +24,17 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Padding="0"
-                    BackgroundColor="white"
-                    BorderColor="#fafafa"
+                    BackgroundColor="#ec407a"
                     CornerRadius="20"
                     HeightRequest="35"
                     HorizontalOptions="Center"
                     IsClippedToBounds="True"
                     WidthRequest="35">
                     <Image
-                        BackgroundColor="white"
+                        BackgroundColor="#ec407a"
                         HorizontalOptions="Center"
                         Scale=".6"
-                        Source="user_dark"
+                        Source="user_light"
                         VerticalOptions="Center" />
                 </Frame>
 
@@ -46,6 +45,7 @@
                     FontAttributes="Bold"
                     FontSize="Medium"
                     Text="{Binding email}"
+                    TextColor="#757575"
                     VerticalOptions="Center" />
 
                 <ImageButton

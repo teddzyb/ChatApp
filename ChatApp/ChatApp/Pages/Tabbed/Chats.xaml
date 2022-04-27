@@ -7,7 +7,7 @@
     <ContentView.Content>
 
         <Grid
-            Margin="20,10,20,-5"
+            Margin="20,10,20,-12"
             BackgroundColor="#ffffff"
             HorizontalOptions="FillAndExpand"
             RowSpacing="0"
@@ -36,18 +36,17 @@
                                         <StackLayout Margin="-10,0,20,0">
                                             <Frame
                                                 Padding="0"
-                                                BackgroundColor="#fce4ec"
+                                                BackgroundColor="#ec407a"
                                                 CornerRadius="25"
                                                 HeightRequest="50"
                                                 HorizontalOptions="Center"
                                                 IsClippedToBounds="True"
                                                 WidthRequest="50">
                                                 <Image
-                                                    BackgroundColor="#fce4ec"
+                                                    BackgroundColor="#ec407a"
                                                     HorizontalOptions="Center"
-                                                    Opacity=".8"
                                                     Scale=".6"
-                                                    Source="profile_enabled"
+                                                    Source="user_light"
                                                     VerticalOptions="Center" />
                                             </Frame>
                                         </StackLayout>
@@ -62,7 +61,7 @@
                                             <Label
                                                 FontSize="Small"
                                                 Text="{Binding email}"
-                                                TextColor="#bdbdbd"
+                                                TextColor="#757575"
                                                 VerticalOptions="Center" />
                                         </StackLayout>
 
@@ -83,8 +82,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </Grid>
 
-            <!--<Label
+        <!--<Label
                 x:Name="AlertLabel"
                 Grid.Row="0"
                 FontSize="Medium"
@@ -92,7 +92,6 @@
                 IsVisible="false"
                 Text="You have no contacts as of the moment."
                 VerticalOptions="CenterAndExpand" />-->
-        </Grid>
 
     </ContentView.Content>
 

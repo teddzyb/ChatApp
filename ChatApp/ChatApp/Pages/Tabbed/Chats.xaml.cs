@@ -30,13 +30,14 @@ namespace ChatApp.Pages.Tabbed
 
             var user = new UserModel
             {
-                email = (String)((TappedEventArgs)e).Parameter,
+                email = (string)((TappedEventArgs)e).Parameter,
             };
 
-            var secondPage = new Conversation();
-
-            secondPage.BindingContext = user;
-            await Navigation.PushAsync(secondPage, true);
+            var conversation = new Conversation
+            {
+                BindingContext = user
+            };
+            await Navigation.PushAsync(conversation, true);
         }
 
     }

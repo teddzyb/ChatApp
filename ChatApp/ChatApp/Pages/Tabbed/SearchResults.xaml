@@ -79,18 +79,18 @@
                                             <StackLayout Margin="-10,0,20,0">
                                                 <Frame
                                                     Padding="0"
-                                                    BackgroundColor="white"
-                                                    BorderColor="white"
+                                                    BackgroundColor="#ec407a"
+                                                    BorderColor="Transparent"
                                                     CornerRadius="25"
                                                     HeightRequest="50"
                                                     HorizontalOptions="Center"
                                                     IsClippedToBounds="True"
                                                     WidthRequest="50">
                                                     <Image
-                                                        BackgroundColor="white"
+                                                        BackgroundColor="#ec407a"
                                                         HorizontalOptions="Center"
                                                         Scale=".6"
-                                                        Source="user_dark"
+                                                        Source="user_light"
                                                         VerticalOptions="Center" />
                                                 </Frame>
                                             </StackLayout>
