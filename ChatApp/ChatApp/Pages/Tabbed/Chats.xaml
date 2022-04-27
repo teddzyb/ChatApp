@@ -36,18 +36,18 @@
                                         <StackLayout Margin="-10,0,20,0">
                                             <Frame
                                                 Padding="0"
-                                                BackgroundColor="white"
-                                                BorderColor="white"
+                                                BackgroundColor="#fce4ec"
                                                 CornerRadius="25"
                                                 HeightRequest="50"
                                                 HorizontalOptions="Center"
                                                 IsClippedToBounds="True"
                                                 WidthRequest="50">
                                                 <Image
-                                                    BackgroundColor="white"
+                                                    BackgroundColor="#fce4ec"
                                                     HorizontalOptions="Center"
+                                                    Opacity=".8"
                                                     Scale=".6"
-                                                    Source="user_dark"
+                                                    Source="profile_enabled"
                                                     VerticalOptions="Center" />
                                             </Frame>
                                         </StackLayout>
@@ -65,9 +65,17 @@
                                                 TextColor="#bdbdbd"
                                                 VerticalOptions="Center" />
                                         </StackLayout>
+
+                                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                            <ImageButton
+                                                BackgroundColor="Transparent"
+                                                HeightRequest="25"
+                                                Source="check"
+                                                WidthRequest="25" />
+                                        </StackLayout>
                                     </StackLayout>
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="Frame_GoToConvo" CommandParameter="{Binding email}" />
+                                        <TapGestureRecognizer CommandParameter="{Binding email}" Tapped="Frame_GoToConvo" />
                                     </Frame.GestureRecognizers>
                                 </Frame>
                             </Grid>

@@ -7,9 +7,10 @@
     xmlns:local="clr-namespace:ChatApp">
     <ContentView.Content>
 
-        <StackLayout BackgroundColor="White">
+        <StackLayout BackgroundColor="Transparent">
 
             <Grid
+                Margin="0,50,0,10"
                 Padding="20"
                 HorizontalOptions="CenterAndExpand"
                 RowSpacing="0"
@@ -52,14 +53,18 @@
                     FontAttributes="Bold"
                     FontSize="Large"
                     HorizontalOptions="CenterAndExpand"
-                    Text="User Name"
+                    Text="{Binding username}"
                     TextColor="#424242" />
 
+
                 <Label
+                    x:Name="EmailLabel"
                     Grid.Row="2"
                     FontSize="Medium"
                     HorizontalOptions="CenterAndExpand"
-                    Text="user@email.com" />
+                    Text="{Binding email}"
+                    TextColor="#bdbdbd" />
+
                 <local:CustomButton
                     Grid.Row="3"
                     Margin="0,20"

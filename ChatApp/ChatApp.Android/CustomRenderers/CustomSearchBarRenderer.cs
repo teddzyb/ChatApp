@@ -25,11 +25,16 @@ namespace ChatApp.Droid
                 var plateId = Resources.GetIdentifier("android:id/search_plate", null, null);
                 var plate = Control.FindViewById(plateId);
                 plate.SetBackgroundColor(Android.Graphics.Color.Transparent);
+                var searchView = Control;
 
-                var searchView = base.Control as SearchView;
-                int searchIconId = Context.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
-                ImageView searchViewIcon = (ImageView)searchView.FindViewById<ImageView>(searchIconId);
-                searchViewIcon.SetImageDrawable(null);
+                //int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
+                //var searchIcon = searchView.FindViewById(searchViewCloseButtonId);
+                //(searchIcon as ImageView).SetImageResource(Resource.Drawable.search);
+
+                //var searchView = base.Control as SearchView;
+                //int searchIconId = Context.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
+                //ImageView searchViewIcon = (ImageView)searchView.FindViewById<ImageView>(searchIconId);
+                //searchViewIcon.SetImageDrawable(null);
             }
         }
     }

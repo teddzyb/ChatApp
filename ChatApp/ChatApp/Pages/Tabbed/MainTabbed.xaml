@@ -7,9 +7,13 @@
     xmlns:local="clr-namespace:ChatApp">
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand">
 
-            <!--  Search Bar  -->
+        <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="Nav_Profile" />
+                <SwipeGestureRecognizer Direction="Right" Swiped="Nav_Chat" />
+            </StackLayout.GestureRecognizers>
+
             <StackLayout
                 x:Name="SearchBar"
                 IsVisible="true"
@@ -17,32 +21,19 @@
                 <Frame
                     Grid.Row="0"
                     Margin="20,20,20,0"
-                    Padding="20,5"
+                    Padding="0"
                     BackgroundColor="Transparent"
                     BorderColor="#bdbdbd"
-                    CornerRadius="30"
-                    HorizontalOptions="Fill">
-                    <StackLayout Orientation="Horizontal">
-                        <ImageButton
-                            Margin="5,0"
-                            BackgroundColor="Transparent"
-                            HeightRequest="20"
-                            HorizontalOptions="End"
-                            Source="search"
-                            VerticalOptions="Center" />
-                        <Label
-                            FontSize="Small"
-                            TextColor="#bdbdbd"
-                            Padding="10"
-                            HorizontalOptions="FillAndExpand"
-                            Text="Search Email"
-                            VerticalOptions="FillAndExpand">
-                            <Label.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="Nav_Result" />
-                            </Label.GestureRecognizers>
-                        </Label>
-                    </StackLayout>
-                </Frame>                
+                    CornerRadius="30">
+
+                    <local:CustomSearchBar
+                        x:Name="SearchEntry"
+                        BackgroundColor="Transparent"
+                        Focused="Nav_Result"
+                        FontSize="Small"
+                        MaxLength="0"
+                        Placeholder="Search Email" />
+                </Frame>
             </StackLayout>
 
             <!--  Profile View  -->
@@ -50,7 +41,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 HorizontalOptions="Center"
-                VerticalOptions="Start">
+                VerticalOptions="CenterAndExpand">
                 <TabbedView:Profile x:Name="Profile" IsVisible="False" />
             </StackLayout>
 
@@ -83,11 +74,11 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         BackgroundColor="#bdbdbd"
+                        HasShadow="False"
                         HeightRequest="0.01"
                         HorizontalOptions="FillAndExpand"
-                        VerticalOptions="End"
-                        HasShadow="False"/>
-                    
+                        VerticalOptions="End" />
+
                     <StackLayout
                         Grid.Row="1"
                         Grid.Column="0"

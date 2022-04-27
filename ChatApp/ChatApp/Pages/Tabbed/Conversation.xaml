@@ -21,66 +21,101 @@
                 </Grid.ColumnDefinitions>
 
                 <Frame
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Padding="0"
-                        BackgroundColor="white"
-                        BorderColor="#fafafa"
-                        CornerRadius="20"
-                        HeightRequest="35"
-                        HorizontalOptions="Center"
-                        IsClippedToBounds="True"
-                        WidthRequest="35">
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="0"
+                    BackgroundColor="white"
+                    BorderColor="#fafafa"
+                    CornerRadius="20"
+                    HeightRequest="35"
+                    HorizontalOptions="Center"
+                    IsClippedToBounds="True"
+                    WidthRequest="35">
                     <Image
-                            BackgroundColor="white"
-                            HorizontalOptions="Center"
-                            Scale=".6"
-                            Source="user_dark"
-                            VerticalOptions="Center" />
+                        BackgroundColor="white"
+                        HorizontalOptions="Center"
+                        Scale=".6"
+                        Source="user_dark"
+                        VerticalOptions="Center" />
                 </Frame>
 
                 <Label
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        Margin="5,0,0,0"
-                        FontAttributes="Bold"
-                        FontSize="Medium"
-                        Text="{Binding email}"
-                        VerticalOptions="Center" />
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="5,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{Binding email}"
+                    VerticalOptions="Center" />
 
                 <ImageButton
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        BackgroundColor="Transparent"
-                        HeightRequest="25"
-                        HorizontalOptions="End"
-                        Source="close_round"
-                        VerticalOptions="Center"
-                        Clicked="GoBack" />
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    BackgroundColor="Transparent"
+                    Clicked="GoBack"
+                    HeightRequest="25"
+                    HorizontalOptions="End"
+                    Source="close_round"
+                    VerticalOptions="Center" />
             </Grid>
         </StackLayout>
 
-        <StackLayout VerticalOptions="CenterAndExpand">
+        <!--  No messages  -->
+        <StackLayout IsVisible="False" VerticalOptions="CenterAndExpand">
+            <Grid
+                Margin="20,10,20,-5"
+                BackgroundColor="#ffffff"
+                HorizontalOptions="FillAndExpand"
+                RowSpacing="0"
+                VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Margin="10,0,0,10"
+                    Text="Contacts"
+                    TextColor="#424242" />
+                <ListView
+                    x:Name="chatListView"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    SeparatorColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0" BackgroundColor="Transparent" />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
+
+        <!--  Contains messages  -->
+        <StackLayout IsVisible="True" VerticalOptions="CenterAndExpand">
             <Label
-                    FontSize="Medium"
-                    HorizontalTextAlignment="Center"
-                    Text="You can now start a conversation with this person."
-                    VerticalOptions="FillAndExpand" />
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"
+                Text="You can now start a conversation with this person."
+                VerticalOptions="FillAndExpand" />
         </StackLayout>
 
         <StackLayout Orientation="Horizontal" VerticalOptions="End">
             <StackLayout
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Orientation="Horizontal">
+                Grid.Row="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Orientation="Horizontal">
                 <Grid
                     BackgroundColor="White"
                     ColumnSpacing="0"
                     RowSpacing="0">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="90" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -89,30 +124,36 @@
                     </Grid.ColumnDefinitions>
 
                     <Frame
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            Padding="20,5,20,5"
-                            BackgroundColor="#eeeeee"
-                            BorderColor="Transparent"
-                            CornerRadius="30"
-                            HorizontalOptions="Fill"
-                            Margin="0,0,0,10">
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,0,10"
+                        Padding="20,5,20,5"
+                        BackgroundColor="#eeeeee"
+                        BorderColor="Transparent"
+                        CornerRadius="25"
+                        VerticalOptions="End"
+                        WidthRequest="1000">
                         <local:CustomEditor
-                                BackgroundColor="#eeeeee"
-                                FontSize="Small"
-                                Placeholder="Write your message here..."
-                                WidthRequest="1000"/>
+                            x:Name="MessageEntry"
+                            AutoSize="TextChanges"
+                            BackgroundColor="#eeeeee"
+                            FontSize="Small"
+                            MaxLength="240"
+                            MinimumHeightRequest="50"
+                            Placeholder="Write your message here..."
+                            TextChanged="ToggleSendButton" />
                     </Frame>
                     <ImageButton
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            Margin="10,0"
-                            BackgroundColor="Transparent"
-                            HeightRequest="30"
-                            HorizontalOptions="Center"
-                            Rotation="45"
-                            Source="send"
-                            VerticalOptions="Center" />
+                        x:Name="SendButton"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="10,20,5,0"
+                        BackgroundColor="Transparent"
+                        HeightRequest="30"
+                        HorizontalOptions="Center"
+                        Rotation="45"
+                        Source="send_disabled"
+                        VerticalOptions="Center" />
                 </Grid>
             </StackLayout>
         </StackLayout>

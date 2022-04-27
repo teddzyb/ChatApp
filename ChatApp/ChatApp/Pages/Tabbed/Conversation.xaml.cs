@@ -13,9 +13,6 @@ namespace ChatApp.Pages.Tabbed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Conversation : ContentPage
     {
-        ObservableCollection<ChatModel> chatList = new ObservableCollection<ChatModel>();
-        ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
-
         public Conversation()
         {
             InitializeComponent();
@@ -25,6 +22,17 @@ namespace ChatApp.Pages.Tabbed
         private async void GoBack(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private void ToggleSendButton(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(MessageEntry.Text))
+            {
+                SendButton.Source = "send_disabled";
+            } else
+            {
+                SendButton.Source = "send_enabled";
+            }
         }
     }
 }

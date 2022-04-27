@@ -54,7 +54,7 @@
                         TextColor="#424242" />
 
                     <Frame
-                        x:Name="emailFrame"
+                        x:Name="EmailFrame"
                         Grid.Row="1"
                         Padding="0"
                         BackgroundColor="Transparent"
@@ -66,7 +66,7 @@
                             Padding="20,5,20,5"
                             Orientation="Horizontal">
                             <local:CustomEntry
-                                x:Name="emailEntry"
+                                x:Name="EmailEntry"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Email"
@@ -85,7 +85,7 @@
                         HorizontalOptions="FillAndExpand">
                         <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                             <local:CustomEntry
-                                x:Name="passwordEntry"
+                                x:Name="PasswordEntry"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
                                 IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
