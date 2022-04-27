@@ -54,6 +54,14 @@
                 </StackLayout>
             </Grid>
 
+            <Label
+                x:Name="AlertLabel"
+                Grid.Row="1"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="false"
+                Text="User not found"
+                VerticalOptions="CenterAndExpand" />
 
             <Grid
                 Grid.Row="1"
@@ -118,8 +126,13 @@
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer CommandParameter="{Binding id}" Tapped="AddToContact" />
+                                    </Grid.GestureRecognizers>
                                 </Grid>
                             </ViewCell>
+
+
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
