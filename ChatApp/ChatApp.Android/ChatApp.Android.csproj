@@ -69,6 +69,7 @@
     <Compile Include="CustomRenderers\CustomEditorRenderer.cs" />
     <Compile Include="CustomRenderers\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderers\CustomButtonRenderer.cs" />
+    <Compile Include="CustomRenderers\CustomSearchBarRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

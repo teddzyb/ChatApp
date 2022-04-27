@@ -53,11 +53,15 @@ namespace ChatApp
         private async void Btn_SignUp(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Signup(), true);
+            emailFrame.BorderColor = Color.FromRgb(189, 189, 189);
+            passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }
 
         private async void Btn_ResetPass(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ResetPass(), true);
+            emailFrame.BorderColor = Color.FromRgb(189, 189, 189);
+            passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }
 
         private void TextChanged_Email(object sender, EventArgs e)

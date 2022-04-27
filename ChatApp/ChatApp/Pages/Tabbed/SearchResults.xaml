@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ChatApp.Pages.Tabbed.SearchResults"
-             xmlns:local="clr-namespace:ChatApp">
+<ContentPage
+    x:Class="ChatApp.Pages.Tabbed.SearchResults"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChatApp">
     <ContentPage.Content>
 
         <StackLayout VerticalOptions="FillAndExpand">
@@ -18,9 +19,8 @@
                     Padding="20,5"
                     BackgroundColor="Transparent"
                     BorderColor="#bdbdbd"
-                    CornerRadius="30"
-                    HorizontalOptions="Fill">
-                    <StackLayout Orientation="Horizontal">
+                    CornerRadius="30">
+                    <StackLayout Padding="0,0,20,0" Orientation="Horizontal">
                         <ImageButton
                             Margin="5,0"
                             BackgroundColor="Transparent"
@@ -28,12 +28,11 @@
                             HorizontalOptions="End"
                             Source="search"
                             VerticalOptions="Center" />
-                        <local:CustomEntry
+                        <local:CustomSearchBar
+                            x:Name="SearchEntry"
+                            BackgroundColor="Transparent"
                             FontSize="Small"
-                            HorizontalOptions="FillAndExpand"
-                            Placeholder="Search Email"
-                            VerticalOptions="FillAndExpand">
-                        </local:CustomEntry>
+                            Placeholder="Search Email" />
                     </StackLayout>
                 </Frame>
             </StackLayout>

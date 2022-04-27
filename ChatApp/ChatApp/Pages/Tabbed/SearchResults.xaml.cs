@@ -15,7 +15,15 @@ namespace ChatApp.Pages.Tabbed
         public SearchResults()
         {
             InitializeComponent();
+          
             NavigationPage.SetHasNavigationBar(this, false);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            SearchEntry.Focus();
         }
     }
 }
