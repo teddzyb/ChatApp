@@ -113,7 +113,7 @@
                                                 <ImageButton
                                                     BackgroundColor="Transparent"
                                                     HeightRequest="25"
-                                                    Source="add"
+                                                    Source="{Binding iconSource}"
                                                     WidthRequest="25" />
                                             </StackLayout>
                                         </StackLayout>

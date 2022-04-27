@@ -8,20 +8,27 @@
 
     <ContentPage.Content>
 
-        <StackLayout VerticalOptions="FillAndExpand">
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
             <!--  Gestures  -->
-            <StackLayout.GestureRecognizers>
+            <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Left" Swiped="Nav_Profile" />
                 <SwipeGestureRecognizer Direction="Right" Swiped="Nav_Chat" />
-            </StackLayout.GestureRecognizers>
+            </Grid.GestureRecognizers>
 
             <!--  Search Bar  -->
             <StackLayout
                 x:Name="SearchBar"
+                Grid.Row="0"
                 IsVisible="true"
                 VerticalOptions="Start">
                 <Frame
-                    Grid.Row="0"
                     Margin="20,20,20,0"
                     Padding="0"
                     BackgroundColor="Transparent"
@@ -38,26 +45,44 @@
                 </Frame>
             </StackLayout>
 
-            <!--  Chat View  -->
-            <StackLayout
-                Grid.Row="0"
-                Grid.Column="0"
-                HorizontalOptions="Center"
-                VerticalOptions="Start">
-                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
-            </StackLayout>
+
+            <!--  Alert Label  -->
+            <Label
+                x:Name="AlertLabel"
+                Grid.Row="1"
+                FontSize="Medium"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                IsVisible="true"
+                Text="You have no contacts as of the moment."
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
+
 
             <!--  Profile View  -->
             <StackLayout
-                Grid.Row="0"
-                Grid.Column="0"
+                Grid.Row="1"
+                Margin="0,0,0,0"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand">
                 <TabbedView:Profile x:Name="Profile" IsVisible="False" />
             </StackLayout>
 
+
+            <!--  Chat View  -->
+            <StackLayout
+                Grid.Row="1"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="StartAndExpand">
+                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
+            </StackLayout>
+
+
             <!--  NavBar  -->
-            <StackLayout IsVisible="true" VerticalOptions="End">
+            <StackLayout
+                Grid.Row="2"
+                IsVisible="true"
+                VerticalOptions="End">
                 <Grid
                     BackgroundColor="#ffffff"
                     ColumnSpacing="0"
@@ -113,7 +138,7 @@
 
                 </Grid>
             </StackLayout>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 
 </ContentPage>

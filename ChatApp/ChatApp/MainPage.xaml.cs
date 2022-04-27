@@ -46,18 +46,18 @@ namespace ChatApp
                 return;
             }
 
-            // Email is not verified
-            if (false) 
-            {
-                await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
-                return;
-            }
-
             // Query (Insert Future Code Here..)
 
             if(!userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
             {
                 await DisplayAlert("Error", "Invalid Email or Password", "", "OKAY");
+                return;
+            }
+
+            // Email is not verified
+            if (userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
+            {
+                await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
                 return;
             }
 

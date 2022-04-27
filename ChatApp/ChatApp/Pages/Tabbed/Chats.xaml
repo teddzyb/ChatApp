@@ -5,93 +5,87 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <ContentView.Content>
-
-        <Grid
-            Margin="20,10,20,-12"
-            BackgroundColor="#ffffff"
-            HorizontalOptions="FillAndExpand"
-            RowSpacing="0"
-            VerticalOptions="CenterAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Label
-                Grid.Row="0"
-                Margin="10,0,0,10"
-                Text="Contacts"
-                TextColor="#424242" />
-            <ListView
-                x:Name="userListView"
-                Grid.Row="1"
-                BackgroundColor="Transparent"
-                HasUnevenRows="True"
-                SeparatorColor="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Padding="0" BackgroundColor="Transparent">
-                                <Frame BorderColor="Transparent" CornerRadius="0">
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout Margin="-10,0,20,0">
-                                            <Frame
-                                                Padding="0"
-                                                BackgroundColor="#ec407a"
-                                                CornerRadius="25"
-                                                HeightRequest="50"
-                                                HorizontalOptions="Center"
-                                                IsClippedToBounds="True"
-                                                WidthRequest="50">
-                                                <Image
+        <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand">
+            <Grid
+                x:Name="ContactListGrid"
+                Margin="20,10,20,-12"
+                BackgroundColor="#ffffff"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="true"
+                RowSpacing="0"
+                VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Margin="10,0,0,10"
+                    Text="Contacts"
+                    TextColor="#424242" />
+                <ListView
+                    x:Name="userListView"
+                    Grid.Row="1"
+                    BackgroundColor="Transparent"
+                    HasUnevenRows="True"
+                    SeparatorColor="Transparent">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0" BackgroundColor="Transparent">
+                                    <Frame BorderColor="Transparent" CornerRadius="0">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout Margin="-10,0,20,0">
+                                                <Frame
+                                                    Padding="0"
                                                     BackgroundColor="#ec407a"
+                                                    CornerRadius="25"
+                                                    HeightRequest="50"
                                                     HorizontalOptions="Center"
-                                                    Scale=".6"
-                                                    Source="user_light"
+                                                    IsClippedToBounds="True"
+                                                    WidthRequest="50">
+                                                    <Image
+                                                        BackgroundColor="#ec407a"
+                                                        HorizontalOptions="Center"
+                                                        Scale=".6"
+                                                        Source="user_light"
+                                                        VerticalOptions="Center" />
+                                                </Frame>
+                                            </StackLayout>
+
+                                            <StackLayout VerticalOptions="Center">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="Small"
+                                                    Text="{Binding username}"
+                                                    TextColor="#424242"
                                                     VerticalOptions="Center" />
-                                            </Frame>
-                                        </StackLayout>
+                                                <Label
+                                                    FontSize="Small"
+                                                    Text="{Binding email}"
+                                                    TextColor="#757575"
+                                                    VerticalOptions="Center" />
+                                            </StackLayout>
 
-                                        <StackLayout VerticalOptions="Center">
-                                            <Label
-                                                FontAttributes="Bold"
-                                                FontSize="Small"
-                                                Text="{Binding username}"
-                                                TextColor="#424242"
-                                                VerticalOptions="Center" />
-                                            <Label
-                                                FontSize="Small"
-                                                Text="{Binding email}"
-                                                TextColor="#757575"
-                                                VerticalOptions="Center" />
+                                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <ImageButton
+                                                    BackgroundColor="Transparent"
+                                                    HeightRequest="25"
+                                                    Source="check"
+                                                    WidthRequest="25" />
+                                            </StackLayout>
                                         </StackLayout>
-
-                                        <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
-                                            <ImageButton
-                                                BackgroundColor="Transparent"
-                                                HeightRequest="25"
-                                                Source="check"
-                                                WidthRequest="25" />
-                                        </StackLayout>
-                                    </StackLayout>
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer CommandParameter="{Binding email}" Tapped="Frame_GoToConvo" />
-                                    </Frame.GestureRecognizers>
-                                </Frame>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-
-        <!--<Label
-                x:Name="AlertLabel"
-                Grid.Row="0"
-                FontSize="Medium"
-                HorizontalOptions="CenterAndExpand"
-                IsVisible="false"
-                Text="You have no contacts as of the moment."
-                VerticalOptions="CenterAndExpand" />-->
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding email}" Tapped="Frame_GoToConvo" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
 
     </ContentView.Content>
 

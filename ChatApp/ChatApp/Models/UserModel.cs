@@ -15,7 +15,7 @@ namespace ChatApp
         string _password { get; set; }
         List<string> _contacts { get; set; }
 
-        //bool _isVerified { get; set; }
+        bool _isVerified { get; set; }
 
         public string id { get { return _id; }                     set { _id = value; OnPropertyChanged(nameof(id)); } }
         public string username { get { return _username; }      set { _username = value; OnPropertyChanged(nameof(username)); } }
@@ -23,7 +23,7 @@ namespace ChatApp
         public string password { get { return _password; }      set { _password = value; OnPropertyChanged(nameof(password)); } }
         public List<string> contacts { get { return _contacts; }   set { _contacts = value; OnPropertyChanged(nameof(contacts)); } }
 
-        //public bool isVerified { get { return _isVerified; } set { _isVerified = value; OnPropertyChanged(nameof(isVerified)); } }
+        public bool isVerified { get { return _isVerified; } set { _isVerified = value; OnPropertyChanged(nameof(isVerified)); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

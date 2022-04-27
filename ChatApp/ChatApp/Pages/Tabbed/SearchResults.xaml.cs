@@ -16,6 +16,14 @@ namespace ChatApp.Pages.Tabbed
     public partial class SearchResults : ContentPage
     {
         ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
+        ObservableCollection<UserResults> userResultsList = new ObservableCollection<UserResults>();
+        public class UserResults
+        {
+            public string username { get; set; }
+            public string email { get; set; }
+            public string iconSource { get; set; }
+        }
+
         public SearchResults()
         {
             InitializeComponent();
@@ -39,6 +47,7 @@ namespace ChatApp.Pages.Tabbed
         private void SearchQuery(object sender, EventArgs e)
         {
             userListView.ItemsSource = null;
+            userResultsList.Clear();
 
             if (string.IsNullOrEmpty(SearchEntry.Text))
             {
@@ -46,7 +55,33 @@ namespace ChatApp.Pages.Tabbed
                 return;
             }
 
-            userListView.ItemsSource = userList.Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
+            string id = (string)Application.Current.Properties["id"];            
+            var users = userList.Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
+            if (users.Count() > 0)
+            {
+                var userFriends = userList.Where(x => x.id == id).First().contacts;
+
+                foreach (var user in users)
+                {
+                    string iconSource = "add";
+
+                    if (userFriends.Where(x => x == user.id).Count() > 0)
+                    {
+                        iconSource = "check";                           
+                    }
+
+                    if (user.id == id)
+                    {
+                        iconSource = "close_round";
+                    }
+
+                    userResultsList.Add(new UserResults { username = user.username, email = user.email, iconSource = iconSource });
+                }
+
+                userListView.ItemsSource = userResultsList;
+            }                
+                
+            
         }
     }
 }

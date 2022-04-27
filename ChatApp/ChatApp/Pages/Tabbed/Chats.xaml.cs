@@ -19,13 +19,12 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
             
             string id = (string)Application.Current.Properties["id"];
-
             ContactData contacts = new ContactData();
             var contactList = contacts.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
             
             if (contactList == null)
             {
-                // make label visible and listview invisible
+                ContactListGrid.IsVisible = false;
                 return;
             }
 
