@@ -19,13 +19,14 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
             
             string id = (string)Application.Current.Properties["id"];
-            ContactData contacts = new ContactData();
-            var contactList = contacts.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
+   
+            var contactList = GloblalData.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
             
             if (contactList == null)
             {
                 ContactListGrid.IsVisible = false;
                 return;
+
             }
 
             ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();

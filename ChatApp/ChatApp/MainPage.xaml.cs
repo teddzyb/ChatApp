@@ -11,28 +11,16 @@ namespace ChatApp
 {
     public partial class MainPage : ContentPage
     {
-        ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
+
+        //ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
 
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             //UserData users = new UserData();
-            //userList = UserData.userList; 
-
-            userList.Add(new UserModel() { id = "1", username = "User Test-1", email = "utest1@gmail.com", password = "1234", contacts = new List<string>(new string[] { "2", "3", "4", "5", "6", "7", "8", "9", "10" }), isVerified = true });
-            userList.Add(new UserModel() { id = "2", username = "User Test-2", email = "utest2@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = false });
-            userList.Add(new UserModel() { id = "3", username = "User Test-3", email = "utest3@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { id = "4", username = "User Test-4", email = "utest4@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { id = "5", username = "User Test-5", email = "utest5@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { id = "6", username = "User Test-6", email = "utest6@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { id = "7", username = "User Test-7", email = "utest7@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { id = "8", username = "User Test-8", email = "utest8@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { id = "9", username = "User Test-9", email = "utest9@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { id = "10", username = "User Test-10", email = "utest10@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-
-            UserData.userList = userList;
-
+            //userList = UserData.userList;
+            
         }
 
         private async void Btn_SignIn(object sender, EventArgs e)
@@ -62,22 +50,22 @@ namespace ChatApp
             }
 
             // Query (Insert Future Code Here..)
-
-            if(!userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
+            
+            if(!GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
             {
                 await DisplayAlert("Error", "Invalid Email or Password", "", "OKAY");
                 return;
             }
 
             // Email is not verified
-            if (userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
+            if (GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
             {
                 await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
                 return;
             }
 
             // Successful authentication with database
-            var user = userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
+            var user = GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
 
             Application.Current.Properties["id"] = user.id;
             Application.Current.Properties["username"] = user.username;

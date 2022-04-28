@@ -32,7 +32,7 @@ namespace ChatApp.Pages.Tabbed
             NavigationPage.SetHasNavigationBar(this, false);
             //UserData users = new UserData();
             //userList = users.userList;
-            userList = UserData.userList;
+            userList = GloblalData.userList;
         }
 
         protected override void OnAppearing()

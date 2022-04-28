@@ -20,8 +20,8 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
             string id = (string)Application.Current.Properties["id"];
-            ContactData contacts = new ContactData();
-            var contactCount = contacts.contactList.Where(x => x.contactID[0] == id).Count();
+          
+            var contactCount = GloblalData.contactList.Where(x => x.contactID[0] == id).Count();
             
             if (contactCount > 0)
             {
