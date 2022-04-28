@@ -22,11 +22,16 @@ namespace ChatApp.Pages.Auth
         {
             emailFrame.BorderColor = Color.FromRgb(189, 189, 189);
 
-            if (string.IsNullOrEmpty(emailEntry.Text))
+            if (string.IsNullOrEmpty(EmailEntry.Text))
             {
                 await DisplayAlert("Error", "Missing Field", "OKAY");
-                emailEntry.Focus();
                 emailFrame.BorderColor = Color.FromRgb(244, 67, 54);
+                return;
+            }
+
+            if (!ValidateEmail.IsValidEmail(EmailEntry.Text))
+            {
+                await DisplayAlert("Error", "The email address is badly formatted.", "", "OKAY");
                 return;
             }
 
@@ -39,7 +44,7 @@ namespace ChatApp.Pages.Auth
             
         }
 
-        private void TextChanged_Email(object sender, EventArgs e)
+        private void Focused_Email(object sender, EventArgs e)
         {
             emailFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }

@@ -67,10 +67,10 @@
                             Orientation="Horizontal">
                             <local:CustomEntry
                                 x:Name="EmailEntry"
+                                Focused="Focused_Email"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
                                 Placeholder="Email"
-                                TextChanged="TextChanged_Email"
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>
                     </Frame>
@@ -86,11 +86,11 @@
                         <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                             <local:CustomEntry
                                 x:Name="PasswordEntry"
+                                Focused="Focused_Password"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
                                 IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
                                 Placeholder="Password"
-                                TextChanged="TextChanged_Password"
                                 VerticalOptions="FillAndExpand" />
 
                             <ImageButton

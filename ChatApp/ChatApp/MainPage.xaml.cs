@@ -33,19 +33,20 @@ namespace ChatApp
                 if (string.IsNullOrEmpty(EmailEntry.Text))
                 {
                     EmailFrame.BorderColor = Color.FromRgb(244, 67, 54);
-                    EmailEntry.Focus();
                 }
                 
                 if (string.IsNullOrEmpty(PasswordEntry.Text))
                 {
                     passwordFrame.BorderColor = Color.FromRgb(244, 67, 54);
-                    if (!string.IsNullOrEmpty(EmailEntry.Text))
-                    {
-                        PasswordEntry.Focus();
-                    }
                     
                 }
                 await DisplayAlert("Error", "Missing Fields", "", "OKAY");
+                return;
+            }
+
+            if (!ValidateEmail.IsValidEmail(EmailEntry.Text))
+            {
+                await DisplayAlert("Error", "The email address is badly formatted.", "", "OKAY");
                 return;
             }
 
@@ -53,7 +54,7 @@ namespace ChatApp
             
             if(!GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
             {
-                await DisplayAlert("Error", "Invalid Email or Password", "", "OKAY");
+                await DisplayAlert("Error", "There is no user record corresponding to this identifier. The user may have been deleted.", "", "OKAY");
                 return;
             }
 
@@ -92,12 +93,12 @@ namespace ChatApp
             passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }
 
-        private void TextChanged_Email(object sender, EventArgs e)
+        private void Focused_Email(object sender, EventArgs e)
         {
             EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }
 
-        private void TextChanged_Password(object sender, EventArgs e)
+        private void Focused_Password(object sender, EventArgs e)
         {
             passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }

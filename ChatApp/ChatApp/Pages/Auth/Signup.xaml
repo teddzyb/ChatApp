@@ -83,7 +83,7 @@
                             TextColor="#424242" />
 
                         <Frame
-                            x:Name="usernameFrame"
+                            x:Name="UsernameFrame"
                             Grid.Row="1"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -93,16 +93,16 @@
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <local:CustomEntry
                                     x:Name="usernameEntry"
+                                    Focused="Focused_Username"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Username"
-                                    TextChanged="TextChanged_Username"
                                     VerticalOptions="FillAndExpand" />
                             </StackLayout>
                         </Frame>
 
                         <Frame
-                            x:Name="emailFrame"
+                            x:Name="EmailFrame"
                             Grid.Row="2"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -111,17 +111,17 @@
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <local:CustomEntry
-                                    x:Name="emailEntry"
+                                    x:Name="EmailEntry"
+                                    Focused="Focused_Email"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     Placeholder="Email"
-                                    TextChanged="TextChanged_Email"
                                     VerticalOptions="FillAndExpand" />
                             </StackLayout>
                         </Frame>
 
                         <Frame
-                            x:Name="passwordFrame"
+                            x:Name="PasswordFrame"
                             Grid.Row="3"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -130,13 +130,13 @@
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <local:CustomEntry
-                                    x:Name="passwordEntry"
+                                    x:Name="PasswordEntry"
                                     Grid.Row="2"
+                                    Focused="Focused_Password"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger1}, Path=HidePassword}"
                                     Placeholder="Password"
-                                    TextChanged="TextChanged_Password"
                                     VerticalOptions="FillAndExpand" />
 
                                 <ImageButton
@@ -159,7 +159,7 @@
                         </Frame>
 
                         <Frame
-                            x:Name="confirmPasswordFrame"
+                            x:Name="ConfirmPasswordFrame"
                             Grid.Row="4"
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -168,13 +168,13 @@
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <local:CustomEntry
-                                    x:Name="confirmPasswordEntry"
+                                    x:Name="ConfirmPasswordEntry"
                                     Grid.Row="2"
+                                    Focused="Focused_ConfirmPassword"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
                                     IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger2}, Path=HidePassword}"
                                     Placeholder="Confirm Password"
-                                    TextChanged="TextChanged_ConfirmPassword"
                                     VerticalOptions="FillAndExpand" />
 
                                 <ImageButton

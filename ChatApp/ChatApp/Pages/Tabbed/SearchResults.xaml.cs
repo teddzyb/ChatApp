@@ -15,7 +15,7 @@ namespace ChatApp.Pages.Tabbed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchResults : ContentPage
     {
-        ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
+        //ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
         ObservableCollection<UserResults> userResultsList = new ObservableCollection<UserResults>();
         public class UserResults
         { 
@@ -30,9 +30,6 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
           
             NavigationPage.SetHasNavigationBar(this, false);
-            //UserData users = new UserData();
-            //userList = users.userList;
-            userList = GloblalData.userList;
         }
 
         protected override void OnAppearing()
@@ -59,7 +56,7 @@ namespace ChatApp.Pages.Tabbed
             }
 
             string id = (string)Application.Current.Properties["id"];            
-            var users = userList.Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
+            var users = GloblalData.userList.Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
             if (users.Count() == 0)
             {
                 AlertLabel.IsVisible = true;
@@ -67,7 +64,7 @@ namespace ChatApp.Pages.Tabbed
             } 
             
             AlertLabel.IsVisible = false;
-            var userFriends = userList.Where(x => x.id == id).First().contacts;
+            var userFriends = GloblalData.userList.Where(x => x.id == id).First().contacts;
 
             foreach (var user in users)
             {
@@ -99,14 +96,16 @@ namespace ChatApp.Pages.Tabbed
                 return;
             }
 
-            var userFriends = userList.Where(x => x.id == userID).First().contacts;
-            if (userFriends.Where(x => x == searchID).Count() > 0)
+            var userContacts = GloblalData.userList.Where(x => x.id == userID).First().contacts;
+            if (userContacts.Where(x => x == searchID).Count() == 1)
             {
                 await DisplayAlert("Failed", "You already have a connection.", "", "OKAY");
                 return;
             }
 
-            
+            string username = GloblalData.userList.Where(x => x.id == searchID).First().username;
+            await DisplayAlert("Add Contact", "Would you like to add " + username, "NO", "YES");
+
         }
     }
 

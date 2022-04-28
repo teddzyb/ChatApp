@@ -68,7 +68,7 @@
                                             </StackLayout>
 
                                             <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
-                                                <ImageButton
+                                                <Image
                                                     BackgroundColor="Transparent"
                                                     HeightRequest="25"
                                                     Source="check"

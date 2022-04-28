@@ -80,11 +80,11 @@
                     HorizontalOptions="FillAndExpand">
                     <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                         <local:CustomEntry
-                            x:Name="emailEntry"
+                            x:Name="EmailEntry"
+                            Focused="Focused_Email"
                             FontSize="13"
                             HorizontalOptions="FillAndExpand"
                             Placeholder="Email"
-                            TextChanged="TextChanged_Email"
                             VerticalOptions="FillAndExpand" />
                     </StackLayout>
                 </Frame>
