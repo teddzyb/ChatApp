@@ -32,7 +32,7 @@ namespace ChatApp.Pages.Tabbed
             ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
             for (int i = 1; i < contactList.contactID.Count(); i++)
             {
-                userContacts.Add(new UserModel() { id = contactList.contactID[i], username = contactList.contactName[i], email = contactList.contactEmail[i] });
+                userContacts.Add(new UserModel() { uid = contactList.contactID[i], username = contactList.contactName[i], email = contactList.contactEmail[i] });
             }
 
             userListView.ItemsSource = userContacts;

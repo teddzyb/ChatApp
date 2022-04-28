@@ -68,7 +68,7 @@ namespace ChatApp
             // Successful authentication with database
             var user = GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
 
-            Application.Current.Properties["id"] = user.id;
+            Application.Current.Properties["id"] = user.uid;
             Application.Current.Properties["username"] = user.username;
             Application.Current.Properties["email"] = EmailEntry.Text;
             await Application.Current.SavePropertiesAsync();

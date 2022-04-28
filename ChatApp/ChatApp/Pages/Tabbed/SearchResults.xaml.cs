@@ -64,23 +64,23 @@ namespace ChatApp.Pages.Tabbed
             } 
             
             AlertLabel.IsVisible = false;
-            var userFriends = GloblalData.userList.Where(x => x.id == id).First().contacts;
+            var userFriends = GloblalData.userList.Where(x => x.uid == id).First().contacts;
 
             foreach (var user in users)
             {
                 string iconSource = "add";
 
-                if (userFriends.Where(x => x == user.id).Count() > 0)
+                if (userFriends.Where(x => x == user.uid).Count() > 0)
                 {
                     iconSource = "check";
                 }
 
-                if (user.id == id)
+                if (user.uid == id)
                 {
                     iconSource = "close_round";
                 }
 
-                userResultsList.Add(new UserResults { id = user.id, username = user.username, email = user.email, iconSource = iconSource });
+                userResultsList.Add(new UserResults { id = user.uid, username = user.username, email = user.email, iconSource = iconSource });
             }
 
             userListView.ItemsSource = userResultsList;
@@ -96,15 +96,51 @@ namespace ChatApp.Pages.Tabbed
                 return;
             }
 
-            var userContacts = GloblalData.userList.Where(x => x.id == userID).First().contacts;
+            var userContacts = GloblalData.userList.Where(x => x.uid == userID).First().contacts;
             if (userContacts.Where(x => x == searchID).Count() == 1)
             {
                 await DisplayAlert("Failed", "You already have a connection.", "", "OKAY");
                 return;
             }
 
-            string username = GloblalData.userList.Where(x => x.id == searchID).First().username;
-            await DisplayAlert("Add Contact", "Would you like to add " + username, "NO", "YES");
+            var user = GloblalData.userList.Where(x => x.uid == searchID).First();
+            bool answer = await DisplayAlert("Add Contact", "Would you like to add " + user.username, "YES", "NO");
+
+            if (answer)
+            {
+                foreach (var userList in GloblalData.userList)
+                {
+                    if (userList.uid == userID)
+                    {
+                        userList.contacts.Add(searchID);
+                        break;
+                    }
+                }
+
+                foreach (var contact in GloblalData.contactList)
+                {
+                    if (contact.contactID[0] == userID)
+                    {
+                        var contactID = contact.contactID.ToList();
+                        contactID.Add(user.uid);
+                        contact.contactID = contactID.ToArray();
+
+                        var contactName = contact.contactName.ToList();
+                        contactName.Add(user.username);
+                        contact.contactName = contactName.ToArray();
+
+                        var contactEmail = contact.contactEmail.ToList();
+                        contactEmail.Add(user.email);
+                        contact.contactEmail = contactEmail.ToArray();
+
+                        break;
+                    }
+                }
+
+                await DisplayAlert("Success", user.username + " is added to your contacts", "", "OKAY");
+                SearchEntry.Text = "";
+                SearchEntry.Focus();
+            }
 
         }
     }
