@@ -14,7 +14,6 @@ namespace ChatApp
         string _email { get; set; }
         string _password { get; set; }
         List<string> _contacts { get; set; }
-
         bool _isVerified { get; set; }
 
         public string id { get { return _id; }                     set { _id = value; OnPropertyChanged(nameof(id)); } }

@@ -30,8 +30,9 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
           
             NavigationPage.SetHasNavigationBar(this, false);
-            UserData users = new UserData();
-            userList = users.userList;
+            //UserData users = new UserData();
+            //userList = users.userList;
+            userList = UserData.userList;
         }
 
         protected override void OnAppearing()
@@ -88,7 +89,7 @@ namespace ChatApp.Pages.Tabbed
             userListView.ItemsSource = userResultsList;
         }
     
-        private async void  AddToContact(object sender, EventArgs e)
+        private async void AddToContact(object sender, EventArgs e)
         {
             string searchID = (string)((TappedEventArgs)e).Parameter;
             string userID = (string)Application.Current.Properties["id"];
@@ -105,7 +106,7 @@ namespace ChatApp.Pages.Tabbed
                 return;
             }
 
-
+            
         }
     }
 
