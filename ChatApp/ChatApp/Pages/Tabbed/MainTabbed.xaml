@@ -45,7 +45,6 @@
                 </Frame>
             </StackLayout>
 
-
             <!--  Alert Label  -->
             <Label
                 x:Name="AlertLabel"

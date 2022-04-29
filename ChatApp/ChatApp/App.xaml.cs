@@ -104,6 +104,15 @@ namespace ChatApp
                 created_at = new DateTime()
             });
 
+            contactList.Add(new ContactModel()
+            {
+                id = "6",
+                contactID = new string[] { "6" },
+                contactName = new string[] { "User Test-6" },
+                contactEmail = new string[] { "utest6@gmail.com" },
+                created_at = new DateTime()
+            });
+
             GloblalData.contactList = contactList;
 
             userList.Add(new UserModel() { uid = "1", username = "User Test-1", email = "utest1@gmail.com", password = "1234", contacts = new List<string>(new string[] { "2", "3", "4", "5" }), isVerified = true });
@@ -111,11 +120,11 @@ namespace ChatApp
             userList.Add(new UserModel() { uid = "3", username = "User Test-3", email = "utest3@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
             userList.Add(new UserModel() { uid = "4", username = "User Test-4", email = "utest4@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
             userList.Add(new UserModel() { uid = "5", username = "User Test-5", email = "utest5@gmail.com", password = "1234", contacts = new List<string>(new string[] { "1" }), isVerified = true });
-            userList.Add(new UserModel() { uid = "6", username = "User Test-6", email = "utest6@gmail.com", password = "1234", isVerified = true });
-            userList.Add(new UserModel() { uid = "7", username = "User Test-7", email = "utest7@gmail.com", password = "1234", isVerified = true });
-            userList.Add(new UserModel() { uid = "8", username = "User Test-8", email = "utest8@gmail.com", password = "1234", isVerified = true });
-            userList.Add(new UserModel() { uid = "9", username = "User Test-9", email = "utest9@gmail.com", password = "1234", isVerified = true });
-            userList.Add(new UserModel() { uid = "10", username = "User Test-10", email = "utest10@gmail.com", password = "1234", isVerified = true });
+            userList.Add(new UserModel() { uid = "6", username = "User Test-6", email = "utest6@gmail.com", password = "1234", contacts = new List<string>(new string[] { }), isVerified = true });
+            userList.Add(new UserModel() { uid = "7", username = "User Test-7", email = "utest7@gmail.com", password = "1234", contacts = new List<string>(new string[] { }), isVerified = true });
+            userList.Add(new UserModel() { uid = "8", username = "User Test-8", email = "utest8@gmail.com", password = "1234", contacts = new List<string>(new string[] { }), isVerified = true });
+            userList.Add(new UserModel() { uid = "9", username = "User Test-9", email = "utest9@gmail.com", password = "1234", contacts = new List<string>(new string[] { }), isVerified = true });
+            userList.Add(new UserModel() { uid = "10", username = "User Test-10", email = "utest10@gmail.com", password = "1234", contacts = new List<string>(new string[] { }), isVerified = true });
 
             GloblalData.userList = userList;
 

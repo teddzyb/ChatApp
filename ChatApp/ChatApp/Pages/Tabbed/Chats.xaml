@@ -25,6 +25,8 @@
                     TextColor="#424242" />
                 <ListView
                     x:Name="userListView"
+                    IsPullToRefreshEnabled="True"
+                    RefreshControlColor="#ec407a"
                     Grid.Row="1"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"

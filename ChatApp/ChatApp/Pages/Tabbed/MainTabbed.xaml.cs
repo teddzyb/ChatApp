@@ -23,7 +23,7 @@ namespace ChatApp.Pages.Tabbed
           
             var contactCount = GloblalData.contactList.Where(x => x.contactID[0] == id).Count();
             
-            if (contactCount > 0)
+            if (contactCount > 1)
             {
                 isFriendsExist = false;
                 AlertLabel.IsVisible = false;
