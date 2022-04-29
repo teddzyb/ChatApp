@@ -63,24 +63,18 @@
         </StackLayout>
 
         <!--  messages  -->
-        <StackLayout IsVisible="False" VerticalOptions="CenterAndExpand">
+        <StackLayout x:Name="messageListGrid" IsVisible="False" VerticalOptions="CenterAndExpand">
             <Grid
-                Margin="20,10,20,-5"
-                BackgroundColor="#ffffff"
+                Margin="10"
+                BackgroundColor="#fff"
                 HorizontalOptions="FillAndExpand"
                 RowSpacing="0"
                 VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <Label
-                    Grid.Row="0"
-                    Margin="10,0,0,10"
-                    Text="Contacts"
-                    TextColor="#424242" />
                 <ListView
-                    x:Name="chatListView"
+                    x:Name="messageListView"
                     Grid.Row="1"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"
@@ -88,7 +82,27 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid Padding="0" BackgroundColor="Transparent" />
+                                <Grid RowDefinitions="auto, auto" VerticalOptions="StartAndExpand">
+                                    <Grid
+                                        ColumnDefinitions="*, *"
+                                        IsVisible="true">
+                                        <Frame
+                                            Grid.Column="{Binding column}"
+                                            Margin="0"
+                                            Padding="5"
+                                            BackgroundColor="{Binding color}"
+                                            CornerRadius="30"
+                                            HasShadow="True"
+                                            HorizontalOptions="{Binding alignment}"
+                                            MinimumWidthRequest="20">
+                                            <Label
+                                                Margin="10"
+                                                LineBreakMode="WordWrap"
+                                                Text="{Binding message}"
+                                                TextColor="white" />
+                                        </Frame>
+                                    </Grid>
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -97,7 +111,7 @@
         </StackLayout>
 
         <!--  Message Layout  -->
-        <Grid RowDefinitions="auto, auto" VerticalOptions="StartAndExpand">
+        <!--<Grid RowDefinitions="auto, auto" VerticalOptions="StartAndExpand">
             <Grid ColumnDefinitions="40, *" IsVisible="true">
                 <Frame
                     Grid.Column="1"
@@ -133,10 +147,10 @@
                         TextColor="white" />
                 </Frame>
             </Grid>
-        </Grid>
+        </Grid>-->
 
         <!--  Start Converstation  -->
-        <StackLayout IsVisible="False" VerticalOptions="CenterAndExpand">
+        <StackLayout x:Name="alertLabel" IsVisible="True" VerticalOptions="CenterAndExpand">
             <Label
                 FontSize="Medium"
                 HorizontalTextAlignment="Center"

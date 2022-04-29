@@ -15,6 +15,7 @@ namespace ChatApp
 
         ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
         ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();
+        ObservableCollection<ConversationModel> conversationList = new ObservableCollection<ConversationModel>();
 
         public App()
         {
@@ -79,6 +80,29 @@ namespace ChatApp
             userList.Add(new UserModel() { uid = "10", username = "User Test-10", email = "utest10@gmail.com", password = "1234", isVerified = true });
 
             GloblalData.userList = userList;
+
+            ObservableCollection<MessageModel> messageList = new ObservableCollection<MessageModel>();
+            messageList.Add(new MessageModel() { id = "1", message = "hello, 3", converseeID = "1", created_at = DateTime.Now });
+            messageList.Add(new MessageModel() { id = "2", message = "hello, 1", converseeID = "3", created_at = DateTime.Now });
+            messageList.Add(new MessageModel() { id = "3", message = "how you?", converseeID = "3", created_at = DateTime.Now });
+            messageList.Add(new MessageModel() { id = "4", message = "good!", converseeID = "1", created_at = DateTime.Now });
+            messageList.Add(new MessageModel() { id = "5", message = "great!", converseeID = "3", created_at = DateTime.Now });
+
+            conversationList.Add(new ConversationModel()
+            {
+                id = "1",
+                messages = new MessageModel[]
+                {
+                    new MessageModel() { id = "1", message = "hello, 3", converseeID = "1", created_at = DateTime.Now },
+                    new MessageModel() { id = "2", message = "hello, 1", converseeID = "3", created_at = DateTime.Now },
+                    new MessageModel() { id = "3", message = "how are you?", converseeID = "3", created_at = DateTime.Now },
+                    new MessageModel() { id = "4", message = "good, you?", converseeID = "1", created_at = DateTime.Now },
+                    new MessageModel() { id = "5", message = "good too, thanks!", converseeID = "3", created_at = DateTime.Now },
+                },
+                converseeID = new string[] {"1", "3"}
+            });
+
+            GloblalData.conversationList = conversationList;
 
             MainPage = new NavigationPage(new MainPage());
         }

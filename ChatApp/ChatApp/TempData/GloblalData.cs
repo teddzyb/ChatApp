@@ -9,5 +9,6 @@ namespace ChatApp.TempData
     {
         public static ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
         public static ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();
+        public static ObservableCollection<ConversationModel> conversationList = new ObservableCollection<ConversationModel>();
     }
 }
