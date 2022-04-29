@@ -56,20 +56,50 @@ namespace ChatApp.Pages.Tabbed
             {
                 SendButton.Source = "send_enabled";
             }
+
+            if (conversation != null && messageList.Count > 0)
+            {
+                messageListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
+            }
         }
 
         private void SendMessage(object sender, EventArgs e)
         {
             string message = MessageEntry.Text;
 
+            if (conversation == null)
+            {
+                GloblalData.conversationList.Add(new ConversationModel
+                {
+                    //id = (new id),
+                    messages = new List<MessageModel> { },
+                    converseeID = new string[] { uid, kachat }
+                });
 
+                conversation = GloblalData.conversationList.Where(
+                    x => (Array.Exists(x.converseeID, element => element == uid) &&
+                    Array.Exists(x.converseeID, element => element == kachat))
+                ).FirstOrDefault();
 
+                FetchConversation();
+            }
+
+            conversation.messages.Add(new MessageModel
+            {
+                //id = (new id),
+                message = message,
+                converseeID = uid,
+                created_at = DateTime.Now
+            });
+
+            MessageEntry.Text = String.Empty;
+            messageList.Clear();
+            messageListView.ItemsSource = null;
+            FetchConversation();
         }
 
         private void FetchConversation()
-        {            
-            
-
+        {
             if (conversation == null)
             {
                 return;
@@ -101,6 +131,11 @@ namespace ChatApp.Pages.Tabbed
             messageListGrid.IsVisible = true;
             alertLabel.IsVisible = false;
             messageListView.ItemsSource = messageList;
+
+            if (messageList.Count > 0)
+            {
+                messageListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
+            }
         }
     }
 }

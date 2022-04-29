@@ -10,11 +10,11 @@ namespace ChatApp
     class ConversationModel : INotifyPropertyChanged
     {
         string _id { get; set; }
-        MessageModel[] _messages { get; set; }
+        List<MessageModel> _messages { get; set; }
         string[] _converseeID { get; set; }
 
         public string id { get { return _id; } set { _id = value; OnPropertyChanged(nameof(id)); } }
-        public MessageModel[] messages { get { return _messages; } set { _messages = value; OnPropertyChanged(nameof(messages)); } }
+        public List<MessageModel> messages { get { return _messages; } set { _messages = value; OnPropertyChanged(nameof(messages)); } }
         public string[] converseeID { get { return _converseeID; } set { _converseeID = value; OnPropertyChanged(nameof(converseeID)); } }
 
 

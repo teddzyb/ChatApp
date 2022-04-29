@@ -91,7 +91,7 @@ namespace ChatApp
             conversationList.Add(new ConversationModel()
             {
                 id = "1",
-                messages = new MessageModel[]
+                messages = new List<MessageModel>
                 {
                     new MessageModel() { id = "1", message = "hello, 3", converseeID = "1", created_at = DateTime.Now },
                     new MessageModel() { id = "2", message = "hello, 1", converseeID = "3", created_at = DateTime.Now },

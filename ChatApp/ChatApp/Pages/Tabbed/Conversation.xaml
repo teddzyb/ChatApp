@@ -65,7 +65,7 @@
         <!--  Messages  -->
         <StackLayout x:Name="messageListGrid" IsVisible="False" VerticalOptions="CenterAndExpand">
             <Grid
-                Margin="10"
+                Margin="10, 0"
                 BackgroundColor="#fff"
                 HorizontalOptions="FillAndExpand"
                 RowSpacing="0"
@@ -159,14 +159,14 @@
         </StackLayout>
 
         <!-- Message Entry -->
-        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+        <StackLayout Orientation="Horizontal" VerticalOptions="End" BackgroundColor="Transparent">
             <StackLayout
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal">
                 <Grid
-                    BackgroundColor="White"
+                    BackgroundColor="Transparent"
                     ColumnSpacing="0"
                     RowSpacing="0">
 
