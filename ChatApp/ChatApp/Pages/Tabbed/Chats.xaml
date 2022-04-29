@@ -76,7 +76,7 @@
                                             </StackLayout>-->
                                         </StackLayout>
                                         <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer CommandParameter="{Binding email}" Tapped="Frame_GoToConvo" />
+                                            <TapGestureRecognizer CommandParameter="{Binding uid}" Tapped="Frame_GoToConvo" />
                                         </Frame.GestureRecognizers>
                                     </Frame>
                                 </Grid>

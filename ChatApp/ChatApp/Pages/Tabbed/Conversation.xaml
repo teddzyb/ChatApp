@@ -62,7 +62,7 @@
             </Grid>
         </StackLayout>
 
-        <!--  messages  -->
+        <!--  Messages  -->
         <StackLayout x:Name="messageListGrid" IsVisible="False" VerticalOptions="CenterAndExpand">
             <Grid
                 Margin="10"
@@ -158,6 +158,7 @@
                 VerticalOptions="FillAndExpand" />
         </StackLayout>
 
+        <!-- Message Entry -->
         <StackLayout Orientation="Horizontal" VerticalOptions="End">
             <StackLayout
                 Grid.Row="2"
@@ -208,7 +209,8 @@
                         HorizontalOptions="Center"
                         Rotation="45"
                         Source="send_disabled"
-                        VerticalOptions="Center" />
+                        VerticalOptions="Center"
+                        Clicked="SendMessage" />
                 </Grid>
             </StackLayout>
         </StackLayout>

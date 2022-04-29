@@ -26,13 +26,16 @@ namespace ChatApp.Pages.Tabbed
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
         {
+            var uid = (string)((TappedEventArgs)e).Parameter;
+
+            var contactList = GloblalData.userList.Where(x => x.uid == uid).FirstOrDefault();
 
             var user = new UserModel
             {
-                email = (string)((TappedEventArgs)e).Parameter,
+                email = contactList.email,
             };
 
-            var conversation = new Conversation
+            var conversation = new Conversation(uid)
             {
                 BindingContext = user
             };
