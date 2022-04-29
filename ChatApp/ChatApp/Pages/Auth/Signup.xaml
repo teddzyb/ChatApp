@@ -112,6 +112,7 @@
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <local:CustomEntry
                                     x:Name="EmailEntry"
+                                    Keyboard="Email"
                                     Focused="Focused_Email"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
@@ -135,25 +136,27 @@
                                     Focused="Focused_Password"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
-                                    IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger1}, Path=HidePassword}"
+                                    IsPassword="True"
                                     Placeholder="Password"
                                     VerticalOptions="FillAndExpand" />
 
                                 <ImageButton
+                                    x:Name="eyeButton1"
                                     Margin="0,0,10,0"
                                     BackgroundColor="Transparent"
+                                    Clicked="toggleVisibility"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
                                     Source="hide"
                                     VerticalOptions="Center">
-                                    <ImageButton.Triggers>
+                                    <!-- <ImageButton.Triggers>
                                         <EventTrigger Event="Clicked">
                                             <local:ShowPasswordTriggerAction
                                                 x:Name="ShowPasswordActualTrigger1"
                                                 HideIcon="hide"
                                                 ShowIcon="show" />
                                         </EventTrigger>
-                                    </ImageButton.Triggers>
+                                    </ImageButton.Triggers>-->
                                 </ImageButton>
                             </StackLayout>
                         </Frame>
@@ -173,25 +176,27 @@
                                     Focused="Focused_ConfirmPassword"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
-                                    IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger2}, Path=HidePassword}"
+                                    IsPassword="True"
                                     Placeholder="Confirm Password"
                                     VerticalOptions="FillAndExpand" />
 
                                 <ImageButton
+                                    x:Name="eyeButton2"
                                     Margin="0,0,10,0"
                                     BackgroundColor="Transparent"
+                                    Clicked="toggleVisibility"
                                     HeightRequest="20"
                                     HorizontalOptions="End"
                                     Source="hide"
                                     VerticalOptions="Center">
-                                    <ImageButton.Triggers>
+                                    <!--<ImageButton.Triggers>
                                         <EventTrigger Event="Clicked">
                                             <local:ShowPasswordTriggerAction
                                                 x:Name="ShowPasswordActualTrigger2"
                                                 HideIcon="hide"
                                                 ShowIcon="show" />
                                         </EventTrigger>
-                                    </ImageButton.Triggers>
+                                    </ImageButton.Triggers>-->
                                 </ImageButton>
 
                             </StackLayout>
@@ -260,7 +265,7 @@
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="13"
-                                            Text="Sign in with Google    "
+                                            Text="Sign in with Google     "
                                             TextColor="#424242"
                                             VerticalOptions="Center" />
                                         <StackLayout.GestureRecognizers>
@@ -282,7 +287,7 @@
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="13"
-                                            Text="Sign in with Facebook"
+                                            Text="Sign in with Facebook "
                                             TextColor="#424242"
                                             VerticalOptions="Center" />
                                         <StackLayout.GestureRecognizers>

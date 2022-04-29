@@ -46,9 +46,6 @@ namespace ChatApp.Pages.Tabbed
         
         private void SearchQuery(object sender, TextChangedEventArgs textChangedEventArgs)
         {
-            userListView.ItemsSource = null;
-            userResultsList.Clear();
-
             if (string.IsNullOrEmpty(SearchEntry.Text))
             {
                 userListView.ItemsSource = null;
@@ -56,14 +53,22 @@ namespace ChatApp.Pages.Tabbed
                 return;
             }
 
-            string id = (string)Application.Current.Properties["id"];            
+            fetchSearchResults();
+        }
+
+        private void fetchSearchResults()
+        {
+            userListView.ItemsSource = null;
+            userResultsList.Clear();
+
+            string id = (string)Application.Current.Properties["id"];
             var users = GloblalData.userList.Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
             if (users.Count() == 0)
             {
                 AlertLabel.IsVisible = true;
                 return;
-            } 
-            
+            }
+
             AlertLabel.IsVisible = false;
             var userFriends = GloblalData.userList.Where(x => x.uid == id).First().contacts;
 
@@ -139,8 +144,9 @@ namespace ChatApp.Pages.Tabbed
                 }
 
                 await DisplayAlert("Success", user.username + " is added to your contacts", "", "OKAY");
-                SearchEntry.Text = "";
-                SearchEntry.Focus();
+                fetchSearchResults();
+                //SearchEntry.Text = "";
+                //SearchEntry.Focus();
             }
         }
     }

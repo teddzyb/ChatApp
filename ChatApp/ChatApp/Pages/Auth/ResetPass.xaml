@@ -84,6 +84,7 @@
                             Focused="Focused_Email"
                             FontSize="13"
                             HorizontalOptions="FillAndExpand"
+                            Keyboard="Email"
                             Placeholder="Email"
                             VerticalOptions="FillAndExpand" />
                     </StackLayout>

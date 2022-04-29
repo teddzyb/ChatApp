@@ -1,4 +1,5 @@
-﻿using ChatApp.TempData;
+﻿using ChatApp.Pages.Tabbed;
+using ChatApp.TempData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,7 +21,44 @@ namespace ChatApp
         public App()
         {
             InitializeComponent();
+            initData();
 
+            GloblalData.conversationList = conversationList;
+
+            MainPage = new NavigationPage(new MainPage());
+
+            if (Application.Current.Properties.ContainsKey("id"))
+            {
+                var MainTabbed = new MainTabbed();
+                MainTabbed.BindingContext = new UserModel 
+                {
+                    username = Application.Current.Properties["username"].ToString(), 
+                    email = Application.Current.Properties["email"].ToString() 
+                };
+
+                Application.Current.MainPage = new NavigationPage(MainTabbed);
+            }
+            else
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
+        }
+
+        protected override void OnStart()
+        {
+        }
+
+        protected override void OnSleep()
+        {
+        }
+
+        protected override void OnResume()
+        {
+        }
+
+        private void initData()
+        {
+            
             contactList.Add(new ContactModel()
             {
                 id = "1",
@@ -33,7 +71,7 @@ namespace ChatApp
             contactList.Add(new ContactModel()
             {
                 id = "2",
-                contactID = new string[] { "2", "1"  },
+                contactID = new string[] { "2", "1" },
                 contactName = new string[] { "User Test-2", "User Test-1" },
                 contactEmail = new string[] { "utest2@gmail.com", "utest1@gmail.com" },
                 created_at = new DateTime()
@@ -99,24 +137,8 @@ namespace ChatApp
                     new MessageModel() { id = "4", message = "good, you?", converseeID = "1", created_at = DateTime.Now },
                     new MessageModel() { id = "5", message = "good too, thanks!", converseeID = "3", created_at = DateTime.Now },
                 },
-                converseeID = new string[] {"1", "3"}
+                converseeID = new string[] { "1", "3" }
             });
-
-            GloblalData.conversationList = conversationList;
-
-            MainPage = new NavigationPage(new MainPage());
-        }
-
-        protected override void OnStart()
-        {
-        }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
         }
     }
 }

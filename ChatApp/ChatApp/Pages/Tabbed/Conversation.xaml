@@ -63,9 +63,12 @@
         </StackLayout>
 
         <!--  Messages  -->
-        <StackLayout x:Name="messageListGrid" IsVisible="False" VerticalOptions="CenterAndExpand">
+        <StackLayout
+            x:Name="messageListGrid"
+            IsVisible="False"
+            VerticalOptions="CenterAndExpand">
             <Grid
-                Margin="10, 0"
+                Margin="10,0"
                 BackgroundColor="#fff"
                 HorizontalOptions="FillAndExpand"
                 RowSpacing="0"
@@ -83,9 +86,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid RowDefinitions="auto, auto" VerticalOptions="StartAndExpand">
-                                    <Grid
-                                        ColumnDefinitions="*, *"
-                                        IsVisible="true">
+                                    <Grid ColumnDefinitions="{Binding columnDef}" IsVisible="true">
                                         <Frame
                                             Grid.Column="{Binding column}"
                                             Margin="0"
@@ -110,47 +111,11 @@
             </Grid>
         </StackLayout>
 
-        <!--  Message Layout  -->
-        <!--<Grid RowDefinitions="auto, auto" VerticalOptions="StartAndExpand">
-            <Grid ColumnDefinitions="40, *" IsVisible="true">
-                <Frame
-                    Grid.Column="1"
-                    Margin="0"
-                    Padding="5"
-                    BackgroundColor="#e91e63"
-                    CornerRadius="30"
-                    HasShadow="True"
-                    HorizontalOptions="End"
-                    MinimumWidthRequest="20">
-                    <Label
-                        Margin="10"
-                        LineBreakMode="WordWrap"
-                        Text="Hi user asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-                        TextColor="#ffffff" />
-                </Frame>
-            </Grid>
-            <Grid
-                Grid.Row="1"
-                ColumnDefinitions="*, 40"
-                IsVisible="true">
-                <Frame
-                    Margin="0"
-                    Padding="5"
-                    BackgroundColor=" #9c27b0"
-                    CornerRadius="30"
-                    HasShadow="True"
-                    HorizontalOptions="Start">
-                    <Label
-                        Margin="10"
-                        LineBreakMode="WordWrap"
-                        Text="Hello user dassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
-                        TextColor="white" />
-                </Frame>
-            </Grid>
-        </Grid>-->
-
         <!--  Start Converstation  -->
-        <StackLayout x:Name="alertLabel" IsVisible="True" VerticalOptions="CenterAndExpand">
+        <StackLayout
+            x:Name="alertLabel"
+            IsVisible="True"
+            VerticalOptions="CenterAndExpand">
             <Label
                 FontSize="Medium"
                 HorizontalTextAlignment="Center"
@@ -158,20 +123,20 @@
                 VerticalOptions="FillAndExpand" />
         </StackLayout>
 
-        <!-- Message Entry -->
-        <StackLayout Orientation="Horizontal" VerticalOptions="End" BackgroundColor="Transparent">
+        <!--  Message Entry  -->
+        <StackLayout
+            BackgroundColor="Transparent"
+            Orientation="Horizontal"
+            VerticalOptions="End">
             <StackLayout
                 Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Orientation="Horizontal">
-                <Grid
-                    BackgroundColor="Transparent"
-                    ColumnSpacing="0"
-                    RowSpacing="0">
+                <Grid ColumnSpacing="0" RowSpacing="0">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="90" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -187,6 +152,7 @@
                         BackgroundColor="#eeeeee"
                         BorderColor="Transparent"
                         CornerRadius="25"
+                        MinimumHeightRequest="100"
                         VerticalOptions="End"
                         WidthRequest="1000">
                         <local:CustomEditor
@@ -194,6 +160,7 @@
                             AutoSize="TextChanges"
                             BackgroundColor="#eeeeee"
                             FontSize="Small"
+                            Keyboard="Chat"
                             MaxLength="240"
                             MinimumHeightRequest="50"
                             Placeholder="Write your message here..."
@@ -203,14 +170,14 @@
                         x:Name="SendButton"
                         Grid.Row="0"
                         Grid.Column="1"
-                        Margin="10,20,5,0"
+                        Margin="5,0,5,17"
                         BackgroundColor="Transparent"
-                        HeightRequest="30"
-                        HorizontalOptions="Center"
+                        Clicked="SendMessage"
+                        HeightRequest="35"
+                        HorizontalOptions="CenterAndExpand"
                         Rotation="45"
                         Source="send_disabled"
-                        VerticalOptions="Center"
-                        Clicked="SendMessage" />
+                        VerticalOptions="End" />
                 </Grid>
             </StackLayout>
         </StackLayout>

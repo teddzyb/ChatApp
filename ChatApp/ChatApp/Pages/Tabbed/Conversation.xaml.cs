@@ -18,12 +18,14 @@ namespace ChatApp.Pages.Tabbed
         ConversationModel conversation;
         string uid;
         string kachat;
+        
 
         public class MessageList
         {
             public string userID { get; set; }
             public string message { get; set; }
             public string column { get; set; }
+            public ColumnDefinitionCollection columnDef { get; set; }
             public string color { get; set; }
             public LayoutOptions alignment { get; set; }
         }
@@ -66,6 +68,13 @@ namespace ChatApp.Pages.Tabbed
         private void SendMessage(object sender, EventArgs e)
         {
             string message = MessageEntry.Text;
+
+            if (String.IsNullOrWhiteSpace(MessageEntry.Text))
+            {
+                return;
+            }
+
+            message = message.TrimStart().TrimEnd();
 
             if (conversation == null)
             {
@@ -111,9 +120,12 @@ namespace ChatApp.Pages.Tabbed
                 string color = "#9c27b0";
                 LayoutOptions alignment = LayoutOptions.End;
 
+                ColumnDefinitionCollection columnDef = (ColumnDefinitionCollection)new ColumnDefinitionCollectionTypeConverter().ConvertFromInvariantString("40, *");
+
                 if (conversation.messages[i].converseeID == kachat)
                 {
                     column = "0";
+                    columnDef = (ColumnDefinitionCollection)new ColumnDefinitionCollectionTypeConverter().ConvertFromInvariantString("*, 40");
                     color = "#e91e63";
                     alignment = LayoutOptions.Start;
                 }
@@ -123,6 +135,7 @@ namespace ChatApp.Pages.Tabbed
                     userID = conversation.messages[i].converseeID,
                     message = conversation.messages[i].message,
                     column = column,
+                    columnDef = columnDef,
                     color = color,
                     alignment = alignment
                 });

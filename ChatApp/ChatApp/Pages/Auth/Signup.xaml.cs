@@ -77,6 +77,7 @@ namespace ChatApp.Pages.Auth
             if (true) 
             {
                 await DisplayAlert("Error", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
+                await Navigation.PopAsync();
                 return;
             }
         }
@@ -109,6 +110,24 @@ namespace ChatApp.Pages.Auth
         private void Btn_SignUpWithFB(object sender, EventArgs e)
         {
             // Future Code Here...
+        }
+
+        private void toggleVisibility(object sender, EventArgs e)
+        {
+            if (!PasswordEntry.IsPassword)
+            {
+                eyeButton1.Source = "hide";
+                eyeButton2.Source = "hide";
+                PasswordEntry.IsPassword = true;
+                ConfirmPasswordEntry.IsPassword = true;
+
+                return;
+            }
+
+            eyeButton1.Source = "show";
+            eyeButton2.Source = "show";
+            PasswordEntry.IsPassword = false;
+            ConfirmPasswordEntry.IsPassword = false;
         }
     }
 }

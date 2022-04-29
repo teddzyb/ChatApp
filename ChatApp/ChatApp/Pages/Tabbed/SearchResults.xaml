@@ -35,6 +35,7 @@
 
                         <local:CustomSearchBar
                             x:Name="SearchEntry"
+                            Keyboard="Email"
                             BackgroundColor="Transparent"
                             FontSize="Small"
                             Placeholder="Search Email"

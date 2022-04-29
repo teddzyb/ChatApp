@@ -67,6 +67,7 @@
                             Orientation="Horizontal">
                             <local:CustomEntry
                                 x:Name="EmailEntry"
+                                Keyboard="Email"
                                 Focused="Focused_Email"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
@@ -223,7 +224,7 @@
                                     <Label
                                         FontAttributes="Bold"
                                         FontSize="13"
-                                        Text="Sign in with Google    "
+                                        Text="Sign in with Google     "
                                         TextColor="#424242"
                                         VerticalOptions="Center" />
                                     <StackLayout.GestureRecognizers>
@@ -244,7 +245,7 @@
                                     <Label
                                         FontAttributes="Bold"
                                         FontSize="13"
-                                        Text="Sign in with Facebook"
+                                        Text="Sign in with Facebook "
                                         TextColor="#424242"
                                         VerticalOptions="Center" />
                                     <StackLayout.GestureRecognizers>
