@@ -53,10 +53,12 @@
                     Grid.Column="2"
                     BackgroundColor="Transparent"
                     Clicked="GoBack"
-                    HeightRequest="25"
+                    HeightRequest="20"
                     HorizontalOptions="End"
-                    Source="close_round"
-                    VerticalOptions="Center" />
+                    Source="close"
+                    VerticalOptions="Center"
+                    WidthRequest="20" />
+
             </Grid>
         </StackLayout>
 

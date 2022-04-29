@@ -29,15 +29,13 @@ namespace ChatApp.Pages.Tabbed
                 AlertLabel.IsVisible = false;
             }
         }
-
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
         }
-
-
-
+        
         private void Nav_Chat(object sender, EventArgs e)
         {
             Chats.IsVisible = true;

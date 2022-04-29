@@ -37,14 +37,14 @@ namespace ChatApp.Pages.Tabbed
             base.OnAppearing();
             SearchEntry.Focus();
         }
-
+        
         private async void GoBack(object sender, EventArgs e)
         {
             MessagingCenter.Send(new MainPage(), "RefreshMainPage");
             await Navigation.PopAsync(true);
         }
         
-        private void SearchQuery(object sender, EventArgs e)
+        private void SearchQuery(object sender, TextChangedEventArgs textChangedEventArgs)
         {
             userListView.ItemsSource = null;
             userResultsList.Clear();
