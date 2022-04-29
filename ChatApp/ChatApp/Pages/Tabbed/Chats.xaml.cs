@@ -17,25 +17,11 @@ namespace ChatApp.Pages.Tabbed
         public Chats()
         {
             InitializeComponent();
+            fetchContacts();
             
-            string id = (string)Application.Current.Properties["id"];
-   
-            var contactList = GloblalData.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
-            
-            if (contactList == null)
-            {
-                ContactListGrid.IsVisible = false;
-                return;
-
-            }
-
-            ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
-            for (int i = 1; i < contactList.contactID.Count(); i++)
-            {
-                userContacts.Add(new UserModel() { uid = contactList.contactID[i], username = contactList.contactName[i], email = contactList.contactEmail[i] });
-            }
-
-            userListView.ItemsSource = userContacts;
+            MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) => {
+                fetchContacts();
+            });
         }
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
@@ -53,5 +39,26 @@ namespace ChatApp.Pages.Tabbed
             await Navigation.PushAsync(conversation, true);
         }
 
+        private void fetchContacts()
+        {
+
+            string id = (string)Application.Current.Properties["id"];
+            var contactList = GloblalData.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
+
+            if (contactList == null)
+            {
+                ContactListGrid.IsVisible = false;
+                return;
+
+            }
+
+            ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
+            for (int i = 1; i < contactList.contactID.Count(); i++)
+            {
+                userContacts.Add(new UserModel() { uid = contactList.contactID[i], username = contactList.contactName[i], email = contactList.contactEmail[i] });
+            }
+
+            userListView.ItemsSource = userContacts;
+        }
     }
 }

@@ -40,7 +40,8 @@ namespace ChatApp.Pages.Tabbed
 
         private async void GoBack(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            MessagingCenter.Send(new MainPage(), "RefreshMainPage");
+            await Navigation.PopAsync(true);
         }
         
         private void SearchQuery(object sender, EventArgs e)
@@ -141,7 +142,6 @@ namespace ChatApp.Pages.Tabbed
                 SearchEntry.Text = "";
                 SearchEntry.Focus();
             }
-
         }
     }
 
