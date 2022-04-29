@@ -62,7 +62,7 @@
             </Grid>
         </StackLayout>
 
-        <!--  No messages  -->
+        <!--  messages  -->
         <StackLayout IsVisible="False" VerticalOptions="CenterAndExpand">
             <Grid
                 Margin="20,10,20,-5"
@@ -96,8 +96,47 @@
             </Grid>
         </StackLayout>
 
-        <!--  Contains messages  -->
-        <StackLayout IsVisible="True" VerticalOptions="CenterAndExpand">
+        <!--  Message Layout  -->
+        <Grid RowDefinitions="auto, auto" VerticalOptions="StartAndExpand">
+            <Grid ColumnDefinitions="40, *" IsVisible="true">
+                <Frame
+                    Grid.Column="1"
+                    Margin="0"
+                    Padding="5"
+                    BackgroundColor="#e91e63"
+                    CornerRadius="30"
+                    HasShadow="True"
+                    HorizontalOptions="End"
+                    MinimumWidthRequest="20">
+                    <Label
+                        Margin="10"
+                        LineBreakMode="WordWrap"
+                        Text="Hi user asdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                        TextColor="#ffffff" />
+                </Frame>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                ColumnDefinitions="*, 40"
+                IsVisible="true">
+                <Frame
+                    Margin="0"
+                    Padding="5"
+                    BackgroundColor=" #9c27b0"
+                    CornerRadius="30"
+                    HasShadow="True"
+                    HorizontalOptions="Start">
+                    <Label
+                        Margin="10"
+                        LineBreakMode="WordWrap"
+                        Text="Hello user dassssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+                        TextColor="white" />
+                </Frame>
+            </Grid>
+        </Grid>
+
+        <!--  Start Converstation  -->
+        <StackLayout IsVisible="False" VerticalOptions="CenterAndExpand">
             <Label
                 FontSize="Medium"
                 HorizontalTextAlignment="Center"
