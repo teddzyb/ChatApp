@@ -27,7 +27,7 @@ namespace com.xamarin.sample.splashscreen
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {
-                Window.SetNavigationBarColor(Color.Transparent);
+                Window.SetNavigationBarColor(Android.Graphics.Color.White);
             }
         }
 
@@ -36,11 +36,7 @@ namespace com.xamarin.sample.splashscreen
         {
             base.OnResume();
             Task startupWork = new Task(() => { SimulateStartup(); });
-            startupWork.Start();
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-            {
-                Window.SetNavigationBarColor(Color.Transparent);
-            }
+            startupWork.Start();            
         }
 
         // Prevent the back button from canceling the startup process
@@ -49,10 +45,6 @@ namespace com.xamarin.sample.splashscreen
         // Simulates background work that happens behind the splash screen
         protected void SimulateStartup()
         {
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
-            {
-                Window.SetNavigationBarColor(Color.Transparent);
-            }
             //Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
             //await Task.Delay(500); // Simulate a bit of startup work.
             //Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
