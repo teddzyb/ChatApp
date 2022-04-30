@@ -67,10 +67,10 @@
                             Orientation="Horizontal">
                             <local:CustomEntry
                                 x:Name="EmailEntry"
-                                Keyboard="Email"
                                 Focused="Focused_Email"
                                 FontSize="Small"
                                 HorizontalOptions="FillAndExpand"
+                                Keyboard="Email"
                                 Placeholder="Email"
                                 VerticalOptions="FillAndExpand" />
                         </StackLayout>

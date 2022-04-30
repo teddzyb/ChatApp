@@ -76,7 +76,7 @@ namespace ChatApp.Pages.Auth
             // Successful authentication with database (Insert Future Code Here..)
             if (true) 
             {
-                await DisplayAlert("Error", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
+                await DisplayAlert("Success", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
                 await Navigation.PopAsync();
                 return;
             }

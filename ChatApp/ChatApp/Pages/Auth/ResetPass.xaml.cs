@@ -38,7 +38,7 @@ namespace ChatApp.Pages.Auth
             // Successful authentication with database (Insert Future Code Here..)
             if (true) 
             {
-                await DisplayAlert("Error", "A recovery link has been to your email address.", "OKAY");
+                await DisplayAlert("Success", "A recovery link has been to your email address.", "OKAY");
                 await Navigation.PopAsync();
             }
             

@@ -112,10 +112,10 @@
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <local:CustomEntry
                                     x:Name="EmailEntry"
-                                    Keyboard="Email"
                                     Focused="Focused_Email"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"
+                                    Keyboard="Email"
                                     Placeholder="Email"
                                     VerticalOptions="FillAndExpand" />
                             </StackLayout>
@@ -265,7 +265,7 @@
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="13"
-                                            Text="Sign in with Google     "
+                                            Text="Sign up with Google    "
                                             TextColor="#424242"
                                             VerticalOptions="Center" />
                                         <StackLayout.GestureRecognizers>
@@ -287,7 +287,7 @@
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="13"
-                                            Text="Sign in with Facebook "
+                                            Text="Sign up with Facebook "
                                             TextColor="#424242"
                                             VerticalOptions="Center" />
                                         <StackLayout.GestureRecognizers>

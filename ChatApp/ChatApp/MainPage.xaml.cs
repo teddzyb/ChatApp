@@ -11,16 +11,10 @@ namespace ChatApp
 {
     public partial class MainPage : ContentPage
     {
-
-        //ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
-
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            //UserData users = new UserData();
-            //userList = UserData.userList;
-            
         }
 
         private async void Btn_SignIn(object sender, EventArgs e)
