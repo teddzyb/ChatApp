@@ -2,7 +2,6 @@
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Widget;
-using AppEntryTest.Android;
 using ChatApp;
 using ChatApp.Droid;
 using System;

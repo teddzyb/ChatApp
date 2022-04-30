@@ -47,7 +47,7 @@ namespace com.xamarin.sample.splashscreen
         public override void OnBackPressed() { }
 
         // Simulates background work that happens behind the splash screen
-        async void SimulateStartup()
+        protected void SimulateStartup()
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
             {

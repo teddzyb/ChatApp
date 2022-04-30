@@ -1,7 +1,6 @@
 ﻿using Android.Content.Res;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using AppEntryTest.Android;
 using ChatApp;
 using ChatApp.Droid;
 using System;
