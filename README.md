@@ -1,5 +1,5 @@
 # Convo
-Convo is a minimalist instant messaging application developed with Xamarin.Forms and Firebase.
+Convo is a minimalist mobile instant messaging application developed with Xamarin.Forms + Firebase and optimized for Android.
 
 ## Screenshots
 <div style="display:flex">
