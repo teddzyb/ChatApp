@@ -113,6 +113,42 @@ namespace ChatApp
                 created_at = new DateTime()
             });
 
+            contactList.Add(new ContactModel()
+            {
+                id = "7",
+                contactID = new string[] { "7" },
+                contactName = new string[] { "User Test-7" },
+                contactEmail = new string[] { "utest7@gmail.com" },
+                created_at = new DateTime()
+            });
+
+            contactList.Add(new ContactModel()
+            {
+                id = "8",
+                contactID = new string[] { "8" },
+                contactName = new string[] { "User Test-8" },
+                contactEmail = new string[] { "utest8@gmail.com" },
+                created_at = new DateTime()
+            });
+
+            contactList.Add(new ContactModel()
+            {
+                id = "9",
+                contactID = new string[] { "9" },
+                contactName = new string[] { "User Test-9" },
+                contactEmail = new string[] { "utest9@gmail.com" },
+                created_at = new DateTime()
+            });
+
+            contactList.Add(new ContactModel()
+            {
+                id = "10",
+                contactID = new string[] { "10" },
+                contactName = new string[] { "User Test-10" },
+                contactEmail = new string[] { "utest10@gmail.com" },
+                created_at = new DateTime()
+            });
+
             GloblalData.contactList = contactList;
 
             userList.Add(new UserModel() { uid = "1", username = "User Test-1", email = "utest1@gmail.com", password = "1234", contacts = new List<string>(new string[] { "2", "3", "4", "5" }), isVerified = true });
