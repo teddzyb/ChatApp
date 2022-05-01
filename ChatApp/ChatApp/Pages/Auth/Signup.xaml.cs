@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ChatApp.TempData;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,9 +28,9 @@ namespace ChatApp.Pages.Auth
             PasswordFrame.BorderColor = Color.FromRgb(189, 189, 189);
             ConfirmPasswordFrame.BorderColor = Color.FromRgb(189, 189, 189);
 
-            if (string.IsNullOrEmpty(usernameEntry.Text) || string.IsNullOrEmpty(EmailEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text) || string.IsNullOrEmpty(ConfirmPasswordEntry.Text))
+            if (string.IsNullOrEmpty(UsernameEntry.Text) || string.IsNullOrEmpty(EmailEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text) || string.IsNullOrEmpty(ConfirmPasswordEntry.Text))
             {
-                if (string.IsNullOrEmpty(usernameEntry.Text))
+                if (string.IsNullOrEmpty(UsernameEntry.Text))
                 {
                     UsernameFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 }
@@ -76,7 +79,36 @@ namespace ChatApp.Pages.Auth
             // Successful authentication with database (Insert Future Code Here..)
             if (true) 
             {
+                int emailExist = GlobalData.userList.Where(x => x.email == EmailEntry.Text).Count();
+
+                if (emailExist > 0)
+                {
+                    await DisplayAlert("Error", "Email already exists.", "", "OKAY");
+                    return;
+                }
+
+                Guid id1 = Guid.NewGuid();
+                GlobalData.userList.Add(new UserModel() { 
+                    uid = id1.ToString(),
+                    username = UsernameEntry.Text,
+                    email = EmailEntry.Text,
+                    password = PasswordEntry.Text,
+                    contacts = new List<string>(new string[] { }),
+                    isVerified = true   
+                });
+                
+                Guid id2 = Guid.NewGuid();
+                GlobalData.contactList.Add(new ContactModel()
+                {
+                    id = id2.ToString(),
+                    contactID = new string[] { id1.ToString() },
+                    contactName = new string[] { UsernameEntry.Text },
+                    contactEmail = new string[] { EmailEntry.Text },
+                    created_at = new DateTime()
+                });
+
                 await DisplayAlert("Success", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
+
                 await Navigation.PopAsync();
                 return;
             }

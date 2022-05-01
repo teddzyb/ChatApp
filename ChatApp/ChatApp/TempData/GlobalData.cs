@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ChatApp.TempData
 {
-    class GloblalData
+    class GlobalData
     {
         public static ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
         public static ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();

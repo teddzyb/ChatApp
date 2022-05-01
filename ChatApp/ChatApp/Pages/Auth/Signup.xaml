@@ -92,7 +92,7 @@
                             HorizontalOptions="FillAndExpand">
                             <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
                                 <local:CustomEntry
-                                    x:Name="usernameEntry"
+                                    x:Name="UsernameEntry"
                                     Focused="Focused_Username"
                                     FontSize="Small"
                                     HorizontalOptions="FillAndExpand"

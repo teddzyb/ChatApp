@@ -46,21 +46,21 @@ namespace ChatApp
 
             // Query (Insert Future Code Here..)
             
-            if(!GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
+            if(!GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
             {
                 await DisplayAlert("Error", "There is no user record corresponding to this identifier. The user may have been deleted.", "", "OKAY");
                 return;
             }
 
             // Email is not verified
-            if (GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
+            if (GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
             {
                 await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
                 return;
             }
 
             // Successful authentication with database
-            var user = GloblalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
+            var user = GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
 
             Application.Current.Properties["id"] = user.uid;
             Application.Current.Properties["username"] = user.username;
@@ -75,16 +75,18 @@ namespace ChatApp
 
         private async void Btn_SignUp(object sender, EventArgs e)
         {
+            //EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
+            //passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
+            
             await Navigation.PushAsync(new Signup(), true);
-            EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
-            passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }
 
         private async void Btn_ResetPass(object sender, EventArgs e)
         {
+            //EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
+            //passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
+
             await Navigation.PushAsync(new ResetPass(), true);
-            EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
-            passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
         }
 
         private void Focused_Email(object sender, EventArgs e)

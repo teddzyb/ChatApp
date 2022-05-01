@@ -36,7 +36,7 @@ namespace ChatApp.Pages.Tabbed
 
             uid = (string)Application.Current.Properties["id"];
             this.kachat = kachat;
-            conversation = GloblalData.conversationList.Where(
+            conversation = GlobalData.conversationList.Where(
                 x => (Array.Exists(x.converseeID, element => element == uid) &&
                 Array.Exists(x.converseeID, element => element == kachat))
             ).FirstOrDefault();
@@ -78,14 +78,14 @@ namespace ChatApp.Pages.Tabbed
 
             if (conversation == null)
             {
-                GloblalData.conversationList.Add(new ConversationModel
+                GlobalData.conversationList.Add(new ConversationModel
                 {
                     //id = (new id),
                     messages = new List<MessageModel> { },
                     converseeID = new string[] { uid, kachat }
                 });
 
-                conversation = GloblalData.conversationList.Where(
+                conversation = GlobalData.conversationList.Where(
                     x => (Array.Exists(x.converseeID, element => element == uid) &&
                     Array.Exists(x.converseeID, element => element == kachat))
                 ).FirstOrDefault();

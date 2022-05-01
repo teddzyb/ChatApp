@@ -15,7 +15,6 @@ namespace ChatApp.Pages.Tabbed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchResults : ContentPage
     {
-        //ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
         ObservableCollection<UserResults> userResultsList = new ObservableCollection<UserResults>();
         public class UserResults
         { 
@@ -62,7 +61,7 @@ namespace ChatApp.Pages.Tabbed
             userResultsList.Clear();
 
             string id = (string)Application.Current.Properties["id"];
-            var users = GloblalData.userList.Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
+            var users = GlobalData.userList.Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
             if (users.Count() == 0)
             {
                 AlertLabel.IsVisible = true;
@@ -70,7 +69,7 @@ namespace ChatApp.Pages.Tabbed
             }
 
             AlertLabel.IsVisible = false;
-            var userFriends = GloblalData.userList.Where(x => x.uid == id).First().contacts;
+            var userFriends = GlobalData.userList.Where(x => x.uid == id).First().contacts;
 
             foreach (var user in users)
             {
@@ -102,19 +101,19 @@ namespace ChatApp.Pages.Tabbed
                 return;
             }
 
-            var userContacts = GloblalData.userList.Where(x => x.uid == userID).First().contacts;
+            var userContacts = GlobalData.userList.Where(x => x.uid == userID).First().contacts;
             if (userContacts.Where(x => x == searchID).Count() == 1)
             {
                 await DisplayAlert("Failed", "You already have a connection.", "", "OKAY");
                 return;
             }
 
-            var user = GloblalData.userList.Where(x => x.uid == searchID).First();
-            bool answer = await DisplayAlert("Add Contact", "Would you like to add " + user.username, "YES", "NO");
+            var user = GlobalData.userList.Where(x => x.uid == searchID).First();
+            bool answer = await DisplayAlert("Add Contact", "Would you like to add " + user.username + "?", "YES", "NO");
 
             if (answer)
             {
-                foreach (var userList in GloblalData.userList)
+                foreach (var userList in GlobalData.userList)
                 {
                     if (userList.uid == userID)
                     {
@@ -123,7 +122,7 @@ namespace ChatApp.Pages.Tabbed
                     }
                 }
 
-                foreach (var contact in GloblalData.contactList)
+                foreach (var contact in GlobalData.contactList)
                 {
                     if (contact.contactID[0] == userID)
                     {

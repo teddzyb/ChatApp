@@ -21,7 +21,7 @@ namespace ChatApp.Pages.Tabbed
             NavigationPage.SetHasNavigationBar(this, false);
             string id = (string)Application.Current.Properties["id"];
           
-            var contactCount = GloblalData.contactList.Where(x => x.contactID[0] == id).Count();
+            var contactCount = GlobalData.contactList.Where(x => x.contactID[0] == id).Count();
             
             if (contactCount > 1)
             {

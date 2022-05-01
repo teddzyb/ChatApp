@@ -34,7 +34,7 @@ namespace ChatApp.Pages.Tabbed
         {
             var uid = (string)((TappedEventArgs)e).Parameter;
 
-            var contactList = GloblalData.userList.Where(x => x.uid == uid).FirstOrDefault();
+            var contactList = GlobalData.userList.Where(x => x.uid == uid).FirstOrDefault();
 
             var user = new UserModel
             {
@@ -51,7 +51,7 @@ namespace ChatApp.Pages.Tabbed
         private void FetchContacts()
         {
             string id = (string)Application.Current.Properties["id"];
-            var contactList = GloblalData.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
+            var contactList = GlobalData.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
             ContactListGrid.IsVisible = true;
 
             if (contactList.contactID.Count() == 1)
