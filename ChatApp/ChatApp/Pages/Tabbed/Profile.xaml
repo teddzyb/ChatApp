@@ -6,73 +6,90 @@
     xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
     xmlns:local="clr-namespace:ChatApp">
     <ContentView.Content>
-        <Grid
-            Padding="20"
-            BackgroundColor="Transparent"
-            HorizontalOptions="CenterAndExpand"
-            RowSpacing="0"
-            VerticalOptions="CenterAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
 
-            <Grid>
-                <Ellipse
-                    HeightRequest="170"
+        <StackLayout>
+
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <Grid
+                    Padding="20"
+                    BackgroundColor="Transparent"
                     HorizontalOptions="CenterAndExpand"
-                    Stroke="#e91e63"
-                    StrokeThickness="3"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="170" />
+                    RowSpacing="0"
+                    VerticalOptions="CenterAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <Ellipse
-                    HeightRequest="150"
+                    <Grid>
+                        <Ellipse
+                            HeightRequest="170"
+                            HorizontalOptions="CenterAndExpand"
+                            Stroke="#e91e63"
+                            StrokeThickness="3"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="170" />
+
+                        <Ellipse
+                            HeightRequest="150"
+                            HorizontalOptions="CenterAndExpand"
+                            Scale="1.09"
+                            Stroke="#f8bbd0"
+                            StrokeThickness="3"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="150" />
+
+                        <controls:CircleImage
+                            Grid.Row="0"
+                            HeightRequest="10"
+                            Scale=".8"
+                            Source="logo.png" />
+                    </Grid>
+
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,20,0,5"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding username}"
+                        TextColor="#424242" />
+
+                    <Label
+                        x:Name="EmailLabel"
+                        Grid.Row="2"
+                        FontSize="Medium"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding email}"
+                        TextColor="#757575" />
+
+                    <local:CustomButton
+                        Grid.Row="3"
+                        Margin="0,20"
+                        BackgroundColor="#e91e63"
+                        Clicked="Btn_SignOut"
+                        CornerRadius="40"
+                        Text="Sign out"
+                        TextColor="White" />
+
+                </Grid>
+
+                <BoxView
+                    AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    BackgroundColor="Transparent" />
+
+                <ActivityIndicator
+                    x:Name="ActivityIndicator"
+                    AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
                     HorizontalOptions="CenterAndExpand"
-                    Scale="1.09"
-                    Stroke="#f8bbd0"
-                    StrokeThickness="3"
-                    VerticalOptions="CenterAndExpand"
-                    WidthRequest="150" />
+                    IsRunning="False"
+                    VerticalOptions="CenterAndExpand" />
+            </AbsoluteLayout>
 
-                <controls:CircleImage
-                    Grid.Row="0"
-                    HeightRequest="10"
-                    Scale=".8"
-                    Source="logo.png" />
-            </Grid>
-
-
-            <Label
-                Grid.Row="1"
-                Margin="0,20,0,5"
-                FontAttributes="Bold"
-                FontSize="Large"
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding username}"
-                TextColor="#424242" />
-
-
-            <Label
-                x:Name="EmailLabel"
-                Grid.Row="2"
-                FontSize="Medium"
-                HorizontalOptions="CenterAndExpand"
-                Text="{Binding email}"
-                TextColor="#757575" />
-
-            <local:CustomButton
-                Grid.Row="3"
-                Margin="0,20"
-                BackgroundColor="#e91e63"
-                Clicked="Btn_SignOut"
-                CornerRadius="40"
-                Text="Sign out"
-                TextColor="White" />
-
-        </Grid>
-
+        </StackLayout>
 
     </ContentView.Content>
 

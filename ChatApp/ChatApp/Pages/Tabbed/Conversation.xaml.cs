@@ -107,12 +107,14 @@ namespace ChatApp.Pages.Tabbed
             FetchConversation();
         }
 
-        private void FetchConversation()
+        private async void FetchConversation()
         {
             if (conversation == null)
             {
                 return;
             }
+
+            messageListView.IsRefreshing = true;
 
             for (int i = 0; i < conversation.messages.Count(); i++)
             {
@@ -142,13 +144,16 @@ namespace ChatApp.Pages.Tabbed
             }
 
             messageListGrid.IsVisible = true;
-            alertLabel.IsVisible = false;
+            alertLabel.IsVisible = false;            
             messageListView.ItemsSource = messageList;
 
             if (messageList.Count > 0)
             {
                 messageListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
             }
+
+            await Task.Delay(1500);
+            messageListView.IsRefreshing = false;
         }
     }
 }

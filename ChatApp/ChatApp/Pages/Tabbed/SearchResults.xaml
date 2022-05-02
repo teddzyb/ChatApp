@@ -75,6 +75,7 @@
                 </Grid.RowDefinitions>
                 <ListView
                     x:Name="userListView"
+                    RefreshControlColor="#e91e63"
                     Grid.Row="0"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"

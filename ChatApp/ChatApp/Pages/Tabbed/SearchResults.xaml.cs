@@ -55,8 +55,9 @@ namespace ChatApp.Pages.Tabbed
             fetchSearchResults();
         }
 
-        private void fetchSearchResults()
+        private async void fetchSearchResults()
         {
+            userListView.IsRefreshing = true;
             userListView.ItemsSource = null;
             userResultsList.Clear();
 
@@ -65,6 +66,7 @@ namespace ChatApp.Pages.Tabbed
             if (users.Count() == 0)
             {
                 AlertLabel.IsVisible = true;
+                userListView.IsRefreshing = false;
                 return;
             }
 
@@ -88,6 +90,8 @@ namespace ChatApp.Pages.Tabbed
                 userResultsList.Add(new UserResults { id = user.uid, username = user.username, email = user.email, iconSource = iconSource });
             }
 
+            //await Task.Delay(1500);
+            userListView.IsRefreshing = false;
             userListView.ItemsSource = userResultsList;
         }
     

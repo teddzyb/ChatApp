@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:ChatApp">
 
     <StackLayout BackgroundColor="#ffffff">
+
         <StackLayout
             BackgroundColor="Transparent"
             HorizontalOptions="Start"
@@ -40,6 +41,7 @@
 
             </StackLayout>
         </StackLayout>
+
         <AbsoluteLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <StackLayout
                 BackgroundColor="Transparent"
@@ -327,6 +329,7 @@
                 VerticalOptions="CenterAndExpand" />
 
         </AbsoluteLayout>
+
     </StackLayout>
 
 </ContentPage>

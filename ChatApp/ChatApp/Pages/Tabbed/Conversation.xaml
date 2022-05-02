@@ -81,6 +81,7 @@
                     Grid.Row="1"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"
+                    RefreshControlColor="#e91e63"
                     SeparatorColor="Transparent">
                     <ListView.ItemTemplate>
                         <DataTemplate>

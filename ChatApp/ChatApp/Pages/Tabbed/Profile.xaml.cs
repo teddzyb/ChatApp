@@ -20,9 +20,11 @@ namespace ChatApp.Pages.Tabbed
         private void Btn_SignOut(object sender, EventArgs e)
         {
             // (Insert code for sign out)
+            ActivityIndicator.IsRunning = true;
             Application.Current.Properties.Clear();
             Application.Current.SavePropertiesAsync();
 
+            ActivityIndicator.IsRunning = false;
             Application.Current.MainPage = new NavigationPage(new MainPage());
 
         }

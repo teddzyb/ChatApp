@@ -18,7 +18,7 @@ namespace ChatApp.Pages.Tabbed
         {
             InitializeComponent();
             FetchContacts();
-            
+
             MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) => {
                 FetchContacts();
             });
@@ -26,7 +26,6 @@ namespace ChatApp.Pages.Tabbed
             userListView.RefreshCommand = new Command(() =>
             {
                 FetchContacts();
-                userListView.IsRefreshing = false;
             });
         }
 
@@ -48,8 +47,11 @@ namespace ChatApp.Pages.Tabbed
             await Navigation.PushAsync(conversation, true);
         }
 
-        private void FetchContacts()
+        private async void FetchContacts()
         {
+           
+            userListView.IsRefreshing = true;
+          
             string id = (string)Application.Current.Properties["id"];
             var contactList = GlobalData.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
             ContactListGrid.IsVisible = true;
@@ -57,6 +59,7 @@ namespace ChatApp.Pages.Tabbed
             if (contactList.contactID.Count() == 1)
             {
                 ContactListGrid.IsVisible = false;
+                userListView.IsRefreshing = false;
                 return;
             }
 
@@ -67,6 +70,8 @@ namespace ChatApp.Pages.Tabbed
             }
 
             userListView.ItemsSource = userContacts;
+            //await Task.Delay(1500);
+            userListView.IsRefreshing = false;
         }
     }
 }
