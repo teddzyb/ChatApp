@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Threading.Tasks;
 
 namespace ChatApp.Pages.Auth
 {
@@ -23,6 +24,7 @@ namespace ChatApp.Pages.Auth
        
         private async void Btn_SignUp(object sender, EventArgs e)
         {
+            ActivityIndicator.IsRunning = true;
             UsernameFrame.BorderColor = Color.FromRgb(189, 189, 189);
             EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
             PasswordFrame.BorderColor = Color.FromRgb(189, 189, 189);
@@ -44,19 +46,22 @@ namespace ChatApp.Pages.Auth
                 {
                     PasswordFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 }
-
+                
                 if (string.IsNullOrEmpty(ConfirmPasswordEntry.Text))
                 {
                     ConfirmPasswordFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 }
                 
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "Missing Fields", "", "OKAY");
                 return;
             }
 
             if (!ValidateEmail.IsValidEmail(EmailEntry.Text))
             {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "The email address is badly formatted.", "", "OKAY");
+        
                 return;
             }
 
@@ -66,13 +71,17 @@ namespace ChatApp.Pages.Auth
                 //ConfirmPasswordFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 ConfirmPasswordEntry.Text = "";
                 ConfirmPasswordEntry.Focus();
+                
+                ActivityIndicator.IsRunning = false;                
                 await DisplayAlert("Error", "Passwords do not match.", "", "OKAY");
+              
                 return;
             }
 
             if (PasswordEntry.Text.Length < 6 && ConfirmPasswordEntry.Text.Length < 6)
             {
                 await DisplayAlert("Error", "The given password is invalid. [ Password should be at least 6 characters ]", "", "OKAY");
+                ActivityIndicator.IsRunning = false;
                 return;
             }
 
@@ -107,10 +116,10 @@ namespace ChatApp.Pages.Auth
                     created_at = new DateTime()
                 });
 
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Success", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
 
                 await Navigation.PopAsync();
-                return;
             }
         }
 

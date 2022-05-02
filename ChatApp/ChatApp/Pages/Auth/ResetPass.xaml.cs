@@ -21,9 +21,11 @@ namespace ChatApp.Pages.Auth
         private async void Btn_Reset(object sender, EventArgs e)
         {
             emailFrame.BorderColor = Color.FromRgb(189, 189, 189);
+            ActivityIndicator.IsRunning = true;
 
             if (string.IsNullOrEmpty(EmailEntry.Text))
             {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "Missing Field", "OKAY");
                 emailFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 return;
@@ -31,6 +33,7 @@ namespace ChatApp.Pages.Auth
 
             if (!ValidateEmail.IsValidEmail(EmailEntry.Text))
             {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "The email address is badly formatted.", "", "OKAY");
                 return;
             }
@@ -38,6 +41,7 @@ namespace ChatApp.Pages.Auth
             // Successful authentication with database (Insert Future Code Here..)
             if (true) 
             {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Success", "A recovery link has been to your email address.", "OKAY");
                 await Navigation.PopAsync();
             }

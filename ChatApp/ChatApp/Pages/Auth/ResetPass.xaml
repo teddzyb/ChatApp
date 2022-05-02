@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ChatApp">
 
-    <StackLayout BackgroundColor="White">
+    <StackLayout BackgroundColor="#ffffff">
 
         <StackLayout
             Grid.Row="0"
@@ -37,69 +37,84 @@
 
         </StackLayout>
 
-        <StackLayout
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="0,-100,0,0"
-            HorizontalOptions="CenterAndExpand"
-            VerticalOptions="CenterAndExpand">
-            <Grid
-                Padding="20,20,20,20"
-                HorizontalOptions="FillAndExpand"
-                RowSpacing="20"
-                VerticalOptions="FillAndExpand">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Label
-                    Grid.Row="0"
-                    FontAttributes="Bold"
-                    FontSize="24"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="Reset Password"
-                    TextColor="#424242" />
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,-100,0,0"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+                <Grid
+                    Padding="20,20,20,20"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Reset Password"
+                        TextColor="#424242" />
 
-                <Label
-                    Grid.Row="1"
-                    Margin="0,-15,0,0"
-                    FontSize="Small"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="Enter your email address."
-                    TextColor="#424242" />
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,-15,0,0"
+                        FontSize="Small"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Enter your email address."
+                        TextColor="#424242" />
 
-                <Frame
-                    x:Name="emailFrame"
-                    Grid.Row="2"
-                    Padding="0"
-                    BackgroundColor="Transparent"
-                    BorderColor="#bdbdbd"
-                    CornerRadius="30"
-                    HorizontalOptions="FillAndExpand">
-                    <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
-                        <local:CustomEntry
-                            x:Name="EmailEntry"
-                            Focused="Focused_Email"
-                            FontSize="13"
-                            HorizontalOptions="FillAndExpand"
-                            Keyboard="Email"
-                            Placeholder="Email"
-                            VerticalOptions="FillAndExpand" />
-                    </StackLayout>
-                </Frame>
+                    <Frame
+                        x:Name="emailFrame"
+                        Grid.Row="2"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        BorderColor="#bdbdbd"
+                        CornerRadius="30"
+                        HorizontalOptions="FillAndExpand">
+                        <StackLayout Padding="20,5,20,5" Orientation="Horizontal">
+                            <local:CustomEntry
+                                x:Name="EmailEntry"
+                                Focused="Focused_Email"
+                                FontSize="13"
+                                HorizontalOptions="FillAndExpand"
+                                Keyboard="Email"
+                                Placeholder="Email"
+                                VerticalOptions="FillAndExpand" />
+                        </StackLayout>
+                    </Frame>
 
-                <local:CustomButton
-                    Grid.Row="3"
-                    BackgroundColor="#e91e63"
-                    Clicked="Btn_Reset"
-                    CornerRadius="20"
-                    Text="Send Reset Link"
-                    TextColor="White" />
-            </Grid>
+                    <local:CustomButton
+                        Grid.Row="3"
+                        BackgroundColor="#e91e63"
+                        Clicked="Btn_Reset"
+                        CornerRadius="20"
+                        Text="Send Reset Link"
+                        TextColor="White" />
+                </Grid>
 
-        </StackLayout>
+            </StackLayout>
+
+            <BoxView
+                AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="Transparent" />
+
+            <ActivityIndicator
+                x:Name="ActivityIndicator"
+                AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                HorizontalOptions="CenterAndExpand"
+                IsRunning="False"
+                VerticalOptions="CenterAndExpand" />
+        </AbsoluteLayout>
 
     </StackLayout>
 </ContentPage>

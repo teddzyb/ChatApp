@@ -21,7 +21,8 @@ namespace ChatApp
         {
             EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
             passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
-
+            ActivityIndicator.IsRunning = true;
+            
             if (string.IsNullOrEmpty(EmailEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text))
             {
                 if (string.IsNullOrEmpty(EmailEntry.Text))
@@ -34,12 +35,14 @@ namespace ChatApp
                     passwordFrame.BorderColor = Color.FromRgb(244, 67, 54);
                     
                 }
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "Missing Fields", "", "OKAY");
                 return;
             }
 
             if (!ValidateEmail.IsValidEmail(EmailEntry.Text))
             {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "The email address is badly formatted.", "", "OKAY");
                 return;
             }
@@ -48,6 +51,7 @@ namespace ChatApp
             
             if(!GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
             {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "There is no user record corresponding to this identifier. The user may have been deleted.", "", "OKAY");
                 return;
             }
@@ -55,6 +59,7 @@ namespace ChatApp
             // Email is not verified
             if (GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
             {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
                 return;
             }
@@ -69,7 +74,7 @@ namespace ChatApp
 
             var MainTabbed = new MainTabbed();
             MainTabbed.BindingContext = new UserModel { username = user.username, email = EmailEntry.Text };
-
+            ActivityIndicator.IsRunning = false;
             Application.Current.MainPage = new NavigationPage(MainTabbed);
         }
 
