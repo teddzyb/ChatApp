@@ -152,7 +152,7 @@ namespace ChatApp.Pages.Tabbed
                 messageListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
             }
 
-            await Task.Delay(1500);
+            //await Task.Delay(1500);
             messageListView.IsRefreshing = false;
         }
     }
