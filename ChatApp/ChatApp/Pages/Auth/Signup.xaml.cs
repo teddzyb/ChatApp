@@ -12,8 +12,7 @@ namespace ChatApp.Pages.Auth
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Signup : ContentPage
     {
-
-        DataClass dataClass = new DataClass();
+        DataClass dataClass = DataClass.GetInstance;
         public Signup()
         {
             InitializeComponent();
@@ -94,25 +93,29 @@ namespace ChatApp.Pages.Auth
             FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
             res = await DependencyService.Get<IFirebaseAuth>().SignUpWithEmailPassword(UsernameEntry.Text, EmailEntry.Text, PasswordEntry.Text);
 
-            //if (res.Status == true)
-            //{
-            //    try
-            //    {
-            //        await CrossCloudFirestore.Current
-            //            .Instance
-            //            .GetCollection("users")
-            //            .GetDocument(dataClass.loggedInUser.uid)
-            //            .SetDataAsync(dataClass.loggedInUser);
+            if (res.Status == true)
+            {
+                try
+                {
+                    await CrossCloudFirestore.Current
+                        .Instance
+                        .GetCollection("users")
+                        .GetDocument(dataClass.loggedInUser.uid)
+                        .SetDataAsync(dataClass.loggedInUser);
 
-            //        await DisplayAlert("Success", res.Response, "Okay");
-            //        await Navigation.PopAsync();
+                    await DisplayAlert("Success", res.Response, "Okay");
+                    await Navigation.PopAsync();
 
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        await DisplayAlert("Error", ex.Message, "Okay");
-            //    }
-            //}
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Error", ex.Message, "Okay");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", res.Response, "Okay");
+            }
 
             ActivityIndicator.IsRunning = false;
 

@@ -87,13 +87,21 @@ namespace ChatApp.Droid
                 return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
             }
         }
-
+        
         public async Task<FirebaseAuthResponseModel> SignUpWithEmailPassword(string username, string email, string password)
         {
             try
             {
                 var user = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
                 //var token = await user.User.GetIdToken(true).AsAsync<GetTokenResult>();
+
+                UserModel userData = new UserModel();
+                userData.uid = user.User.Uid;
+                userData.email = email;
+                userData.username = username;
+                userData.userType = 0;
+
+                dataClass.loggedInUser = userData;
 
                 return new FirebaseAuthResponseModel() { Status = true, Response = "Account Successfully Created" };
 
@@ -109,6 +117,17 @@ namespace ChatApp.Droid
                 return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
             }
         }
+
+        //private void createNewUser(User userFromRegistration)
+        //{
+        //    String username = "username";
+        //    String email = userFromRegistration.getEmail();
+        //    String userId = userFromRegistration.getUid();
+
+        //    User user = new User(username, email);
+
+        //    mDatabase.child("users").child(userId).setValue(user);
+        //}
 
     }
 }

@@ -21,7 +21,7 @@ namespace ChatApp
         public App()
         {
             InitializeComponent();
-            initData();
+            //initData();
 
             GlobalData.conversationList = conversationList;
 
