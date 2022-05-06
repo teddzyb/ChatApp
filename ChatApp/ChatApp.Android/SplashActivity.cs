@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Util;
 using AndroidX.AppCompat.App;
 using ChatApp.Droid;
+using Firebase;
 using System.Threading.Tasks;
 
 namespace com.xamarin.sample.splashscreen

@@ -5,12 +5,15 @@ using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Threading.Tasks;
+using Plugin.CloudFirestore;
 
 namespace ChatApp.Pages.Auth
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Signup : ContentPage
     {
+
+        DataClass dataClass = new DataClass();
         public Signup()
         {
             InitializeComponent();
@@ -21,7 +24,8 @@ namespace ChatApp.Pages.Auth
         {
             await Navigation.PopAsync();
         }
-       
+
+        [Obsolete]
         private async void Btn_SignUp(object sender, EventArgs e)
         {
             ActivityIndicator.IsRunning = true;
@@ -86,41 +90,69 @@ namespace ChatApp.Pages.Auth
             }
 
             // Successful authentication with database (Insert Future Code Here..)
-            if (true) 
-            {
-                int emailExist = GlobalData.userList.Where(x => x.email == EmailEntry.Text).Count();
 
-                if (emailExist > 0)
-                {
-                    await DisplayAlert("Error", "Email already exists.", "", "OKAY");
-                    return;
-                }
+            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+            res = await DependencyService.Get<IFirebaseAuth>().SignUpWithEmailPassword(UsernameEntry.Text, EmailEntry.Text, PasswordEntry.Text);
 
-                Guid id1 = Guid.NewGuid();
-                GlobalData.userList.Add(new UserModel() { 
-                    uid = id1.ToString(),
-                    username = UsernameEntry.Text,
-                    email = EmailEntry.Text,
-                    password = PasswordEntry.Text,
-                    contacts = new List<string>(new string[] { }),
-                    isVerified = true   
-                });
-                
-                Guid id2 = Guid.NewGuid();
-                GlobalData.contactList.Add(new ContactModel()
-                {
-                    id = id2.ToString(),
-                    contactID = new string[] { id1.ToString() },
-                    contactName = new string[] { UsernameEntry.Text },
-                    contactEmail = new string[] { EmailEntry.Text },
-                    created_at = new DateTime()
-                });
+            //if (res.Status == true)
+            //{
+            //    try
+            //    {
+            //        await CrossCloudFirestore.Current
+            //            .Instance
+            //            .GetCollection("users")
+            //            .GetDocument(dataClass.loggedInUser.uid)
+            //            .SetDataAsync(dataClass.loggedInUser);
 
-                ActivityIndicator.IsRunning = false;
-                await DisplayAlert("Success", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
+            //        await DisplayAlert("Success", res.Response, "Okay");
+            //        await Navigation.PopAsync();
 
-                await Navigation.PopAsync();
-            }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        await DisplayAlert("Error", ex.Message, "Okay");
+            //    }
+            //}
+
+            ActivityIndicator.IsRunning = false;
+
+
+
+            //if (true) 
+            //{
+            //    int emailExist = GlobalData.userList.Where(x => x.email == EmailEntry.Text).Count();
+
+            //    if (emailExist > 0)
+            //    {
+            //        await DisplayAlert("Error", "Email already exists.", "", "OKAY");
+            //        return;
+            //    }
+
+            //    Guid id1 = Guid.NewGuid();
+            //    GlobalData.userList.Add(new UserModel() { 
+            //        uid = id1.ToString(),
+            //        username = UsernameEntry.Text,
+            //        email = EmailEntry.Text,
+            //        password = PasswordEntry.Text,
+            //        contacts = new List<string>(new string[] { }),
+            //        isVerified = true   
+            //    });
+
+            //    Guid id2 = Guid.NewGuid();
+            //    GlobalData.contactList.Add(new ContactModel()
+            //    {
+            //        id = id2.ToString(),
+            //        contactID = new string[] { id1.ToString() },
+            //        contactName = new string[] { UsernameEntry.Text },
+            //        contactEmail = new string[] { EmailEntry.Text },
+            //        created_at = new DateTime()
+            //    });
+
+            //    ActivityIndicator.IsRunning = false;
+            //    await DisplayAlert("Success", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
+
+            //    await Navigation.PopAsync();
+            //}
         }
 
         private void Focused_Username(object sender, EventArgs e)
