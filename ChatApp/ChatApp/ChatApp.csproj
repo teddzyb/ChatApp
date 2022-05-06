@@ -11,11 +11,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Helpers\ScaleHelper\**" />
+    <EmbeddedResource Remove="Helpers\ScaleHelper\**" />
+    <None Remove="Helpers\ScaleHelper\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Models\.cs" />
     <Compile Remove="Models\NewFile1.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="DependencyServices\NewFile1.txt" />
     <None Remove="Models\NewFile1.c#" />
     <None Remove="Models\NewFile1.txt" />
   </ItemGroup>
@@ -50,9 +57,5 @@
     <EmbeddedResource Update="Pages\Tabbed\SearchResults.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Helpers\ScaleHelper\" />
   </ItemGroup>
 </Project>

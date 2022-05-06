@@ -18,6 +18,8 @@ namespace ChatApp
         ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();
         ObservableCollection<ConversationModel> conversationList = new ObservableCollection<ConversationModel>();
 
+        DataClass dataClass = DataClass.GetInstance;
+
         public App()
         {
             InitializeComponent();
@@ -27,21 +29,31 @@ namespace ChatApp
 
             MainPage = new NavigationPage(new MainPage());
 
-            if (Application.Current.Properties.ContainsKey("id"))
-            {
-                var MainTabbed = new MainTabbed();
-                MainTabbed.BindingContext = new UserModel 
-                {
-                    username = Application.Current.Properties["username"].ToString(), 
-                    email = Application.Current.Properties["email"].ToString() 
-                };
+            //if (Application.Current.Properties.ContainsKey("id"))
+            //{
+            //    var MainTabbed = new MainTabbed();
+            //    MainTabbed.BindingContext = new UserModel 
+            //    {
+            //        username = Application.Current.Properties["username"].ToString(), 
+            //        email = Application.Current.Properties["email"].ToString() 
+            //    };
 
-                Application.Current.MainPage = new NavigationPage(MainTabbed);
+            //    Application.Current.MainPage = new NavigationPage(MainTabbed);
+            //}
+            //else
+            //{
+            //    MainPage = new NavigationPage(new MainPage());
+            //}
+            
+            if (dataClass.isSignedIn)
+            {
+                Application.Current.MainPage = new MainTabbed();
             }
             else
             {
                 MainPage = new NavigationPage(new MainPage());
             }
+                
         }
 
         protected override void OnStart()
