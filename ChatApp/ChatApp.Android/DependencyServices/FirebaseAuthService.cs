@@ -117,17 +117,5 @@ namespace ChatApp.Droid
                 return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
             }
         }
-
-        //private void createNewUser(User userFromRegistration)
-        //{
-        //    String username = "username";
-        //    String email = userFromRegistration.getEmail();
-        //    String userId = userFromRegistration.getUid();
-
-        //    User user = new User(username, email);
-
-        //    mDatabase.child("users").child(userId).setValue(user);
-        //}
-
     }
 }

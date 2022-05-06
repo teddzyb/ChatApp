@@ -6,17 +6,20 @@ using ChatApp.TempData;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections.Generic;
+using Plugin.CloudFirestore;
 
 namespace ChatApp
 {
     public partial class MainPage : ContentPage
     {
+        DataClass dataClass = DataClass.GetInstance;
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
+        [Obsolete]
         private async void Btn_SignIn(object sender, EventArgs e)
         {
             EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
@@ -47,35 +50,30 @@ namespace ChatApp
                 return;
             }
 
-            // Query (Insert Future Code Here..)
+            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+            res = await DependencyService.Get<IFirebaseAuth>().LoginWithEmailPassword(EmailEntry.Text, PasswordEntry.Text);
             
-            if(!GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
+            if (res.Status == true)
             {
-                ActivityIndicator.IsRunning = false;
-                await DisplayAlert("Error", "There is no user record corresponding to this identifier. The user may have been deleted.", "", "OKAY");
-                return;
+                var query = await CrossCloudFirestore.Current
+                                                     .Instance
+                                                     .Collection("users")
+                                                     .WhereEqualsTo("uid", res.Response)
+                                                     .GetAsync();
+
+                var user = query.ToObjects<UserModel>().ToArray();
+
+
+                var MainTabbed = new MainTabbed();
+                MainTabbed.BindingContext = new UserModel { username = user[0].username, email = user[0].email };
+                Application.Current.MainPage = new NavigationPage(MainTabbed);
+            }
+            else
+            {
+                await DisplayAlert("Error", res.Response, "", "OKAY");
             }
 
-            // Email is not verified
-            if (GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
-            {
-                ActivityIndicator.IsRunning = false;
-                await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
-                return;
-            }
-
-            // Successful authentication with database
-            var user = GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
-
-            Application.Current.Properties["id"] = user.uid;
-            Application.Current.Properties["username"] = user.username;
-            Application.Current.Properties["email"] = EmailEntry.Text;
-            await Application.Current.SavePropertiesAsync();
-
-            var MainTabbed = new MainTabbed();
-            MainTabbed.BindingContext = new UserModel { username = user.username, email = EmailEntry.Text };
             ActivityIndicator.IsRunning = false;
-            Application.Current.MainPage = new NavigationPage(MainTabbed);
         }
 
         private async void Btn_SignUp(object sender, EventArgs e)
@@ -116,3 +114,28 @@ namespace ChatApp
 
     }
 }
+
+
+
+//if(!GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
+//{
+//    ActivityIndicator.IsRunning = false;
+//    await DisplayAlert("Error", "There is no user record corresponding to this identifier. The user may have been deleted.", "", "OKAY");
+//    return;
+//}
+
+//// Email is not verified
+//if (GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
+//{
+//    ActivityIndicator.IsRunning = false;
+//    await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
+//    return;
+//}
+
+//// Successful authentication with database
+//var user = GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
+
+//Application.Current.Properties["id"] = user.uid;
+//Application.Current.Properties["username"] = user.username;
+//Application.Current.Properties["email"] = EmailEntry.Text;
+//await Application.Current.SavePropertiesAsync();

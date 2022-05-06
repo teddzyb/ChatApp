@@ -17,16 +17,16 @@ namespace ChatApp.Pages.Tabbed
         public Chats()
         {
             InitializeComponent();
-            FetchContacts();
+            //FetchContacts();
 
-            MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) => {
-                FetchContacts();
-            });
+            //MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) => {
+            //    FetchContacts();
+            //});
 
-            userListView.RefreshCommand = new Command(() =>
-            {
-                FetchContacts();
-            });
+            //userListView.RefreshCommand = new Command(() =>
+            //{
+            //    FetchContacts();
+            //});
         }
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
