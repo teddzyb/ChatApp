@@ -18,37 +18,68 @@ namespace ChatApp.Droid
         {
             try
             {
-                if (FirebaseAuth.Instance.CurrentUser == null)
+                if (FirebaseAuth.Instance.CurrentUser.Uid == null)
                 {
-                    return new FirebaseAuthResponseModel() { Status = false, Response = "Currently Logged In" };
-
+                    dataClass.isSignedIn = false;
+                    dataClass.loggedInUser = new UserModel();
+                    return new FirebaseAuthResponseModel() { Status = false, Response = "Currently logged out." };
                 }
-                return new FirebaseAuthResponseModel() { Status = false, Response = "Currently Logged Out" };
+             
+                dataClass.loggedInUser = new UserModel()
+                {
+                    uid = FirebaseAuth.Instance.CurrentUser.Uid,
+                    email = FirebaseAuth.Instance.CurrentUser.Email,
+                    username = dataClass.loggedInUser.username,
+                    userType = dataClass.loggedInUser.userType,
+                    created_at = dataClass.loggedInUser.created_at
+                };
+                dataClass.isSignedIn = true;
+                return new FirebaseAuthResponseModel() { Status = true, Response = "Currently logged in." };
             }
             catch (Exception ex)
             {
+                dataClass.isSignedIn = false;
+                dataClass.loggedInUser = new UserModel();
                 return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
             }
         }
 
+        [Obsolete]
         public async Task<FirebaseAuthResponseModel> LoginWithEmailPassword(string email, string password)
         {
             try
             {
-                var user = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
-                //var token = await user.User.GetIdToken(true).AsAsync<GetTokenResult>();
-                var token = user.User.Uid;
+                IAuthResult result = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
 
-                return new FirebaseAuthResponseModel() { Status = true, Response = token };
+                if (result.User.IsEmailVerified && email == result.User.Email)
+                {
+                    var document = await CrossCloudFirestore.Current
+                                        .Instance
+                                        .GetCollection("users")
+                                        .GetDocument(result.User.Uid)
+                                        .GetDocumentAsync();
+                    var yourModel = document.ToObject<UserModel>();
+
+                    dataClass.loggedInUser = new UserModel()
+                    {
+                        uid = result.User.Uid,
+                        email = result.User.Email,
+                        username = yourModel.username,
+                        userType = yourModel.userType,
+                        created_at = yourModel.created_at
+                    };
+                    dataClass.isSignedIn = true;
+                    return new FirebaseAuthResponseModel() { Status = true, Response = "Login successful." };
+                }
+  
+                await FirebaseAuth.Instance.CurrentUser.SendEmailVerification();
+                dataClass.loggedInUser = new UserModel();
+                dataClass.isSignedIn = false;
+
+                return new FirebaseAuthResponseModel() { Status = false, Response = "Email not verified. Sent another verification email." };
             }
-            catch (FirebaseAuthInvalidUserException ex)
+            catch (Exception ex)
             {
-                ex.PrintStackTrace();
-                return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
-            }
-            catch (FirebaseAuthInvalidCredentialsException ex)
-            {
-                ex.PrintStackTrace();
                 return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
             }
         }
@@ -57,16 +88,8 @@ namespace ChatApp.Droid
         {
             try
             {
-                var user = await FirebaseAuth.Instance.FetchSignInMethodsForEmail(email);
-
-                if (user == null)
-                {
-                    return new FirebaseAuthResponseModel() { Status = false, Response = "Email not found" };
-                }
-
                 await FirebaseAuth.Instance.SendPasswordResetEmailAsync(email);
-
-                return new FirebaseAuthResponseModel() { Status = true, Response = "Recovery link has been sent" };
+                return new FirebaseAuthResponseModel() { Status = true, Response = "Email has been sent to your email address." }; ;
             }
             catch (Exception ex)
             {
@@ -79,11 +102,13 @@ namespace ChatApp.Droid
             try
             {
                 FirebaseAuth.Instance.SignOut();
-                return new FirebaseAuthResponseModel() { Status = true, Response = "User signed out" };
-
+                dataClass.isSignedIn = false;
+                dataClass.loggedInUser = new UserModel();
+                return new FirebaseAuthResponseModel() { Status = true, Response = "Sign out successful." }; 
             }
-            catch (FirebaseAuthActionCodeException ex)
+            catch (Exception ex)
             {
+                dataClass.isSignedIn = true;
                 return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
             }
         }
@@ -92,28 +117,22 @@ namespace ChatApp.Droid
         {
             try
             {
-                var user = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
-                //var token = await user.User.GetIdToken(true).AsAsync<GetTokenResult>();
+                await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+                await FirebaseAuth.Instance.CurrentUser.SendEmailVerification();
 
-                UserModel userData = new UserModel();
-                userData.uid = user.User.Uid;
-                userData.email = email;
-                userData.username = username;
-                userData.userType = 0;
+                dataClass.loggedInUser = new UserModel()
+                {
+                    uid = FirebaseAuth.Instance.CurrentUser.Uid,
+                    email = email,
+                    username = username,
+                    userType = 0,
+                    created_at = DateTime.UtcNow
+                };
 
-                dataClass.loggedInUser = userData;
-
-                return new FirebaseAuthResponseModel() { Status = true, Response = "Account Successfully Created" };
-
+                return new FirebaseAuthResponseModel() { Status = true, Response = "Sign up successful. Verification email sent." }; ;
             }
-            catch (FirebaseAuthWeakPasswordException ex)
+            catch (Exception ex)
             {
-                ex.PrintStackTrace();
-                return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
-            }
-            catch (FirebaseAuthInvalidCredentialsException ex)
-            {
-                ex.PrintStackTrace();
                 return new FirebaseAuthResponseModel() { Status = false, Response = ex.Message };
             }
         }

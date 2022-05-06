@@ -17,16 +17,21 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
         }
 
-        private void Btn_SignOut(object sender, EventArgs e)
+        private async void Btn_SignOut(object sender, EventArgs e)
         {
-            // (Insert code for sign out)
             ActivityIndicator.IsRunning = true;
-            Application.Current.Properties.Clear();
-            Application.Current.SavePropertiesAsync();
+            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+            res = DependencyService.Get<IFirebaseAuth>().SignOut();
+
+            if (res.Status != true)
+            {
+                ActivityIndicator.IsRunning = false;
+                await App.Current.MainPage.DisplayAlert("Error", res.Response, "", "Okay");
+                return;
+            }
 
             ActivityIndicator.IsRunning = false;
-            Application.Current.MainPage = new NavigationPage(new MainPage());
-
+            App.Current.MainPage = new NavigationPage(new MainPage());
         }
     }
 }

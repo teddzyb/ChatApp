@@ -24,8 +24,7 @@ namespace ChatApp
         {
             EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
             passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
-            ActivityIndicator.IsRunning = true;
-            
+     
             if (string.IsNullOrEmpty(EmailEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text))
             {
                 if (string.IsNullOrEmpty(EmailEntry.Text))
@@ -38,40 +37,31 @@ namespace ChatApp
                     passwordFrame.BorderColor = Color.FromRgb(244, 67, 54);
                     
                 }
-                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "Missing Fields", "", "OKAY");
                 return;
             }
 
             if (!ValidateEmail.IsValidEmail(EmailEntry.Text))
             {
-                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "The email address is badly formatted.", "", "OKAY");
                 return;
             }
-
+            
+            ActivityIndicator.IsRunning = true;
+            
             FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
             res = await DependencyService.Get<IFirebaseAuth>().LoginWithEmailPassword(EmailEntry.Text, PasswordEntry.Text);
             
-            if (res.Status == true)
+            if (res.Status != true)
             {
-                var query = await CrossCloudFirestore.Current
-                                                     .Instance
-                                                     .Collection("users")
-                                                     .WhereEqualsTo("uid", res.Response)
-                                                     .GetAsync();
-
-                var user = query.ToObjects<UserModel>().ToArray();
-
-
-                var MainTabbed = new MainTabbed();
-                MainTabbed.BindingContext = new UserModel { username = user[0].username, email = user[0].email };
-                Application.Current.MainPage = new NavigationPage(MainTabbed);
-            }
-            else
-            {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", res.Response, "", "OKAY");
+                return;
             }
+            
+            var MainTabbed = new MainTabbed();
+            MainTabbed.BindingContext = new UserModel { username = dataClass.loggedInUser.username, email = dataClass.loggedInUser.email };
+            Application.Current.MainPage = new NavigationPage(MainTabbed);
 
             ActivityIndicator.IsRunning = false;
         }
@@ -86,9 +76,6 @@ namespace ChatApp
 
         private async void Btn_ResetPass(object sender, EventArgs e)
         {
-            //EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
-            //passwordFrame.BorderColor = Color.FromRgb(189, 189, 189);
-
             await Navigation.PushAsync(new ResetPass(), true);
         }
 
@@ -114,28 +101,3 @@ namespace ChatApp
 
     }
 }
-
-
-
-//if(!GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).Any())
-//{
-//    ActivityIndicator.IsRunning = false;
-//    await DisplayAlert("Error", "There is no user record corresponding to this identifier. The user may have been deleted.", "", "OKAY");
-//    return;
-//}
-
-//// Email is not verified
-//if (GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text && x.isVerified == false).Any())
-//{
-//    ActivityIndicator.IsRunning = false;
-//    await DisplayAlert("Error", "Email is not verified. A new verification link has been sent.", "", "OKAY");
-//    return;
-//}
-
-//// Successful authentication with database
-//var user = GlobalData.userList.Where(x => x.email == EmailEntry.Text && x.password == PasswordEntry.Text).FirstOrDefault();
-
-//Application.Current.Properties["id"] = user.uid;
-//Application.Current.Properties["username"] = user.username;
-//Application.Current.Properties["email"] = EmailEntry.Text;
-//await Application.Current.SavePropertiesAsync();

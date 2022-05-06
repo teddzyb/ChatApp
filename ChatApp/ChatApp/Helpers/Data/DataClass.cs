@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using ChatApp;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -22,17 +22,15 @@ namespace ChatApp
                 }
                 return dataClass;
             }
-
         }
 
         bool _isSignedIn { get; set; }
-
         public bool isSignedIn
         {
             set
             {
                 _isSignedIn = value;
-                Application.Current.Properties["isSignedIn"] = isSignedIn;
+                Application.Current.Properties["isSignedIn"] = _isSignedIn;
                 Application.Current.SavePropertiesAsync();
                 OnPropertyChanged();
             }
@@ -42,18 +40,18 @@ namespace ChatApp
                 {
                     _isSignedIn = Convert.ToBoolean(Application.Current.Properties["isSignedIn"]);
                 }
-                return isSignedIn;
+                return _isSignedIn;
             }
         }
 
         UserModel _loggedInUser { get; set; }
-
         public UserModel loggedInUser
         {
             set
             {
                 _loggedInUser = value;
                 Application.Current.Properties["loggedInUser"] = JsonConvert.SerializeObject(_loggedInUser);
+                Application.Current.SavePropertiesAsync();
                 OnPropertyChanged();
             }
             get
@@ -68,7 +66,6 @@ namespace ChatApp
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

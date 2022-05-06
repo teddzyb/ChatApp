@@ -27,7 +27,6 @@ namespace ChatApp.Pages.Auth
         [Obsolete]
         private async void Btn_SignUp(object sender, EventArgs e)
         {
-            ActivityIndicator.IsRunning = true;
             UsernameFrame.BorderColor = Color.FromRgb(189, 189, 189);
             EmailFrame.BorderColor = Color.FromRgb(189, 189, 189);
             PasswordFrame.BorderColor = Color.FromRgb(189, 189, 189);
@@ -55,14 +54,12 @@ namespace ChatApp.Pages.Auth
                     ConfirmPasswordFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 }
                 
-                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "Missing Fields", "", "OKAY");
                 return;
             }
 
             if (!ValidateEmail.IsValidEmail(EmailEntry.Text))
             {
-                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", "The email address is badly formatted.", "", "OKAY");
         
                 return;
@@ -74,8 +71,7 @@ namespace ChatApp.Pages.Auth
                 //ConfirmPasswordFrame.BorderColor = Color.FromRgb(244, 67, 54);
                 ConfirmPasswordEntry.Text = "";
                 ConfirmPasswordEntry.Focus();
-                
-                ActivityIndicator.IsRunning = false;                
+                            
                 await DisplayAlert("Error", "Passwords do not match.", "", "OKAY");
               
                 return;
@@ -84,78 +80,38 @@ namespace ChatApp.Pages.Auth
             if (PasswordEntry.Text.Length < 6 && ConfirmPasswordEntry.Text.Length < 6)
             {
                 await DisplayAlert("Error", "The given password is invalid. [ Password should be at least 6 characters ]", "", "OKAY");
-                ActivityIndicator.IsRunning = false;
                 return;
             }
 
-            // Successful authentication with database (Insert Future Code Here..)
-
+            ActivityIndicator.IsRunning = true;
             FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
             res = await DependencyService.Get<IFirebaseAuth>().SignUpWithEmailPassword(UsernameEntry.Text, EmailEntry.Text, PasswordEntry.Text);
 
-            if (res.Status == true)
+            if (res.Status != true)
             {
-                try
-                {
-                    await CrossCloudFirestore.Current
-                        .Instance
-                        .GetCollection("users")
-                        .GetDocument(dataClass.loggedInUser.uid)
-                        .SetDataAsync(dataClass.loggedInUser);
-
-                    await DisplayAlert("Success", res.Response, "Okay");
-                    await Navigation.PopAsync();
-
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlert("Error", ex.Message, "Okay");
-                }
-            }
-            else
-            {
+                ActivityIndicator.IsRunning = false;
                 await DisplayAlert("Error", res.Response, "Okay");
+                return;
+
             }
 
+            try
+            {
+                await CrossCloudFirestore.Current
+                    .Instance
+                    .GetCollection("users")
+                    .GetDocument(dataClass.loggedInUser.uid)
+                    .SetDataAsync(dataClass.loggedInUser);
+
+                await DisplayAlert("Success", res.Response, "Okay");
+                await Navigation.PopAsync();
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Okay");
+            }
             ActivityIndicator.IsRunning = false;
-
-
-
-            //if (true) 
-            //{
-            //    int emailExist = GlobalData.userList.Where(x => x.email == EmailEntry.Text).Count();
-
-            //    if (emailExist > 0)
-            //    {
-            //        await DisplayAlert("Error", "Email already exists.", "", "OKAY");
-            //        return;
-            //    }
-
-            //    Guid id1 = Guid.NewGuid();
-            //    GlobalData.userList.Add(new UserModel() { 
-            //        uid = id1.ToString(),
-            //        username = UsernameEntry.Text,
-            //        email = EmailEntry.Text,
-            //        password = PasswordEntry.Text,
-            //        contacts = new List<string>(new string[] { }),
-            //        isVerified = true   
-            //    });
-
-            //    Guid id2 = Guid.NewGuid();
-            //    GlobalData.contactList.Add(new ContactModel()
-            //    {
-            //        id = id2.ToString(),
-            //        contactID = new string[] { id1.ToString() },
-            //        contactName = new string[] { UsernameEntry.Text },
-            //        contactEmail = new string[] { EmailEntry.Text },
-            //        created_at = new DateTime()
-            //    });
-
-            //    ActivityIndicator.IsRunning = false;
-            //    await DisplayAlert("Success", "Sign up is successful. A verfication email has been sent.", "", "OKAY");
-
-            //    await Navigation.PopAsync();
-            //}
         }
 
         private void Focused_Username(object sender, EventArgs e)
