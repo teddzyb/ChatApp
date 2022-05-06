@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ChatApp
 {
-    class ContactModel : INotifyPropertyChanged
+    public class ContactModel : INotifyPropertyChanged
     {
         string _id { get; set; }
         string[] _contactID { get; set; }
