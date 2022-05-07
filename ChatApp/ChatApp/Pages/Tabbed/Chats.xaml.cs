@@ -8,25 +8,31 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ChatApp.TempData;
+using Plugin.CloudFirestore;
 
 namespace ChatApp.Pages.Tabbed
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Chats : ContentView
     {
+        DataClass dataClass = DataClass.GetInstance;
+
+        [Obsolete]
         public Chats()
         {
             InitializeComponent();
-            //FetchContacts();
+            FetchContacts();
 
             //MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) => {
             //    FetchContacts();
             //});
 
-            //userListView.RefreshCommand = new Command(() =>
-            //{
-            //    FetchContacts();
-            //});
+            userListView.RefreshCommand = new Command(() =>
+            {
+                FetchContacts();
+            });
+
+            userListView.IsRefreshing = false;
         }
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
@@ -47,16 +53,18 @@ namespace ChatApp.Pages.Tabbed
             await Navigation.PushAsync(conversation, true);
         }
 
+        [Obsolete]
         private async void FetchContacts()
         {
-           
             userListView.IsRefreshing = true;
           
-            string id = (string)Application.Current.Properties["id"];
-            var contactList = GlobalData.contactList.Where(x => x.contactID[0] == id).FirstOrDefault();
+            string id = dataClass.loggedInUser.uid;
+            var firestoreContactList = await CrossCloudFirestore.Current.Instance.Collection("contacts").WhereArrayContains("contactID", id).GetDocumentsAsync();
             ContactListGrid.IsVisible = true;
 
-            if (contactList.contactID.Count() == 1)
+            var contactList = firestoreContactList.ToObjects<ContactModel>().ToArray();
+
+            if (contactList[0].contactID.Count() == 1)
             {
                 ContactListGrid.IsVisible = false;
                 userListView.IsRefreshing = false;
@@ -64,13 +72,13 @@ namespace ChatApp.Pages.Tabbed
             }
 
             ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
-            for (int i = 1; i < contactList.contactID.Count(); i++)
+
+            for (int i = 1; i < contactList[0].contactID.Count(); i++)
             {
-                userContacts.Add(new UserModel() { uid = contactList.contactID[i], username = contactList.contactName[i], email = contactList.contactEmail[i] });
+                userContacts.Add(new UserModel() { uid = contactList[0].contactID[i], username = contactList[0].contactName[i], email = contactList[0].contactEmail[i] });
             }
 
             userListView.ItemsSource = userContacts;
-            //await Task.Delay(1500);
             userListView.IsRefreshing = false;
         }
     }

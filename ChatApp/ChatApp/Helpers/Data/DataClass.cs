@@ -65,6 +65,27 @@ namespace ChatApp
             }
         }
 
+        ContactModel _userContact { get; set; }
+
+        public ContactModel userContact
+        {
+            set
+            {
+                _userContact = value;
+                Application.Current.Properties["userContact"] = JsonConvert.SerializeObject(_userContact);
+                Application.Current.SavePropertiesAsync();
+                OnPropertyChanged();                
+            }
+            get
+            {
+                if (_userContact == null && Application.Current.Properties.ContainsKey("userContact"))
+                {
+                    _userContact = JsonConvert.DeserializeObject<ContactModel>(Application.Current.Properties["userContact"].ToString());
+                }
+                return _userContact;
+            }
+        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

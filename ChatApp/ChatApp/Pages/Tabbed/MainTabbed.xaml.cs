@@ -1,4 +1,5 @@
 ﻿using ChatApp.TempData;
+using Plugin.CloudFirestore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,21 +14,16 @@ namespace ChatApp.Pages.Tabbed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainTabbed : ContentPage
     {
-        bool isFriendsExist = true;
-        
+        bool isFriendsNotExist = true;
+        DataClass dataClass = DataClass.GetInstance;
+
+        [Obsolete]
         public MainTabbed()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            //string id = (string)Application.Current.Properties["id"];
-          
-            //var contactCount = GlobalData.contactList.Where(x => x.contactID[0] == id).Count();
-            
-            if (false)
-            {
-                isFriendsExist = false;
-                AlertLabel.IsVisible = false;
-            }
+
+            checkUserContacts();
         }
         
         protected override void OnAppearing()
@@ -41,7 +37,7 @@ namespace ChatApp.Pages.Tabbed
             Chats.IsVisible = true;
             Profile.IsVisible = false;
             SearchBar.IsVisible = true;
-            AlertLabel.IsVisible = isFriendsExist;
+            AlertLabel.IsVisible = isFriendsNotExist;
 
             ChatImage.Source = "chat_enabled.png";
             ChatLabel.TextColor = Color.FromHex("#e91e63");
@@ -65,6 +61,20 @@ namespace ChatApp.Pages.Tabbed
         private async void Nav_Result(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SearchResults(), true);
+        }
+
+        [Obsolete]
+        private async void checkUserContacts()
+        {
+            string id = dataClass.loggedInUser.uid;
+            var firestoreUserContactList = await CrossCloudFirestore.Current.Instance.Collection("users").WhereEqualsTo("uid", id).GetAsync();
+            var UserContactList = firestoreUserContactList.ToObjects<UserModel>().ToArray();
+
+            if (UserContactList[0].contacts.Count != 0) // Naa kay friends
+            {
+                isFriendsNotExist = false;
+                AlertLabel.IsVisible = false;
+            } 
         }
     }
 }

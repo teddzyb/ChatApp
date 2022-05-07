@@ -5,6 +5,7 @@ using Plugin.CloudFirestore;
 using ChatApp.Droid;
 using Xamarin.Forms;
 using Android.Gms.Extensions;
+using System.Collections.Generic;
 
 [assembly: Dependency(typeof(FirebaseAuthService))]
 namespace ChatApp.Droid
@@ -126,7 +127,17 @@ namespace ChatApp.Droid
                     email = email,
                     username = username,
                     userType = 0,
-                    created_at = DateTime.UtcNow
+                    created_at = DateTime.UtcNow,
+                    contacts = new List<string>(new string[] { }),
+                };
+
+                dataClass.userContact = new ContactModel()
+                {
+                    id = Guid.NewGuid().ToString(),
+                    contactID = new string[] { dataClass.loggedInUser.uid },
+                    contactName = new string[] { dataClass.loggedInUser.username },
+                    contactEmail = new string[] { dataClass.loggedInUser.email },
+                    created_at = DateTime.UtcNow,
                 };
 
                 return new FirebaseAuthResponseModel() { Status = true, Response = "Sign up successful. Verification email sent." }; ;
