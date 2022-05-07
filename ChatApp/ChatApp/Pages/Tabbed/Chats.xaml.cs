@@ -23,9 +23,10 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
             FetchContacts();
 
-            //MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) => {
-            //    FetchContacts();
-            //});
+            MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) =>
+            {
+                FetchContacts();
+            });
 
             userListView.RefreshCommand = new Command(() =>
             {
