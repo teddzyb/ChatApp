@@ -29,7 +29,6 @@ namespace ChatApp.Pages.Tabbed
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
         }
         
         private void Nav_Chat(object sender, EventArgs e)

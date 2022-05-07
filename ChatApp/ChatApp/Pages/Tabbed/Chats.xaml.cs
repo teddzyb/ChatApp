@@ -51,7 +51,7 @@ namespace ChatApp.Pages.Tabbed
             
             var user = new UserModel
             {
-                email = contact[0].email,
+                username = contact[0].username,
             };
 
             var conversation = new Conversation(receiverID)

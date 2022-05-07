@@ -44,7 +44,7 @@
                     Margin="5,0,0,0"
                     FontAttributes="Bold"
                     FontSize="Medium"
-                    Text="{Binding email}"
+                    Text="{Binding username}"
                     TextColor="#757575"
                     VerticalOptions="Center" />
 
@@ -62,10 +62,22 @@
             </Grid>
         </StackLayout>
 
+        <!--  Start Converstation  -->
+        <StackLayout
+            x:Name="AlertLabel"
+            IsVisible="False"
+            VerticalOptions="CenterAndExpand">
+            <Label
+                FontSize="Medium"
+                HorizontalTextAlignment="Center"
+                Text="You can now start a conversation with this person."
+                VerticalOptions="FillAndExpand" />
+        </StackLayout>
+
         <!--  Messages  -->
         <StackLayout
             x:Name="messageListGrid"
-            IsVisible="False"
+            IsVisible="True"
             VerticalOptions="CenterAndExpand">
             <Grid
                 Margin="10,0"
@@ -112,17 +124,7 @@
             </Grid>
         </StackLayout>
 
-        <!--  Start Converstation  -->
-        <StackLayout
-            x:Name="alertLabel"
-            IsVisible="True"
-            VerticalOptions="CenterAndExpand">
-            <Label
-                FontSize="Medium"
-                HorizontalTextAlignment="Center"
-                Text="You can now start a conversation with this person."
-                VerticalOptions="FillAndExpand" />
-        </StackLayout>
+
 
         <!--  Message Entry  -->
         <StackLayout

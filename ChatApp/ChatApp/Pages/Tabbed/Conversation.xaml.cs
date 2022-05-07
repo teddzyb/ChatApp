@@ -19,6 +19,7 @@ namespace ChatApp.Pages.Tabbed
         ObservableCollection<MessageList> messageList = new ObservableCollection<MessageList>();
         ConversationModel conversation;
         DataClass dataClass = DataClass.GetInstance;
+        bool isDataFetched = false;
         string userID;
         string receiverID;
 
@@ -40,7 +41,7 @@ namespace ChatApp.Pages.Tabbed
             this.receiverID = receiverID;
 
             FetchConversation();
-            FetchMessages();
+            //FetchMessages();
         }
 
         private async void GoBack(object sender, EventArgs e)
@@ -111,26 +112,40 @@ namespace ChatApp.Pages.Tabbed
             MessageEntry.Text = string.Empty;
             messageList.Clear();
             messageListView.ItemsSource = null;
-            FetchMessages();
+            FetchConversation();
         }
 
         private async void FetchConversation()
         {
-            var firestoreConversation = await CrossCloudFirestore.Current.Instance.Collection("conversations")
-                                                .WhereArrayContains("converseeID", userID)
-                                                .GetAsync();
-
-            conversation = firestoreConversation.ToObjects<ConversationModel>()
-                                .ToArray()
-                                .Where(x => Array.Exists(x.converseeID, y => y == userID) && Array.Exists(x.converseeID, y => y == receiverID))
-                                .FirstOrDefault();
-        }
-        
-        private void FetchMessages()
-        {
-            if (conversation == null)
+            if (isDataFetched == false)
             {
-                return;
+                var firestoreConversation = await CrossCloudFirestore.Current.Instance.Collection("conversations")
+                                    .WhereArrayContains("converseeID", userID)
+                                    .GetAsync();
+
+
+
+                var convo = firestoreConversation.ToObjects<ConversationModel>()
+                                    .ToArray()
+                                    .Where(x => Array.Exists(x.converseeID, y => y == userID) && Array.Exists(x.converseeID, y => y == receiverID))
+                                    .FirstOrDefault();
+
+                if (convo == null)
+                {
+                    AlertLabel.IsVisible = true;
+                    isDataFetched = true;
+                    return;
+                }
+
+                conversation = new ConversationModel()
+                {
+                    id = convo.id,
+                    converseeID = convo.converseeID,
+                    messages = convo.messages,
+                    created_at = convo.created_at,
+                };
+
+                isDataFetched = true;
             }
 
             messageListView.IsRefreshing = true;
@@ -163,7 +178,7 @@ namespace ChatApp.Pages.Tabbed
             }
 
             messageListGrid.IsVisible = true;
-            alertLabel.IsVisible = false;            
+            AlertLabel.IsVisible = false;
             messageListView.ItemsSource = messageList;
 
             if (messageList.Count > 0)
@@ -171,7 +186,6 @@ namespace ChatApp.Pages.Tabbed
                 messageListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
             }
 
-            //await Task.Delay(1500);
             messageListView.IsRefreshing = false;
         }
     }
