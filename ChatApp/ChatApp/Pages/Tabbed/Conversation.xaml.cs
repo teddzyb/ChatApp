@@ -1,4 +1,5 @@
 ﻿using ChatApp.TempData;
+using Plugin.CloudFirestore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,13 +13,15 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp.Pages.Tabbed
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
     public partial class Conversation : ContentPage
     {
         ObservableCollection<MessageList> messageList = new ObservableCollection<MessageList>();
         ConversationModel conversation;
-        string uid;
-        string kachat;
-        
+        DataClass dataClass = DataClass.GetInstance;
+        bool isDataFetched = false;
+        string userID;
+        string receiverID;
 
         public class MessageList
         {
@@ -28,20 +31,17 @@ namespace ChatApp.Pages.Tabbed
             public ColumnDefinitionCollection columnDef { get; set; }
             public string color { get; set; }
             public LayoutOptions alignment { get; set; }
-        }
-        public Conversation(string kachat)
+        } 
+        public Conversation(string receiverID)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-            uid = (string)Application.Current.Properties["id"];
-            this.kachat = kachat;
-            conversation = GlobalData.conversationList.Where(
-                x => (Array.Exists(x.converseeID, element => element == uid) &&
-                Array.Exists(x.converseeID, element => element == kachat))
-            ).FirstOrDefault();
+            userID = dataClass.loggedInUser.uid;
+            this.receiverID = receiverID;
 
             FetchConversation();
+            //FetchMessages();
         }
 
         private async void GoBack(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace ChatApp.Pages.Tabbed
             }
         }
 
-        private void SendMessage(object sender, EventArgs e)
+        private async void SendMessage(object sender, EventArgs e)
         {
             string message = MessageEntry.Text;
 
@@ -78,30 +78,38 @@ namespace ChatApp.Pages.Tabbed
 
             if (conversation == null)
             {
-                GlobalData.conversationList.Add(new ConversationModel
+                conversation = new ConversationModel()
                 {
-                    //id = (new id),
+                    id = Guid.NewGuid().ToString(),
                     messages = new List<MessageModel> { },
-                    converseeID = new string[] { uid, kachat }
-                });
+                    converseeID = new string[] { userID, receiverID },
+                    created_at = DateTime.UtcNow,
+                };
 
-                conversation = GlobalData.conversationList.Where(
-                    x => (Array.Exists(x.converseeID, element => element == uid) &&
-                    Array.Exists(x.converseeID, element => element == kachat))
-                ).FirstOrDefault();
-
-                FetchConversation();
+                await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("conversations")
+                        .Document(conversation.id)
+                        .SetAsync(conversation);
             }
 
-            conversation.messages.Add(new MessageModel
+            MessageModel newMessage = new MessageModel()
             {
-                //id = (new id),
+                id = Guid.NewGuid().ToString(),
                 message = message,
-                converseeID = uid,
+                converseeID = userID,
                 created_at = DateTime.Now
-            });
+            };
 
-            MessageEntry.Text = String.Empty;
+            conversation.messages.Add(newMessage);
+
+            await CrossCloudFirestore.Current
+                .Instance
+                .Collection("conversations")
+                .Document(conversation.id)
+                .UpdateAsync("messages", FieldValue.ArrayUnion(newMessage));
+
+            MessageEntry.Text = string.Empty;
             messageList.Clear();
             messageListView.ItemsSource = null;
             FetchConversation();
@@ -109,9 +117,35 @@ namespace ChatApp.Pages.Tabbed
 
         private async void FetchConversation()
         {
-            if (conversation == null)
+            if (isDataFetched == false)
             {
-                return;
+                var firestoreConversation = await CrossCloudFirestore.Current.Instance.Collection("conversations")
+                                    .WhereArrayContains("converseeID", userID)
+                                    .GetAsync();
+
+
+
+                var convo = firestoreConversation.ToObjects<ConversationModel>()
+                                    .ToArray()
+                                    .Where(x => Array.Exists(x.converseeID, y => y == userID) && Array.Exists(x.converseeID, y => y == receiverID))
+                                    .FirstOrDefault();
+
+                if (convo == null)
+                {
+                    AlertLabel.IsVisible = true;
+                    isDataFetched = true;
+                    return;
+                }
+
+                conversation = new ConversationModel()
+                {
+                    id = convo.id,
+                    converseeID = convo.converseeID,
+                    messages = convo.messages,
+                    created_at = convo.created_at,
+                };
+
+                isDataFetched = true;
             }
 
             messageListView.IsRefreshing = true;
@@ -124,7 +158,7 @@ namespace ChatApp.Pages.Tabbed
 
                 ColumnDefinitionCollection columnDef = (ColumnDefinitionCollection)new ColumnDefinitionCollectionTypeConverter().ConvertFromInvariantString("40, *");
 
-                if (conversation.messages[i].converseeID == kachat)
+                if (conversation.messages[i].converseeID == receiverID)
                 {
                     column = "0";
                     columnDef = (ColumnDefinitionCollection)new ColumnDefinitionCollectionTypeConverter().ConvertFromInvariantString("*, 40");
@@ -144,7 +178,7 @@ namespace ChatApp.Pages.Tabbed
             }
 
             messageListGrid.IsVisible = true;
-            alertLabel.IsVisible = false;            
+            AlertLabel.IsVisible = false;
             messageListView.ItemsSource = messageList;
 
             if (messageList.Count > 0)
@@ -152,7 +186,6 @@ namespace ChatApp.Pages.Tabbed
                 messageListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
             }
 
-            //await Task.Delay(1500);
             messageListView.IsRefreshing = false;
         }
     }

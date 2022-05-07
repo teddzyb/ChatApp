@@ -73,7 +73,7 @@
                 Grid.Row="1"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="StartAndExpand">
-                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
+                <TabbedView:Chats x:Name="Chats" IsVisible="true" />
             </StackLayout>
 
 
