@@ -38,16 +38,23 @@ namespace ChatApp.Pages.Tabbed
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
         {
-            var uid = (string)((TappedEventArgs)e).Parameter;
+            var receiverID = (string)((TappedEventArgs)e).Parameter;
 
-            var contactList = GlobalData.userList.Where(x => x.uid == uid).FirstOrDefault();
 
+            var firestoreContact = await CrossCloudFirestore.Current
+                                     .Instance
+                                     .Collection("users")
+                                     .WhereEqualsTo("uid", receiverID)
+                                     .GetAsync();
+
+            var contact = firestoreContact.ToObjects<UserModel>().ToArray();
+            
             var user = new UserModel
             {
-                email = contactList.email,
+                email = contact[0].email,
             };
 
-            var conversation = new Conversation(uid)
+            var conversation = new Conversation(receiverID)
             {
                 BindingContext = user
             };

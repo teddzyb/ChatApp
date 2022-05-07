@@ -1,4 +1,5 @@
 ﻿using ChatApp.TempData;
+using Plugin.CloudFirestore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,13 +13,14 @@ using Xamarin.Forms.Xaml;
 namespace ChatApp.Pages.Tabbed
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
     public partial class Conversation : ContentPage
     {
         ObservableCollection<MessageList> messageList = new ObservableCollection<MessageList>();
         ConversationModel conversation;
-        string uid;
-        string kachat;
-        
+        DataClass dataClass = DataClass.GetInstance;
+        string userID;
+        string receiverID;
 
         public class MessageList
         {
@@ -28,20 +30,17 @@ namespace ChatApp.Pages.Tabbed
             public ColumnDefinitionCollection columnDef { get; set; }
             public string color { get; set; }
             public LayoutOptions alignment { get; set; }
-        }
-        public Conversation(string kachat)
+        } 
+        public Conversation(string receiverID)
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-            uid = (string)Application.Current.Properties["id"];
-            this.kachat = kachat;
-            conversation = GlobalData.conversationList.Where(
-                x => (Array.Exists(x.converseeID, element => element == uid) &&
-                Array.Exists(x.converseeID, element => element == kachat))
-            ).FirstOrDefault();
+            userID = dataClass.loggedInUser.uid;
+            this.receiverID = receiverID;
 
             FetchConversation();
+            FetchMessages();
         }
 
         private async void GoBack(object sender, EventArgs e)
@@ -65,7 +64,7 @@ namespace ChatApp.Pages.Tabbed
             }
         }
 
-        private void SendMessage(object sender, EventArgs e)
+        private async void SendMessage(object sender, EventArgs e)
         {
             string message = MessageEntry.Text;
 
@@ -78,36 +77,56 @@ namespace ChatApp.Pages.Tabbed
 
             if (conversation == null)
             {
-                GlobalData.conversationList.Add(new ConversationModel
+                conversation = new ConversationModel()
                 {
-                    //id = (new id),
+                    id = Guid.NewGuid().ToString(),
                     messages = new List<MessageModel> { },
-                    converseeID = new string[] { uid, kachat }
-                });
+                    converseeID = new string[] { userID, receiverID },
+                    created_at = DateTime.UtcNow,
+                };
 
-                conversation = GlobalData.conversationList.Where(
-                    x => (Array.Exists(x.converseeID, element => element == uid) &&
-                    Array.Exists(x.converseeID, element => element == kachat))
-                ).FirstOrDefault();
-
-                FetchConversation();
+                await CrossCloudFirestore.Current
+                        .Instance
+                        .Collection("conversation")
+                        .Document(conversation.id)
+                        .SetAsync(conversation);
             }
 
-            conversation.messages.Add(new MessageModel
+            MessageModel newMessage = new MessageModel()
             {
-                //id = (new id),
+                id = Guid.NewGuid().ToString(),
                 message = message,
-                converseeID = uid,
+                converseeID = userID,
                 created_at = DateTime.Now
-            });
+            };
 
-            MessageEntry.Text = String.Empty;
+            conversation.messages.Add(newMessage);
+
+            await CrossCloudFirestore.Current
+                .Instance
+                .Collection("conversation")
+                .Document(conversation.id)
+                .UpdateAsync("messages", FieldValue.ArrayUnion(newMessage));
+
+            MessageEntry.Text = string.Empty;
             messageList.Clear();
             messageListView.ItemsSource = null;
-            FetchConversation();
+            FetchMessages();
         }
 
         private async void FetchConversation()
+        {
+            var firestoreConversation = await CrossCloudFirestore.Current.Instance.Collection("conversation")
+                                                .WhereArrayContains("converseeID", userID)
+                                                .GetAsync();
+
+            conversation = firestoreConversation.ToObjects<ConversationModel>()
+                                .ToArray()
+                                .Where(x => Array.Exists(x.converseeID, y => y == userID) && Array.Exists(x.converseeID, y => y == receiverID))
+                                .FirstOrDefault();
+        }
+        
+        private async void FetchMessages()
         {
             if (conversation == null)
             {
@@ -124,7 +143,7 @@ namespace ChatApp.Pages.Tabbed
 
                 ColumnDefinitionCollection columnDef = (ColumnDefinitionCollection)new ColumnDefinitionCollectionTypeConverter().ConvertFromInvariantString("40, *");
 
-                if (conversation.messages[i].converseeID == kachat)
+                if (conversation.messages[i].converseeID == receiverID)
                 {
                     column = "0";
                     columnDef = (ColumnDefinitionCollection)new ColumnDefinitionCollectionTypeConverter().ConvertFromInvariantString("*, 40");
