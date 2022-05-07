@@ -84,7 +84,6 @@
     <Compile Include="CustomRenderers\CustomEntryRenderer.cs" />
     <Compile Include="CustomRenderers\CustomButtonRenderer.cs" />
     <Compile Include="CustomRenderers\CustomSearchBarRenderer.cs" />
-    <Compile Include="DependencyServices\FirebaseAuthService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,7 +93,7 @@
     <None Include="..\..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
-    <GoogleServicesJson Include="google-services.json" />
+    <None Include="google-services.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ChatApp
 {
-    public class UserModel : INotifyPropertyChanged
+    class UserModel : INotifyPropertyChanged
     {
         string _uid { get; set; }
         string _username { get; set; }

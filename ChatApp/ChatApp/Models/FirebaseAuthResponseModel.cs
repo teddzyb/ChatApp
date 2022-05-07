@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ChatApp
 {
-    public class FirebaseAuthResponseModel : INotifyPropertyChanged
+    class FirebaseAuthResponseModel : INotifyPropertyChanged
     {
         bool _Status { get; set; }
         string _Response { get; set; }
