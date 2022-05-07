@@ -87,7 +87,7 @@ namespace ChatApp.Pages.Tabbed
 
                 await CrossCloudFirestore.Current
                         .Instance
-                        .Collection("conversation")
+                        .Collection("conversations")
                         .Document(conversation.id)
                         .SetAsync(conversation);
             }
@@ -104,7 +104,7 @@ namespace ChatApp.Pages.Tabbed
 
             await CrossCloudFirestore.Current
                 .Instance
-                .Collection("conversation")
+                .Collection("conversations")
                 .Document(conversation.id)
                 .UpdateAsync("messages", FieldValue.ArrayUnion(newMessage));
 
@@ -116,7 +116,7 @@ namespace ChatApp.Pages.Tabbed
 
         private async void FetchConversation()
         {
-            var firestoreConversation = await CrossCloudFirestore.Current.Instance.Collection("conversation")
+            var firestoreConversation = await CrossCloudFirestore.Current.Instance.Collection("conversations")
                                                 .WhereArrayContains("converseeID", userID)
                                                 .GetAsync();
 
