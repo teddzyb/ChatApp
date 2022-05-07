@@ -126,7 +126,7 @@ namespace ChatApp.Pages.Tabbed
                                 .FirstOrDefault();
         }
         
-        private async void FetchMessages()
+        private void FetchMessages()
         {
             if (conversation == null)
             {

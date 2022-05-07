@@ -16,6 +16,8 @@ namespace ChatApp
 
         ObservableCollection<ConversationModel> conversationList = new ObservableCollection<ConversationModel>();
         DataClass dataClass = DataClass.GetInstance;
+
+        [Obsolete]
         public App()
         {
             InitializeComponent();
