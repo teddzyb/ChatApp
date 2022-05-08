@@ -10,14 +10,14 @@ namespace ChatApp
     public class ConversationModel : INotifyPropertyChanged
     {
         string _id { get; set; }
-        List<MessageModel> _messages { get; set; }
-        string[] _converseeID { get; set; }
-        DateTime _created_at { get; set; }
+        string _message { get; set; }
+        string _converseeID { get; set; }
+        DateTimeOffset _createdAt { get; set; }
 
         public string id { get { return _id; } set { _id = value; OnPropertyChanged(nameof(id)); } }
-        public List<MessageModel> messages { get { return _messages; } set { _messages = value; OnPropertyChanged(nameof(messages)); } }
-        public string[] converseeID { get { return _converseeID; } set { _converseeID = value; OnPropertyChanged(nameof(converseeID)); } }
-        public DateTime created_at { get { return _created_at; } set { _created_at = value; OnPropertyChanged(nameof(created_at)); } }
+        public string message { get { return _message; } set { _message = value; OnPropertyChanged(nameof(message)); } }
+        public string converseeID { get { return _converseeID; } set { _converseeID = value; OnPropertyChanged(nameof(converseeID)); } }
+        public DateTimeOffset createdAt { get { return _createdAt; } set { _createdAt = value; OnPropertyChanged(nameof(createdAt)); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

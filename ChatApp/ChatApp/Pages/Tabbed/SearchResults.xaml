@@ -143,14 +143,10 @@
                                     </Grid.GestureRecognizers>
                                 </Grid>
                             </ViewCell>
-
-
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

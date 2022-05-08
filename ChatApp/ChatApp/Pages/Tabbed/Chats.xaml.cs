@@ -28,7 +28,6 @@ namespace ChatApp.Pages.Tabbed
             //    FetchContacts();
             //});
 
-
             ContactListView.RefreshCommand = new Command(() =>
             {
                 FetchContacts();
@@ -39,29 +38,27 @@ namespace ChatApp.Pages.Tabbed
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
         {
-            var receiverID = (string)((TappedEventArgs)e).Parameter;
+            var contactID = (string)((TappedEventArgs)e).Parameter;
 
-
-            var firestoreContact = await CrossCloudFirestore.Current
+            var document = await CrossCloudFirestore.Current
                                      .Instance
-                                     .Collection("users")
-                                     .WhereEqualsTo("uid", receiverID)
+                                     .Collection("contacts")
+                                     .Document(contactID)
                                      .GetAsync();
 
-            var contact = firestoreContact.ToObjects<UserModel>().ToArray();
+            var contact = document.ToObject<ContactModel>();
 
             var user = new UserModel
             {
-                username = contact[0].username,
+                username = dataClass.loggedInUser.uid == contact.contactID[0] ? contact.contactName[1] : contact.contactName[0],
             };
 
-            var conversation = new Conversation(receiverID)
+            var conversation = new Conversation(contactID)
             {
                 BindingContext = user
             };
             await Navigation.PushAsync(conversation, true);
         }
-
 
         private void FetchContacts()
         {

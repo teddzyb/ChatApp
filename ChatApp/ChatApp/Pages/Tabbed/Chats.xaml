@@ -22,8 +22,8 @@
                     Grid.Row="0"
                     Margin="10,0,0,10"
                     Text="Contacts"
-                    VerticalTextAlignment="Start"
-                    TextColor="#424242" />
+                    TextColor="#424242"
+                    VerticalTextAlignment="Start" />
                 <ListView
                     x:Name="ContactListView"
                     Grid.Row="1"
@@ -105,9 +105,9 @@
                                                     WidthRequest="25" />
                                             </StackLayout>
                                         </StackLayout>
-                                        <!--<Frame.GestureRecognizers>
+                                        <Frame.GestureRecognizers>
                                             <TapGestureRecognizer CommandParameter="{Binding id}" Tapped="Frame_GoToConvo" />
-                                        </Frame.GestureRecognizers>-->
+                                        </Frame.GestureRecognizers>
                                     </Frame>
                                 </Grid>
                             </ViewCell>

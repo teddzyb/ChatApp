@@ -62,23 +62,22 @@
             </Grid>
         </StackLayout>
 
-        <!--  Start Converstation  -->
-        <StackLayout
-            x:Name="AlertLabel"
-            IsVisible="False"
-            VerticalOptions="CenterAndExpand">
-            <Label
-                FontSize="Medium"
-                HorizontalTextAlignment="Center"
-                Text="You can now start a conversation with this person."
-                VerticalOptions="FillAndExpand" />
-        </StackLayout>
-
         <!--  Messages  -->
         <StackLayout
             x:Name="messageListGrid"
             IsVisible="True"
             VerticalOptions="CenterAndExpand">
+            <!--  Start Converstation  -->
+            <StackLayout
+                x:Name="AlertLabel"
+                IsVisible="False"
+                VerticalOptions="StartAndExpand">
+                <Label
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    Text="You can now start a conversation with this person."
+                    VerticalOptions="CenterAndExpand" />
+            </StackLayout>
             <Grid
                 Margin="10,0"
                 BackgroundColor="#fff"
@@ -89,7 +88,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <ListView
-                    x:Name="messageListView"
+                    x:Name="conversationListView"
                     Grid.Row="1"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"
@@ -99,16 +98,35 @@
                         <DataTemplate>
                             <ViewCell>
                                 <Grid RowDefinitions="auto, auto" VerticalOptions="StartAndExpand">
-                                    <Grid ColumnDefinitions="{Binding columnDef}" IsVisible="true">
+                                    <Grid ColumnDefinitions="*, 40" IsVisible="true">
+                                        <Grid.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding ., Converter={StaticResource isViewerConverter}}"
+                                                TargetType="Grid"
+                                                Value="True">
+                                                <Setter Property="ColumnDefinitions" Value=" 40, *" />
+                                            </DataTrigger>
+                                        </Grid.Triggers>
+
                                         <Frame
-                                            Grid.Column="{Binding column}"
+                                            Grid.Column="0"
                                             Margin="0"
                                             Padding="5"
-                                            BackgroundColor="{Binding color}"
+                                            BackgroundColor="#e91e63"
                                             CornerRadius="30"
                                             HasShadow="True"
-                                            HorizontalOptions="{Binding alignment}"
+                                            HorizontalOptions="Start"
                                             MinimumWidthRequest="20">
+                                            <Frame.Triggers>
+                                                <DataTrigger
+                                                    Binding="{Binding ., Converter={StaticResource isViewerConverter}}"
+                                                    TargetType="Frame"
+                                                    Value="True">
+                                                    <Setter Property="Grid.Column" Value="1" />
+                                                    <Setter Property="BackgroundColor" Value="#9c27b0" />
+                                                    <Setter Property="HorizontalOptions" Value="End" />
+                                                </DataTrigger>
+                                            </Frame.Triggers>
                                             <Label
                                                 Margin="10"
                                                 LineBreakMode="WordWrap"
@@ -123,8 +141,6 @@
                 </ListView>
             </Grid>
         </StackLayout>
-
-
 
         <!--  Message Entry  -->
         <StackLayout
