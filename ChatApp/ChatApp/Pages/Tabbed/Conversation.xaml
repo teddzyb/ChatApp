@@ -183,6 +183,7 @@
                             MaxLength="240"
                             MinimumHeightRequest="50"
                             Placeholder="Write your message here..."
+                            Focused="ToggleSendButton"
                             TextChanged="ToggleSendButton" />
                     </Frame>
                     <ImageButton

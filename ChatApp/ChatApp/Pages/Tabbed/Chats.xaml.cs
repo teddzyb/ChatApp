@@ -43,6 +43,7 @@ namespace ChatApp.Pages.Tabbed
             if (isLoaded == false)
             {
                 isLoaded = true;
+                ContactListView.IsRefreshing = true;
                 var contactID = (string)((TappedEventArgs)e).Parameter;
 
                 var document = await CrossCloudFirestore.Current
@@ -63,6 +64,7 @@ namespace ChatApp.Pages.Tabbed
                     BindingContext = user
                 };
                 await Navigation.PushAsync(conversation, true);
+                ContactListView.IsRefreshing = false;
             }
         }
 

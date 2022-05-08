@@ -52,7 +52,7 @@ namespace ChatApp.Pages.Tabbed
                 AlertLabel.IsVisible = false;
                 return;
             }
-            
+
             FetchSearchResults();
         }
         
@@ -64,6 +64,7 @@ namespace ChatApp.Pages.Tabbed
 
             if (isFetched == false)
             {
+                isFetched = true;
                 var documents = await CrossCloudFirestore.Current
                     .Instance
                     .Collection("users")
@@ -77,14 +78,12 @@ namespace ChatApp.Pages.Tabbed
                 //    userResult.Add(obj);
                 //}
                 
-                var userData = documents.ToObjects<UserModel>()                ;
+                var userData = documents.ToObjects<UserModel>();
                 
                 foreach (var user in userData)
                 {
                     userList.Add(user);
                 }
-
-                isFetched = true;
             }
 
             foreach (var user in userList.Where(user => user.email.ToLower().Contains(SearchEntry.Text.ToLower())))

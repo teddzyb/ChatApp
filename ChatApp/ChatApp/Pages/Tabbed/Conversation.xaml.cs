@@ -26,7 +26,8 @@ namespace ChatApp.Pages.Tabbed
             NavigationPage.SetHasNavigationBar(this, false);
             this.contactID = contactID;
 
-            FetchConversation();        }
+            FetchConversation();
+        }
 
         private void FetchConversation()
         {
@@ -63,12 +64,7 @@ namespace ChatApp.Pages.Tabbed
                                     }
                                     break;
                             }
-
-                            if (conversationListView != null)
-                            {
-                                var conv = conversationListView.ItemsSource.Cast<object>().LastOrDefault();
-                                conversationListView.ScrollTo(conv, ScrollToPosition.End, false);
-                            }
+                            conversationListView.ScrollTo(conversationList[conversationList.Count - 1], ScrollToPosition.End, true); // keep this true or else bug
                         }
                         AlertLabel.IsVisible = conversationList.Count == 0;
                         conversationListView.IsVisible = !(conversationList.Count == 0);
@@ -92,10 +88,10 @@ namespace ChatApp.Pages.Tabbed
                 SendButton.Source = "send_enabled";
             }
 
-            //if (messageList != null && messageList.Count > 0)
-            //{
-            //    conversationListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
-            //}
+            if (conversationList != null && conversationList.Count > 0)
+            {
+                conversationListView.ScrollTo(conversationList[conversationList.Count - 1], ScrollToPosition.End, false);
+            }
         }
 
         protected override void OnDisappearing()
