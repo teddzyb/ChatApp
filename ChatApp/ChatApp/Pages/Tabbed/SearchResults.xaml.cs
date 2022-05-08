@@ -52,9 +52,10 @@ namespace ChatApp.Pages.Tabbed
             
             FetchSearchResults();
         }
-
+        
         private async void FetchSearchResults()
         {
+            userListView.IsRefreshing = true;
             userListView.ItemsSource = null;
             userResult.Clear();
 
@@ -114,7 +115,7 @@ namespace ChatApp.Pages.Tabbed
 
             if (dataClass.loggedInUser.contacts.Contains(searchID))
             {
-                await DisplayAlert("Error", "You are already added to this contact.", "", "OKAY");
+                await DisplayAlert("Failed", "You both already have a connection", "", "OKAY");
                 return;
             }
 
@@ -161,7 +162,7 @@ namespace ChatApp.Pages.Tabbed
                     .UpdateAsync(new { contacts = toAddUser.contacts });
 
                 FetchSearchResults();
-                await DisplayAlert("Success", "Contact added successfully.", "", "OKAY");
+                await DisplayAlert("Success", "You are now connected with" + toAddUser.username, "", "OKAY");
             }
         }
     }
