@@ -62,7 +62,9 @@ namespace ChatApp.Pages.Tabbed
 
         private void FetchContacts()
         {
-            string id = dataClass.loggedInUser.uid;
+            ContactListView.ItemsSource = null;
+            contactList.Clear();
+            string id = dataClass.loggedInUser.uid;            
 
             CrossCloudFirestore.Current
                 .Instance
