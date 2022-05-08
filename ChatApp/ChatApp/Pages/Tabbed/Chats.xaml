@@ -10,8 +10,8 @@
                 x:Name="ContactListGrid"
                 Margin="20,10,20,-12"
                 BackgroundColor="#ffffff"
-                HorizontalOptions="FillAndExpand"
-                IsVisible="true"
+                HorizontalOptions="StartAndExpand"
+                IsVisible="True"
                 RowSpacing="0"
                 VerticalOptions="CenterAndExpand">
                 <Grid.RowDefinitions>
@@ -24,7 +24,7 @@
                     Text="Contacts"
                     TextColor="#424242" />
                 <ListView
-                    x:Name="userListView"
+                    x:Name="ContactListView"
                     Grid.Row="1"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"
@@ -36,6 +36,15 @@
                             <ViewCell>
                                 <Grid Padding="0" BackgroundColor="Transparent">
                                     <Frame BorderColor="Transparent" CornerRadius="0">
+                                        <!--<Frame.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding contactID, Converter={StaticResource isOwnerConverter}}"
+                                                TargetType="Frame"
+                                                Value="True">
+                                                <Setter Property="BorderColor" Value="LightGreen" />
+                                            </DataTrigger>
+                                        </Frame.Triggers>-->
+
                                         <StackLayout Orientation="Horizontal">
                                             <StackLayout Margin="-10,0,20,0">
                                                 <Frame
@@ -59,14 +68,32 @@
                                                 <Label
                                                     FontAttributes="Bold"
                                                     FontSize="Small"
-                                                    Text="{Binding username}"
+                                                    Text="{Binding contactName[0]}"
                                                     TextColor="#424242"
-                                                    VerticalOptions="Center" />
+                                                    VerticalOptions="Center">
+                                                    <Label.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding contactID, Converter={StaticResource isOwnerConverter}}"
+                                                            TargetType="Label"
+                                                            Value="True">
+                                                            <Setter Property="Text" Value="{Binding contactName[1]}" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
                                                 <Label
                                                     FontSize="Small"
-                                                    Text="{Binding email}"
+                                                    Text="{Binding contactEmail[0]}"
                                                     TextColor="#757575"
-                                                    VerticalOptions="Center" />
+                                                    VerticalOptions="Center">
+                                                    <Label.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding contactID, Converter={StaticResource isOwnerConverter}}"
+                                                            TargetType="Label"
+                                                            Value="True">
+                                                            <Setter Property="Text" Value="{Binding contactEmail[1]}" />
+                                                        </DataTrigger>
+                                                    </Label.Triggers>
+                                                </Label>
                                             </StackLayout>
 
                                             <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
@@ -77,9 +104,9 @@
                                                     WidthRequest="25" />
                                             </StackLayout>
                                         </StackLayout>
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer CommandParameter="{Binding uid}" Tapped="Frame_GoToConvo" />
-                                        </Frame.GestureRecognizers>
+                                        <!--<Frame.GestureRecognizers>
+                                            <TapGestureRecognizer CommandParameter="{Binding id}" Tapped="Frame_GoToConvo" />
+                                        </Frame.GestureRecognizers>-->
                                     </Frame>
                                 </Grid>
                             </ViewCell>

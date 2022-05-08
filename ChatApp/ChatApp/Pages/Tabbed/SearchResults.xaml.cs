@@ -18,6 +18,7 @@ namespace ChatApp.Pages.Tabbed
     {
         bool isFetching = false;
         ObservableCollection<UserResults> userResultsList = new ObservableCollection<UserResults>();
+        DataClass dataClass = DataClass.GetInstance;
         public class UserResults
         {
             public string id { get; set; }
@@ -25,9 +26,6 @@ namespace ChatApp.Pages.Tabbed
             public string email { get; set; }
             public string iconSource { get; set; }
         }
-
-        DataClass dataClass = DataClass.GetInstance;
-
         public SearchResults()
         {
             InitializeComponent();
@@ -131,6 +129,13 @@ namespace ChatApp.Pages.Tabbed
 
             if (answer)
             {
+                ContactModel contact = new ContactModel()
+                {
+                    id = Guid.NewGuid().ToString(),
+                    contactID = new string[] { dataClass.loggedInUser.uid,  }
+                };
+
+
                 await CrossCloudFirestore.Current
                          .Instance
                          .Collection("users")

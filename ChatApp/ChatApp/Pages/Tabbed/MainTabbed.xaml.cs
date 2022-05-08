@@ -17,7 +17,6 @@ namespace ChatApp.Pages.Tabbed
         bool isFriendsNotExist = true;
         DataClass dataClass = DataClass.GetInstance;
 
-        [Obsolete]
         public MainTabbed()
         {
             InitializeComponent();
@@ -62,14 +61,13 @@ namespace ChatApp.Pages.Tabbed
             await Navigation.PushAsync(new SearchResults(), true);
         }
 
-        [Obsolete]
         private async void checkUserContacts()
         {
             string id = dataClass.loggedInUser.uid;
             var firestoreUserContactList = await CrossCloudFirestore.Current.Instance.Collection("users").WhereEqualsTo("uid", id).GetAsync();
-            var UserContactList = firestoreUserContactList.ToObjects<UserModel>().ToArray();
+            var UserContactList = firestoreUserContactList.ToObjects<UserModel>().FirstOrDefault();
 
-            if (UserContactList[0].contacts.Count != 0) // Naa kay friends
+            if (UserContactList != null && UserContactList.contacts.Count != 0) // Naa kay friends
             {
                 isFriendsNotExist = false;
                 AlertLabel.IsVisible = false;

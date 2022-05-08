@@ -14,9 +14,9 @@ namespace ChatApp
         {
             bool retVal = false;
             
-            string[] players = value as string[];
+            string[] users = value as string[];
 
-            if (players[0].Equals(dataClass.loggedInUser.uid))
+            if (users[0].Equals(dataClass.loggedInUser.uid))
             {
                 retVal = true;
             }

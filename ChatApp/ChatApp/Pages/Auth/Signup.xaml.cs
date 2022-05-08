@@ -103,11 +103,11 @@ namespace ChatApp.Pages.Auth
                     .GetDocument(dataClass.loggedInUser.uid)
                     .SetDataAsync(dataClass.loggedInUser);
 
-                await CrossCloudFirestore.Current
-                    .Instance
-                    .GetCollection("contacts")
-                    .GetDocument(dataClass.userContact.id)
-                    .SetDataAsync(dataClass.userContact);
+                //await CrossCloudFirestore.Current
+                //    .Instance
+                //    .GetCollection("contacts")
+                //    .GetDocument(dataClass.userContact.id)
+                //    .SetDataAsync(dataClass.userContact);
 
                 await DisplayAlert("Success", res.Response, "Okay");
                 await Navigation.PopAsync();

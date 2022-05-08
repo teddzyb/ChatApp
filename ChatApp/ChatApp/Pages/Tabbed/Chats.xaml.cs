@@ -9,31 +9,32 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ChatApp.TempData;
 using Plugin.CloudFirestore;
+using Newtonsoft.Json;
 
 namespace ChatApp.Pages.Tabbed
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Chats : ContentView
     {
+        ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();
         DataClass dataClass = DataClass.GetInstance;
-
-        [Obsolete]
         public Chats()
         {
             InitializeComponent();
             FetchContacts();
 
-            MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) =>
+            //MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) =>
+            //{
+            //    FetchContacts();
+            //});
+
+
+            ContactListView.RefreshCommand = new Command(() =>
             {
                 FetchContacts();
             });
 
-            userListView.RefreshCommand = new Command(() =>
-            {
-                FetchContacts();
-            });
-
-            userListView.IsRefreshing = false;
+            ContactListView.IsRefreshing = false;
         }
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace ChatApp.Pages.Tabbed
                                      .GetAsync();
 
             var contact = firestoreContact.ToObjects<UserModel>().ToArray();
-            
+
             var user = new UserModel
             {
                 username = contact[0].username,
@@ -61,33 +62,71 @@ namespace ChatApp.Pages.Tabbed
             await Navigation.PushAsync(conversation, true);
         }
 
-        [Obsolete]
-        private async void FetchContacts()
+
+        private void FetchContacts()
         {
-            userListView.IsRefreshing = true;
-          
             string id = dataClass.loggedInUser.uid;
-            var firestoreContactList = await CrossCloudFirestore.Current.Instance.Collection("contacts").WhereArrayContains("contactID", id).GetDocumentsAsync();
-            ContactListGrid.IsVisible = true;
 
-            var contactList = firestoreContactList.ToObjects<ContactModel>().ToArray();
+            CrossCloudFirestore.Current
+                .Instance
+                .Collection("contacts")
+                .WhereArrayContains("contactID", id)
+                .AddSnapshotListener((snapshot, error) =>
+                {
+                    ContactListView.IsRefreshing = true;
+                    if (snapshot != null)
+                    {
+                        foreach (var documentChange in snapshot.DocumentChanges)
+                        {
+                            var json = JsonConvert.SerializeObject(documentChange.Document.Data);
+                            var obj = JsonConvert.DeserializeObject<ContactModel>(json);
+                            switch (documentChange.Type)
+                            {
+                                case DocumentChangeType.Added:
+                                    contactList.Add(obj);
+                                    break;
+                                case DocumentChangeType.Modified:
+                                    if (contactList.Where(c => c.id == obj.id).Any())
+                                    {
+                                        var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
+                                        item = obj;
+                                    }
+                                    break;
+                                case DocumentChangeType.Removed:
+                                    if (contactList.Where(c => c.id == obj.id).Any())
+                                    {
+                                        var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
+                                        contactList.Remove(item);
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    ContactListView.IsVisible = !(contactList.Count == 0);
+                    ContactListView.IsRefreshing = false;
+                });
 
-            if (contactList[0].contactID.Count() == 1)
-            {
-                ContactListGrid.IsVisible = false;
-                userListView.IsRefreshing = false;
-                return;
-            }
+            ContactListView.ItemsSource = contactList;
 
-            ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
+            //var contactList = firestoreContactList.ToObjects<ContactModel>().ToArray();
 
-            for (int i = 1; i < contactList[0].contactID.Count(); i++)
-            {
-                userContacts.Add(new UserModel() { uid = contactList[0].contactID[i], username = contactList[0].contactName[i], email = contactList[0].contactEmail[i] });
-            }
+            //if (contactList[0].contactID.Count() == 1)
+            //{
+            //    ContactListGrid.IsVisible = false;
+            //    userListView.IsRefreshing = false;
+            //    return;
+            //}
 
-            userListView.ItemsSource = userContacts;
-            userListView.IsRefreshing = false;
+            //ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
+
+            //for (int i = 1; i < contactList[0].contactID.Count(); i++)
+            //{
+            //    userContacts.Add(new UserModel() { uid = contactList[0].contactID[i], username = contactList[0].contactName[i], email = contactList[0].contactEmail[i] });
+            //}
+
+            //userListView.ItemsSource = userContacts;
+            //userListView.IsRefreshing = false;
+
         }
     }
 }

@@ -8,13 +8,16 @@
     <Application.Resources>
         <ResourceDictionary>
 
+            <local:IsOwnerConverter x:Key="isOwnerConverter" />
+            <local:IsViewerConverter x:Key="isViewerConverter" />
+
             <Color x:Key="primary-light-color">#ffffff</Color>
             <Color x:Key="primary-dark-color">#424242</Color>
 
             <Style ApplyToDerivedTypes="true" TargetType="ContentPage">
                 <Setter Property="BackgroundColor" Value="{StaticResource Key=primary-light-color}" />
             </Style>
-            
+
             <Style ApplyToDerivedTypes="true" TargetType="local:CustomEntry">
                 <Setter Property="PlaceholderColor" Value="#bdbdbd" />
                 <Setter Property="TextColor" Value="{StaticResource Key=primary-dark-color}" />

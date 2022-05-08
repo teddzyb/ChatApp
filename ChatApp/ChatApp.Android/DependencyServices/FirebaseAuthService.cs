@@ -32,7 +32,7 @@ namespace ChatApp.Droid
                     email = FirebaseAuth.Instance.CurrentUser.Email,
                     username = dataClass.loggedInUser.username,
                     userType = dataClass.loggedInUser.userType,
-                    created_at = dataClass.loggedInUser.created_at
+                    createdAt = dataClass.loggedInUser.createdAt
                 };
                 dataClass.isSignedIn = true;
                 return new FirebaseAuthResponseModel() { Status = true, Response = "Currently logged in." };
@@ -67,7 +67,7 @@ namespace ChatApp.Droid
                         email = result.User.Email,
                         username = yourModel.username,
                         userType = yourModel.userType,
-                        created_at = yourModel.created_at
+                        createdAt = yourModel.createdAt
                     };
                     dataClass.isSignedIn = true;
                     return new FirebaseAuthResponseModel() { Status = true, Response = "Login successful." };
@@ -127,18 +127,18 @@ namespace ChatApp.Droid
                     email = email,
                     username = username,
                     userType = 0,
-                    created_at = DateTime.UtcNow,
+                    createdAt = DateTime.UtcNow,
                     contacts = new List<string>(new string[] { }),
                 };
 
-                dataClass.userContact = new ContactModel()
-                {
-                    id = Guid.NewGuid().ToString(),
-                    contactID = new string[] { dataClass.loggedInUser.uid },
-                    contactName = new string[] { dataClass.loggedInUser.username },
-                    contactEmail = new string[] { dataClass.loggedInUser.email },
-                    created_at = DateTime.UtcNow,
-                };
+                //dataClass.userContact = new ContactModel()
+                //{
+                //    id = Guid.NewGuid().ToString(),
+                //    contactID = new string[] { dataClass.loggedInUser.uid },
+                //    contactName = new string[] { dataClass.loggedInUser.username },
+                //    contactEmail = new string[] { dataClass.loggedInUser.email },
+                //    created_at = DateTime.UtcNow,
+                //};
 
                 return new FirebaseAuthResponseModel() { Status = true, Response = "Sign up successful. Verification email sent." }; ;
             }
