@@ -18,8 +18,11 @@ namespace ChatApp.Pages.Tabbed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchResults : ContentPage
     {
-        ObservableCollection<UserModel> userResult = new ObservableCollection<UserModel>();
+        ObservableCollection<UserModel> filteredList = new ObservableCollection<UserModel>();
+        ObservableCollection<UserModel> userList = new ObservableCollection<UserModel>();
+
         DataClass dataClass = DataClass.GetInstance;
+        bool isFetched = false;
 
         public SearchResults()
         {
@@ -45,7 +48,7 @@ namespace ChatApp.Pages.Tabbed
             if (string.IsNullOrEmpty(SearchEntry.Text))
             {
                 userListView.ItemsSource = null;
-                userResult.Clear();
+                filteredList.Clear();
                 AlertLabel.IsVisible = false;
                 return;
             }
@@ -57,30 +60,39 @@ namespace ChatApp.Pages.Tabbed
         {
             userListView.IsRefreshing = true;
             userListView.ItemsSource = null;
-            userResult.Clear();
+            filteredList.Clear();
 
-            var documents = await CrossCloudFirestore.Current
-                .Instance
-                .Collection("users")
-                .WhereEqualsTo("email", SearchEntry.Text)
-                .GetAsync();
-
-            var userData = documents.ToObjects<UserModel>();
-
-            foreach (var user in userData)
+            if (isFetched == false)
             {
-                userResult.Add(user);
+                var documents = await CrossCloudFirestore.Current
+                    .Instance
+                    .Collection("users")
+                    .GetAsync();
+
+                //foreach (var documentChange in documents.DocumentChanges)
+                //{
+                //    var json = JsonConvert.SerializeObject(documentChange.Document.Data);
+                //    var obj = JsonConvert.DeserializeObject<UserModel>(json);
+
+                //    userResult.Add(obj);
+                //}
+                
+                var userData = documents.ToObjects<UserModel>()                ;
+                
+                foreach (var user in userData)
+                {
+                    userList.Add(user);
+                }
+
+                isFetched = true;
             }
 
-            //foreach (var documentChange in documents.DocumentChanges)
-            //{
-            //    var json = JsonConvert.SerializeObject(documentChange.Document.Data);
-            //    var obj = JsonConvert.DeserializeObject<UserModel>(json);
+            foreach (var user in userList.Where(user => user.email.ToLower().Contains(SearchEntry.Text.ToLower())))
+            {
+                filteredList.Add(user);
+            }
 
-            //    userResult.Add(obj);
-            //}
-
-            if (userResult.Count == 0)
+            if (filteredList.Count == 0)
             {
                 AlertLabel.IsVisible = true;
                 userListView.IsRefreshing = false;
@@ -89,7 +101,7 @@ namespace ChatApp.Pages.Tabbed
 
             AlertLabel.IsVisible = false;
             userListView.IsRefreshing = false;
-            userListView.ItemsSource = userResult;
+            userListView.ItemsSource = filteredList;
         }
 
         private void ClearResults(object sender, TextChangedEventArgs e)
@@ -97,7 +109,7 @@ namespace ChatApp.Pages.Tabbed
             if (string.IsNullOrEmpty(SearchEntry.Text))
             {
                 userListView.ItemsSource = null;
-                userResult.Clear();
+                filteredList.Clear();
                 AlertLabel.IsVisible = false;
             }
         }

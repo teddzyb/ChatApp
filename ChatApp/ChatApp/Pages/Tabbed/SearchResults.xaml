@@ -39,8 +39,8 @@
                             FontSize="Small"
                             Keyboard="Email"
                             Placeholder="Search Email"
-                            SearchButtonPressed="SearchQuery"
-                            TextChanged="ClearResults" />
+                            TextChanged="SearchQuery"
+                             />
                     </Frame>
                 </Grid>
 
