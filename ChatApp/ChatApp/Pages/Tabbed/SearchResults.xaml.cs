@@ -36,7 +36,7 @@ namespace ChatApp.Pages.Tabbed
 
         private async void GoBack(object sender, EventArgs e)
         {
-            MessagingCenter.Send(new MainPage(), "RefreshMainPage");
+            //MessagingCenter.Send(new MainPage(), "RefreshMainPage");
             await Navigation.PopAsync(true);
         }
 

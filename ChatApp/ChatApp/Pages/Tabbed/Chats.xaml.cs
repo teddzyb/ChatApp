@@ -18,15 +18,17 @@ namespace ChatApp.Pages.Tabbed
     {
         ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();
         DataClass dataClass = DataClass.GetInstance;
+        bool isLoaded = false;
         public Chats()
         {
             InitializeComponent();
             FetchContacts();
 
-            //MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) =>
-            //{
-            //    FetchContacts();
-            //});
+            MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) =>
+            {
+                //FetchContacts();
+                isLoaded = false;
+            });
 
             ContactListView.RefreshCommand = new Command(() =>
             {
@@ -38,26 +40,30 @@ namespace ChatApp.Pages.Tabbed
 
         private async void Frame_GoToConvo(object sender, EventArgs e)
         {
-            var contactID = (string)((TappedEventArgs)e).Parameter;
-
-            var document = await CrossCloudFirestore.Current
-                                     .Instance
-                                     .Collection("contacts")
-                                     .Document(contactID)
-                                     .GetAsync();
-
-            var contact = document.ToObject<ContactModel>();
-
-            var user = new UserModel
+            if (isLoaded == false)
             {
-                username = dataClass.loggedInUser.uid == contact.contactID[0] ? contact.contactName[1] : contact.contactName[0],
-            };
+                isLoaded = true;
+                var contactID = (string)((TappedEventArgs)e).Parameter;
 
-            var conversation = new Conversation(contactID)
-            {
-                BindingContext = user
-            };
-            await Navigation.PushAsync(conversation, true);
+                var document = await CrossCloudFirestore.Current
+                                         .Instance
+                                         .Collection("contacts")
+                                         .Document(contactID)
+                                         .GetAsync();
+
+                var contact = document.ToObject<ContactModel>();
+
+                var user = new UserModel
+                {
+                    username = dataClass.loggedInUser.uid == contact.contactID[0] ? contact.contactName[1] : contact.contactName[0],
+                };
+
+                var conversation = new Conversation(contactID)
+                {
+                    BindingContext = user
+                };
+                await Navigation.PushAsync(conversation, true);
+            }
         }
 
         private void FetchContacts()

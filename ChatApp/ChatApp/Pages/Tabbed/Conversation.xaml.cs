@@ -78,6 +78,7 @@ namespace ChatApp.Pages.Tabbed
         }
         private async void GoBack(object sender, EventArgs e)
         {
+            MessagingCenter.Send(new MainPage(), "RefreshMainPage");
             await Navigation.PopAsync();
         }
 
@@ -95,6 +96,11 @@ namespace ChatApp.Pages.Tabbed
             //{
             //    conversationListView.ScrollTo(messageList[messageList.Count - 1], ScrollToPosition.End, false);
             //}
+        }
+
+        protected override void OnDisappearing()
+        {
+            MessagingCenter.Send(new MainPage(), "RefreshMainPage");
         }
 
         private async void SendMessage(object sender, EventArgs e)
