@@ -1,5 +1,7 @@
 ﻿
 using ChatApp.TempData;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Plugin.CloudFirestore;
 using System;
 using System.Collections.Generic;
@@ -16,16 +18,9 @@ namespace ChatApp.Pages.Tabbed
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchResults : ContentPage
     {
-        bool isFetching = false;
-        ObservableCollection<UserResults> userResultsList = new ObservableCollection<UserResults>();
+        ObservableCollection<UserModel> userResult = new ObservableCollection<UserModel>();
         DataClass dataClass = DataClass.GetInstance;
-        public class UserResults
-        {
-            public string id { get; set; }
-            public string username { get; set; }
-            public string email { get; set; }
-            public string iconSource { get; set; }
-        }
+
         public SearchResults()
         {
             InitializeComponent();
@@ -45,36 +40,48 @@ namespace ChatApp.Pages.Tabbed
             await Navigation.PopAsync(true);
         }
 
-        private async void SearchQuery(object sender, TextChangedEventArgs textChangedEventArgs)
+        private void SearchQuery(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(SearchEntry.Text))
             {
                 userListView.ItemsSource = null;
+                userResult.Clear();
                 AlertLabel.IsVisible = false;
                 return;
             }
-
-            if (!isFetching)
-            {
-                userListView.IsRefreshing = true;
-                await Task.Delay(500);
-                fetchSearchResults();
-            }
+            
+            FetchSearchResults();
         }
 
-        private async void fetchSearchResults()
+        private async void FetchSearchResults()
         {
-            // Bug
-            isFetching = true;
+            //await DisplayAlert("Searching", dataClass.loggedInUser.contacts[0], "OK");
+
             userListView.ItemsSource = null;
-            userResultsList.Clear();
+            userResult.Clear();
 
-            string id = dataClass.loggedInUser.uid;
-            var firestoreUserList = await CrossCloudFirestore.Current.Instance.Collection("users").GetAsync();
+            var documents = await CrossCloudFirestore.Current
+                .Instance
+                .Collection("users")
+                .WhereEqualsTo("email", SearchEntry.Text)
+                .GetAsync();
 
-            var users = firestoreUserList.ToObjects<UserModel>().ToArray().Where(x => x.email.ToLower().Contains(SearchEntry.Text.ToLower()));
+            var userData = documents.ToObjects<UserModel>();
 
-            if (users.Count() == 0)
+            foreach (var user in userData)
+            {
+                userResult.Add(user);
+            }
+
+            //foreach (var documentChange in documents.DocumentChanges)
+            //{
+            //    var json = JsonConvert.SerializeObject(documentChange.Document.Data);
+            //    var obj = JsonConvert.DeserializeObject<UserModel>(json);
+
+            //    userResult.Add(obj);
+            //}
+
+            if (userResult.Count == 0)
             {
                 AlertLabel.IsVisible = true;
                 userListView.IsRefreshing = false;
@@ -82,28 +89,18 @@ namespace ChatApp.Pages.Tabbed
             }
 
             AlertLabel.IsVisible = false;
-            var userFriends = firestoreUserList.ToObjects<UserModel>().ToArray().Where(x => x.uid == id).First().contacts;
-
-            foreach (var user in users)
-            {
-                string iconSource = "add";
-
-                if (userFriends.Where(x => x == user.uid).Count() > 0)
-                {
-                    iconSource = "check";
-                }
-
-                if (user.uid == id)
-                {
-                    iconSource = "close_round";
-                }
-
-                userResultsList.Add(new UserResults { id = user.uid, username = user.username, email = user.email, iconSource = iconSource });
-            }
-
             userListView.IsRefreshing = false;
-            userListView.ItemsSource = userResultsList;
-            isFetching = false;
+            userListView.ItemsSource = userResult;
+        }
+
+        private void ClearResults(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchEntry.Text))
+            {
+                userListView.ItemsSource = null;
+                userResult.Clear();
+                AlertLabel.IsVisible = false;
+            }
         }
 
         private async void AddToContact(object sender, EventArgs e)
@@ -117,52 +114,56 @@ namespace ChatApp.Pages.Tabbed
                 return;
             }
 
-            var userContacts = userResultsList.Where(x => x.id == userID).ToArray();
-            if (userContacts.Where(x => x.id == searchID && x.iconSource == "check").Count() == 1)
+            if (dataClass.loggedInUser.contacts.Contains(searchID))
             {
-                await DisplayAlert("Failed", "You already have a connection.", "", "OKAY");
+                await DisplayAlert("Error", "You are already added to this contact.", "", "OKAY");
                 return;
             }
 
-            var user = userResultsList.Where(x => x.id == searchID).First();
-            bool answer = await DisplayAlert("Add Contact", "Would you like to add " + user.username + "?", "YES", "NO");
+            var document = await CrossCloudFirestore.Current
+                                     .Instance
+                                     .Collection("users")
+                                     .Document(searchID)
+                                     .GetAsync();
 
+            var toAddUser = document.ToObject<UserModel>();
+
+            bool answer = await DisplayAlert("Add Contact", "Would you like to add " + toAddUser.username + "?", "YES", "NO");
             if (answer)
             {
                 ContactModel contact = new ContactModel()
                 {
                     id = Guid.NewGuid().ToString(),
-                    contactID = new string[] { dataClass.loggedInUser.uid,  }
+                    contactID = new string[] { dataClass.loggedInUser.uid, toAddUser.uid },
+                    contactEmail = new string[] { dataClass.loggedInUser.email, toAddUser.email },
+                    contactName = new string[] { dataClass.loggedInUser.username, toAddUser.username },
+                    createdAt = DateTime.UtcNow,
                 };
 
+                await CrossCloudFirestore.Current
+                    .Instance
+                    .Collection("contacts")
+                    .Document(contact.id)
+                    .SetAsync(contact);
+                
+                dataClass.loggedInUser.contacts.Add(contact.id);
 
                 await CrossCloudFirestore.Current
-                         .Instance
-                         .Collection("users")
-                         .Document(userID)
-                         .UpdateAsync("contacts", FieldValue.ArrayUnion(user.id));
+                    .Instance
+                    .Collection("users")
+                    .Document(dataClass.loggedInUser.uid)
+                    .UpdateAsync(new { contacts = dataClass.loggedInUser.contacts });
 
-                var firestoreUserList = await CrossCloudFirestore.Current.Instance.Collection("contacts").WhereArrayContains("contactID", userID).GetAsync();
-                var userContact = firestoreUserList.ToObjects<ContactModel>().ToArray().Where(x => x.contactID[0] == userID).FirstOrDefault();
-
-                if (userContact == null)
-                {
-                    await DisplayAlert("Error", "", "", "OKAY");
-                    return;
-                }
+                toAddUser.contacts.Add(userID);
 
                 await CrossCloudFirestore.Current
-                        .Instance
-                        .Collection("contacts")
-                        .Document(userContact.id)
-                        .UpdateAsync("contactID", FieldValue.ArrayUnion(user.id),
-                                     "contactEmail", FieldValue.ArrayUnion(user.email), 
-                                     "contactName", FieldValue.ArrayUnion(user.username));
+                    .Instance
+                    .Collection("users")
+                    .Document(toAddUser.uid)
+                    .UpdateAsync(new { contacts = toAddUser.contacts });
 
-                await DisplayAlert("Success", user.username + " is added to your contacts", "", "OKAY");
-                fetchSearchResults();
-                //SearchEntry.Text = "";
-                //SearchEntry.Focus();
+                FetchSearchResults();
+                await DisplayAlert("Success", "Contact added successfully.", "", "OKAY");
             }
         }
     }

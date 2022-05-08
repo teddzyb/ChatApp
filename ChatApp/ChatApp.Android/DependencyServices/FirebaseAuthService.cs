@@ -32,6 +32,7 @@ namespace ChatApp.Droid
                     email = FirebaseAuth.Instance.CurrentUser.Email,
                     username = dataClass.loggedInUser.username,
                     userType = dataClass.loggedInUser.userType,
+                    contacts = dataClass.loggedInUser.contacts,
                     createdAt = dataClass.loggedInUser.createdAt
                 };
                 dataClass.isSignedIn = true;
@@ -45,7 +46,6 @@ namespace ChatApp.Droid
             }
         }
 
-        [Obsolete]
         public async Task<FirebaseAuthResponseModel> LoginWithEmailPassword(string email, string password)
         {
             try
@@ -56,18 +56,20 @@ namespace ChatApp.Droid
                 {
                     var document = await CrossCloudFirestore.Current
                                         .Instance
-                                        .GetCollection("users")
-                                        .GetDocument(result.User.Uid)
-                                        .GetDocumentAsync();
-                    var yourModel = document.ToObject<UserModel>();
+                                        .Collection("users")
+                                        .Document(result.User.Uid)
+                                        .GetAsync();
+                    
+                    var user = document.ToObject<UserModel>();
 
                     dataClass.loggedInUser = new UserModel()
                     {
                         uid = result.User.Uid,
                         email = result.User.Email,
-                        username = yourModel.username,
-                        userType = yourModel.userType,
-                        createdAt = yourModel.createdAt
+                        username = user.username,
+                        userType = user.userType,
+                        contacts = user.contacts,
+                        createdAt = user.createdAt
                     };
                     dataClass.isSignedIn = true;
                     return new FirebaseAuthResponseModel() { Status = true, Response = "Login successful." };
@@ -128,17 +130,8 @@ namespace ChatApp.Droid
                     username = username,
                     userType = 0,
                     createdAt = DateTime.UtcNow,
-                    contacts = new List<string>(new string[] { }),
+                    contacts = new List<string>(),
                 };
-
-                //dataClass.userContact = new ContactModel()
-                //{
-                //    id = Guid.NewGuid().ToString(),
-                //    contactID = new string[] { dataClass.loggedInUser.uid },
-                //    contactName = new string[] { dataClass.loggedInUser.username },
-                //    contactEmail = new string[] { dataClass.loggedInUser.email },
-                //    created_at = DateTime.UtcNow,
-                //};
 
                 return new FirebaseAuthResponseModel() { Status = true, Response = "Sign up successful. Verification email sent." }; ;
             }

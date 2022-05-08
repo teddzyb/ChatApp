@@ -15,7 +15,6 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-
             <!--  Gestures  -->
             <Grid.GestureRecognizers>
                 <SwipeGestureRecognizer Direction="Left" Swiped="Nav_Profile" />
@@ -52,7 +51,7 @@
                 FontSize="Medium"
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
-                IsVisible="true"
+                IsVisible="True"
                 Text="You have no contacts as of the moment."
                 VerticalOptions="CenterAndExpand"
                 VerticalTextAlignment="Center" />
@@ -71,9 +70,9 @@
             <!--  Chat View  -->
             <StackLayout
                 Grid.Row="1"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalOptions="StartAndExpand"
                 VerticalOptions="StartAndExpand">
-                <TabbedView:Chats x:Name="Chats" IsVisible="true" />
+                <TabbedView:Chats x:Name="Chats" IsVisible="True" />
             </StackLayout>
 
 

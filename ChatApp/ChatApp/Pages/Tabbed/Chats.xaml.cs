@@ -78,8 +78,11 @@ namespace ChatApp.Pages.Tabbed
                     {
                         foreach (var documentChange in snapshot.DocumentChanges)
                         {
-                            var json = JsonConvert.SerializeObject(documentChange.Document.Data);
-                            var obj = JsonConvert.DeserializeObject<ContactModel>(json);
+                            //var json = JsonConvert.SerializeObject(documentChange.Document.Data);
+                            //var obj = JsonConvert.DeserializeObject<ContactModel>(json);
+
+                            var obj = documentChange.Document.ToObject<ContactModel>();
+
                             switch (documentChange.Type)
                             {
                                 case DocumentChangeType.Added:
@@ -107,26 +110,6 @@ namespace ChatApp.Pages.Tabbed
                 });
 
             ContactListView.ItemsSource = contactList;
-
-            //var contactList = firestoreContactList.ToObjects<ContactModel>().ToArray();
-
-            //if (contactList[0].contactID.Count() == 1)
-            //{
-            //    ContactListGrid.IsVisible = false;
-            //    userListView.IsRefreshing = false;
-            //    return;
-            //}
-
-            //ObservableCollection<UserModel> userContacts = new ObservableCollection<UserModel>();
-
-            //for (int i = 1; i < contactList[0].contactID.Count(); i++)
-            //{
-            //    userContacts.Add(new UserModel() { uid = contactList[0].contactID[i], username = contactList[0].contactName[i], email = contactList[0].contactEmail[i] });
-            //}
-
-            //userListView.ItemsSource = userContacts;
-            //userListView.IsRefreshing = false;
-
         }
     }
 }

@@ -22,6 +22,7 @@
                     Grid.Row="0"
                     Margin="10,0,0,10"
                     Text="Contacts"
+                    VerticalTextAlignment="Start"
                     TextColor="#424242" />
                 <ListView
                     x:Name="ContactListView"

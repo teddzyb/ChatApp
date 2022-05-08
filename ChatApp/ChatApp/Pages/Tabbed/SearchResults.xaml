@@ -35,11 +35,12 @@
 
                         <local:CustomSearchBar
                             x:Name="SearchEntry"
-                            Keyboard="Email"
                             BackgroundColor="Transparent"
                             FontSize="Small"
+                            Keyboard="Email"
                             Placeholder="Search Email"
-                            TextChanged="SearchQuery" />
+                            SearchButtonPressed="SearchQuery"
+                            TextChanged="ClearResults" />
                     </Frame>
                 </Grid>
 
@@ -75,10 +76,10 @@
                 </Grid.RowDefinitions>
                 <ListView
                     x:Name="userListView"
-                    RefreshControlColor="#e91e63"
                     Grid.Row="0"
                     BackgroundColor="Transparent"
                     HasUnevenRows="True"
+                    RefreshControlColor="#e91e63"
                     SeparatorColor="Transparent">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -123,13 +124,22 @@
                                                 <Image
                                                     BackgroundColor="Transparent"
                                                     HeightRequest="25"
-                                                    Source="{Binding iconSource}"
-                                                    WidthRequest="25" />
+                                                    Source="add"
+                                                    WidthRequest="25">
+                                                    <Image.Triggers>
+                                                        <DataTrigger
+                                                            Binding="{Binding uid, Converter={StaticResource isFriendConverter}}"
+                                                            TargetType="Image"
+                                                            Value="True">
+                                                            <Setter Property="Source" Value="check" />
+                                                        </DataTrigger>
+                                                    </Image.Triggers>
+                                                </Image>
                                             </StackLayout>
                                         </StackLayout>
                                     </Frame>
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer CommandParameter="{Binding id}" Tapped="AddToContact" />
+                                        <TapGestureRecognizer CommandParameter="{Binding uid}" Tapped="AddToContact" />
                                     </Grid.GestureRecognizers>
                                 </Grid>
                             </ViewCell>
