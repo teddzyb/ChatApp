@@ -55,8 +55,6 @@ namespace ChatApp.Pages.Tabbed
 
         private async void FetchSearchResults()
         {
-            //await DisplayAlert("Searching", dataClass.loggedInUser.contacts[0], "OK");
-
             userListView.ItemsSource = null;
             userResult.Clear();
 
@@ -146,7 +144,7 @@ namespace ChatApp.Pages.Tabbed
                     .Document(contact.id)
                     .SetAsync(contact);
                 
-                dataClass.loggedInUser.contacts.Add(contact.id);
+                dataClass.loggedInUser.contacts.Add(toAddUser.uid);
 
                 await CrossCloudFirestore.Current
                     .Instance
