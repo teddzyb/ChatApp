@@ -58,7 +58,7 @@ namespace ChatApp.Pages.Tabbed
 
         private async void Nav_Result(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new SearchResults(), true);
+            await Navigation.PushModalAsync(new SearchResults(), true);
         }
 
         private async void checkUserContacts()

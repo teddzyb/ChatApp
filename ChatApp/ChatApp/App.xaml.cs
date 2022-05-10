@@ -1,10 +1,7 @@
 ﻿using ChatApp.Pages.Tabbed;
 using ChatApp.TempData;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ChatApp
 {

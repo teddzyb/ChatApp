@@ -51,19 +51,19 @@ namespace ChatApp.Pages.Tabbed
                                          .Collection("contacts")
                                          .Document(contactID)
                                          .GetAsync();
-
+                
                 var contact = document.ToObject<ContactModel>();
 
                 var user = new UserModel
                 {
                     username = dataClass.loggedInUser.uid == contact.contactID[0] ? contact.contactName[1] : contact.contactName[0],
                 };
-
+                
                 var conversation = new Conversation(contactID)
                 {
                     BindingContext = user
                 };
-                await Navigation.PushAsync(conversation, true);
+                await Navigation.PushModalAsync(conversation, true);
                 ContactListView.IsRefreshing = false;
             }
         }

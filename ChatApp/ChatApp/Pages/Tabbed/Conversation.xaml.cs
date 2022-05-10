@@ -1,11 +1,7 @@
-﻿using ChatApp.TempData;
-using Plugin.CloudFirestore;
+﻿using Plugin.CloudFirestore;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -77,7 +73,7 @@ namespace ChatApp.Pages.Tabbed
         private async void GoBack(object sender, EventArgs e)
         {
             MessagingCenter.Send(new MainPage(), "RefreshMainPage");
-            await Navigation.PopAsync();
+            await Navigation.PopModalAsync();
         }
 
         private void ToggleSendButton(object sender, EventArgs e)
