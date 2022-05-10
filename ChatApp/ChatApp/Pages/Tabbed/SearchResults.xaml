@@ -39,8 +39,7 @@
                             FontSize="Small"
                             Keyboard="Email"
                             Placeholder="Search Email"
-                            TextChanged="SearchQuery"
-                             />
+                            TextChanged="SearchQuery" />
                     </Frame>
                 </Grid>
 
@@ -63,6 +62,7 @@
                 HorizontalOptions="CenterAndExpand"
                 IsVisible="false"
                 Text="User not found"
+                TextColor="#757575"
                 VerticalOptions="CenterAndExpand" />
 
             <Grid

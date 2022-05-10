@@ -53,6 +53,7 @@
                 HorizontalTextAlignment="Center"
                 IsVisible="True"
                 Text="You have no contacts as of the moment."
+                TextColor="#757575"
                 VerticalOptions="CenterAndExpand"
                 VerticalTextAlignment="Center" />
 

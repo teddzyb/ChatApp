@@ -90,7 +90,7 @@ namespace ChatApp.Pages.Tabbed
                 SendButton.Source = "send_enabled";
             }
 
-            if ((conversationList != null && conversationList.Count > 0))
+            if (conversationList != null && conversationList.Count > 0)
             {
                 //conversationListView.ScrollTo(conversationList[conversationList.Count - 1], ScrollToPosition.End, false);
                 var conv = conversationListView.ItemsSource.Cast<object>().LastOrDefault();

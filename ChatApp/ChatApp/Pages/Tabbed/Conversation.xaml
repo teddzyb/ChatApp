@@ -76,6 +76,7 @@
                     FontSize="Medium"
                     HorizontalTextAlignment="Center"
                     Text="You can now start a conversation with this person."
+                    TextColor="#757575"
                     VerticalOptions="CenterAndExpand" />
             </StackLayout>
             <Grid
