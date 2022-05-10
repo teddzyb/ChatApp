@@ -64,7 +64,9 @@ namespace ChatApp.Pages.Tabbed
                                     }
                                     break;
                             }
-                            conversationListView.ScrollTo(conversationList[conversationList.Count - 1], ScrollToPosition.End, true); // keep this true or else bug
+                            //conversationListView.ScrollTo(conversationList[conversationList.Count - 1], ScrollToPosition.End, true); // keep this true or else bug
+                            var conv = conversationListView.ItemsSource.Cast<object>().LastOrDefault();
+                            conversationListView.ScrollTo(conv, ScrollToPosition.End, false);
                         }
                         AlertLabel.IsVisible = conversationList.Count == 0;
                         conversationListView.IsVisible = !(conversationList.Count == 0);
@@ -88,9 +90,11 @@ namespace ChatApp.Pages.Tabbed
                 SendButton.Source = "send_enabled";
             }
 
-            if (conversationList != null && conversationList.Count > 0)
+            if ((conversationList != null && conversationList.Count > 0))
             {
-                conversationListView.ScrollTo(conversationList[conversationList.Count - 1], ScrollToPosition.End, false);
+                //conversationListView.ScrollTo(conversationList[conversationList.Count - 1], ScrollToPosition.End, false);
+                var conv = conversationListView.ItemsSource.Cast<object>().LastOrDefault();
+                conversationListView.ScrollTo(conv, ScrollToPosition.End, false);
             }
         }
 
@@ -101,11 +105,12 @@ namespace ChatApp.Pages.Tabbed
 
         private async void SendMessage(object sender, EventArgs e)
         {
+            var message = MessageEntry.Text.TrimStart().TrimEnd();
             ConversationModel conversation = new ConversationModel()
             {
                 id = Guid.NewGuid().ToString(),
                 converseeID = dataClass.loggedInUser.uid,
-                message = MessageEntry.Text,
+                message = message,
                 createdAt = DateTime.UtcNow
             };
             

@@ -27,8 +27,9 @@ namespace ChatApp.Pages.Tabbed
         public SearchResults()
         {
             InitializeComponent();
-
             NavigationPage.SetHasNavigationBar(this, false);
+
+            fetchLatestContacts();
         }
 
         protected override void OnAppearing()
@@ -36,6 +37,18 @@ namespace ChatApp.Pages.Tabbed
             base.OnAppearing();
             SearchEntry.Focus();
         }
+
+        private async void fetchLatestContacts()
+        {
+            var currentUser = await CrossCloudFirestore.Current
+                    .Instance
+                    .Collection("users")
+                    .Document(dataClass.loggedInUser.uid)
+                    .GetAsync();
+
+            var currentUserState = currentUser.ToObject<UserModel>();
+            dataClass.loggedInUser.contacts = currentUserState.contacts;
+        }            
 
         private async void GoBack(object sender, EventArgs e)
         {
@@ -117,7 +130,7 @@ namespace ChatApp.Pages.Tabbed
         {
             string searchID = (string)((TappedEventArgs)e).Parameter;
             string userID = dataClass.loggedInUser.uid;
-
+            
             if (searchID.Equals(userID))
             {
                 await DisplayAlert("Error", "You are not allowed to add yourself.", "", "OKAY");
@@ -173,7 +186,7 @@ namespace ChatApp.Pages.Tabbed
                     .UpdateAsync(new { contacts = toAddUser.contacts });
 
                 FetchSearchResults();
-                await DisplayAlert("Success", "You are now connected with" + toAddUser.username, "", "OKAY");
+                await DisplayAlert("Success", "You are now connected with " + toAddUser.username + ".", "", "OKAY");
             }
         }
     }
