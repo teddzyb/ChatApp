@@ -1,5 +1,4 @@
 ﻿using ChatApp.Pages.Tabbed;
-using ChatApp.TempData;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
@@ -11,14 +10,11 @@ namespace ChatApp
         public static float screenHeight { get; set; }
         public static float appScale { get; set;  }
 
-        ObservableCollection<ConversationModel> conversationList = new ObservableCollection<ConversationModel>();
         DataClass dataClass = DataClass.GetInstance;
 
         public App()
         {
             InitializeComponent();
-
-            GlobalData.conversationList = conversationList;
 
             MainPage = new NavigationPage(new MainPage());
 

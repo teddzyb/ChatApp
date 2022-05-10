@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ChatApp.TempData;
 using Plugin.CloudFirestore;
 using Newtonsoft.Json;
 

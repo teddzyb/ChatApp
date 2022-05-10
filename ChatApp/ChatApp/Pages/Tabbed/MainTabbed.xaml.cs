@@ -1,5 +1,4 @@
-﻿using ChatApp.TempData;
-using Plugin.CloudFirestore;
+﻿using Plugin.CloudFirestore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +14,7 @@ namespace ChatApp.Pages.Tabbed
     public partial class MainTabbed : ContentPage
     {
         bool isFriendsNotExist = true;
+        bool isLoaded = false;
         DataClass dataClass = DataClass.GetInstance;
 
         public MainTabbed()
@@ -22,12 +22,18 @@ namespace ChatApp.Pages.Tabbed
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
+            //MessagingCenter.Subscribe<MainPage>(this, "RefreshMainPage", (sender) =>
+            //{
+            //    isLoaded = false;
+            //});
+
             checkUserContacts();
         }
         
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            isLoaded = false;
         }
         
         private void Nav_Chat(object sender, EventArgs e)
@@ -58,7 +64,11 @@ namespace ChatApp.Pages.Tabbed
 
         private async void Nav_Result(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new SearchResults(), true);
+            if (isLoaded == false)
+            {
+                isLoaded = true;
+                await Navigation.PushModalAsync(new SearchResults(), true);
+            }
         }
 
         private async void checkUserContacts()

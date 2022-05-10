@@ -1,8 +1,7 @@
-﻿    using System;
+﻿using System;
 using Xamarin.Forms;
 using ChatApp.Pages.Auth;
 using ChatApp.Pages.Tabbed;
-using ChatApp.TempData;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Collections.Generic;
