@@ -77,11 +77,15 @@ namespace ChatApp.Pages.Tabbed
             var firestoreUserContactList = await CrossCloudFirestore.Current.Instance.Collection("users").WhereEqualsTo("uid", id).GetAsync();
             var UserContactList = firestoreUserContactList.ToObjects<UserModel>().FirstOrDefault();
 
-            if (UserContactList != null && UserContactList.contacts.Count != 0) // Naa kay friends
+            if (UserContactList != null && UserContactList.contacts.Count != 0) // If naa kay friends e hide ang label
             {
                 isFriendsNotExist = false;
                 AlertLabel.IsVisible = false;
             } 
+            else
+            {
+                AlertLabel.IsVisible = true;
+            }
         }
     }
 }
