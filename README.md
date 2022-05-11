@@ -18,4 +18,4 @@ Convo is a minimalist mobile instant messaging application developed with Xamari
  - Van AJ Vanguaria
 
 ## Project Status
-In Completed
+Completed
