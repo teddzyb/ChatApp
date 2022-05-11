@@ -138,7 +138,7 @@ namespace ChatApp.Pages.Tabbed
 
             if (dataClass.loggedInUser.contacts.Contains(searchID))
             {
-                await DisplayAlert("Failed", "You both already have a connection", "", "OKAY");
+                await DisplayAlert("Failed", "You both already have a connection.", "", "OKAY");
                 return;
             }
 
